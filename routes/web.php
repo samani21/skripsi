@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +81,18 @@ Route::post('pegawai/tambah_pegawai', [PegawaiController::class, 'store'])->name
 Route::get('pegawai/edit_pegawai/{id}',[PegawaiController::class,'editpegawai'])->name('pegawai/edit_pegawai');
 Route::post('updatepegawai/{id}',[PegawaiController::class,'updatepegawai'])->name('updatepegawai');
 Route::get('pegawai/hapus_pegawai/{id}', [PegawaiController::class,'destroy'])->name('hapus_pegawai');
+
+//petugas
+Route::get('petugas/petugas', [PetugasController::class,'index'])->name('petugas/petugas');
+Route::get('petugas/tambah_dokter', [PetugasController::class, 'dokter'])->name('petugas/tambah_dokter');
+Route::get('petugas/tambah_perawat', [PetugasController::class, 'perawat'])->name('petugas/tambah_perawat');
+Route::post('petugas/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');
+Route::get('petugas/edit_dokter/{id}',[PetugasController::class,'editdokter'])->name('petugas/edit_dokter');
+Route::get('petugas/edit_perawat/{id}',[PetugasController::class,'editperawat'])->name('petugas/edit_perawat');
+Route::post('updatepetugas/{id}',[PetugasController::class,'updatepetugas'])->name('updatepetugas');
+Route::get('petugas/hapus_petugas/{id}', [PetugasController::class,'destroy'])->name('hapus_petugas');
+
+
 
 Route::get('dashboard/dashboard', function(){
     return view('dashboard/dashboard');

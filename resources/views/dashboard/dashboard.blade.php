@@ -12,7 +12,7 @@
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
                     <h6 class="m-b-20">Jumlah Pegawai</h6>
-                    {{-- <h2 class="text-right"><i class="las la-user-friends"></i><span>{{$pegawai->count()}}</span></h2> --}}
+                    <h2 class="text-right"><i class="las la-user-friends"></i><span>{{$pegawai->count()}}</span></h2>
                 </div>
             </div>
         </div>

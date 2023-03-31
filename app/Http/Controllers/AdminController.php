@@ -11,7 +11,7 @@ class AdminController extends Controller
     public function index(Request $request){
         $data['title'] = 'Dashboard';
         $tgl = $request->tgl;
-        // $pegawai = DB::table('tb_pegawai')->paginate();
+        $pegawai = DB::table('tb_pegawai')->paginate();
         // $dokter = DB::table('tb_pelayanan')->where('kelompok','like','dokter','')->paginate();
         // $perawat = DB::table('tb_pelayanan')->where('kelompok','like','perawat','')->paginate();
         // $pasien = DB::table('tb_pasien')->paginate();
@@ -19,7 +19,7 @@ class AdminController extends Controller
         // $obatmasuk = DB::table('tb_obatmasuk')->where('tgl','like',"%".$tgl."%");
         // $obatkeluar = DB::table('tb_resep')->where('tgl','like',"%".$tgl."%");
         // $obat = DB::table('tb_obat')->paginate();
-         return view('dashboard/dashboard', ['title'=>'Dashboard'] );
+         return view('dashboard/dashboard', ['title'=>'Dashboard','pegawai'=>$pegawai] );
     }
 
     public function dashboard(Request $request){
