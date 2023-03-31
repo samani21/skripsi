@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('maps');
 });
+
+
+Route::get('google-map', [GoogleController::class, 'index']);
+
 
 //login
 Route::get('login', 'App\Http\Controllers\AuthController@index')->name('login');
