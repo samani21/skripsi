@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('maps');
+    return view('login');
 });
 
+// Route::get('/', function () {
+//     return view('maps');
+// });
 
 Route::get('google-map', [GoogleController::class, 'index']);
 
@@ -31,6 +35,16 @@ Route::get('login', 'App\Http\Controllers\AuthController@index')->name('login');
 Route::post('proses_login', 'App\Http\Controllers\AuthController@proses_login')->name('proses_login');
 Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
 
+//daftar akun
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class, 'register_action'])->name('register.action');
+Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'verify'])->middleware('auth','signed')->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'rekam'])->middleware('auth','signed')->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'apotek'])->middleware('auth','signed')->name('verification.verify');
+Route::get('/email/verify/resend-verification',[VerificationController::class,'send'])->middleware('auth','throttle:6,1')->name('verification.send');
+Route::get('verifikasi', [AuthController::class, 'verifikasi'])->name('verifikasi');
+
+//login berdasarkn level
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         Route::resource('admin', 'App\Http\Controllers\AdminController');
@@ -59,16 +73,13 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-
-//daftar akun
-Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::post('register', [AuthController::class, 'register_action'])->name('register.action');
-Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'verify'])->middleware('auth','signed')->name('verification.verify');
-Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'rekam'])->middleware('auth','signed')->name('verification.verify');
-Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'apotek'])->middleware('auth','signed')->name('verification.verify');
-Route::get('/email/verify/resend-verification',[VerificationController::class,'send'])->middleware('auth','throttle:6,1')->name('verification.send');
-Route::get('verifikasi', [AuthController::class, 'verifikasi'])->name('verifikasi');
-
+//pegawai
+Route::get('pegawai/pegawai', [PegawaiController::class,'index'])->name('pegawai/pegawai');
+Route::get('pegawai/tambah_pegawai', [PegawaiController::class, 'create'])->name('pegawai/tambah_pegawai');
+Route::post('pegawai/tambah_pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
+Route::get('pegawai/edit_pegawai/{id}',[PegawaiController::class,'editpegawai'])->name('pegawai/edit_pegawai');
+Route::post('updatepegawai/{id}',[PegawaiController::class,'updatepegawai'])->name('updatepegawai');
+Route::get('pegawai/hapus_pegawai/{id}', [PegawaiController::class,'destroy'])->name('hapus_pegawai');
 
 Route::get('dashboard/dashboard', function(){
     return view('dashboard/dashboard');

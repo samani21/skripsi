@@ -55,17 +55,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('dokter/dokter?dokter=dokter') }}"
-                            class="{{ request()->is('dokter/dokter*','dokter/*')?'active' :'' }}">
+                        <a href="{{ url('petugas/petugas?petugas=petugas') }}"
+                            class="{{ request()->is('petugas/petugas*','petugas/*')?'active' :'' }}">
                             <span class="fa-solid fa-user-doctor"></span>
-                            <span>Dokter</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('perawat/perawat?perawat=perawat') }}"
-                            class="{{ request()->is('perawat/perawat*','perawat/*')?'active' :'' }}">
-                            <span class="fa-solid fa-user-nurse"></span>
-                            <span>Perawat</span>
+                            <span>Petugas</span>
                         </a>
                     </li>
                     <li>
@@ -82,7 +75,7 @@
                             <span>Rekam Medis</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="dropdown-btn">Laporan
                             <i class="fa fa-caret-down"></i>
                         </a>
@@ -100,7 +93,7 @@
                             <a href="{{url('laporan/obat_keluar?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/obat_keluar')?'active' :'' }}">Obat Keluar</a>
                         </div>
-                    </li>
+                    </li> --}}
                     @endif
                 </ul>
             </div>
