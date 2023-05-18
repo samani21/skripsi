@@ -85,6 +85,12 @@ Route::get('pegawai/hapus_pegawai/{id}', [PegawaiController::class,'destroy'])->
 
 //petugas
 Route::get('petugas/petugas', [JadwalController::class,'index'])->name('petugas/petugas');//jadwal petugas
+
+Route::get('petugas/tambah_jaga/{id}', [JadwalController::class, 'create'])->name('petugas/tambah_jaga'); //tambah jaga
+Route::post('petugas/tambah_jaga', [JadwalController::class, 'store'])->name('jaga.store'); //jadwal jaga
+Route::get('petugas/selesai/{id_jadwal}',[JadwalController::class,'selesai'])->name('petugas/selesai');
+Route::post('selesai/{id}',[JadwalController::class,'selesai_jaga'])->name('selesai');
+
 Route::get('petugas/dokter', [PetugasController::class,'data_dokter'])->name('petugas/dokter');//data dokter
 Route::get('petugas/perawat', [PetugasController::class,'data_perawat'])->name('petugas/perawat');//data dokter
 Route::get('petugas/tambah_dokter', [PetugasController::class, 'dokter'])->name('petugas/tambah_dokter');

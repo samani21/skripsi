@@ -9,6 +9,7 @@ class Jadwal extends Model
 {
     use HasFactory;
     protected $table = 'tb_jadwal';
+    protected $primaryKey = 'id_jadwal';
     protected $guarded = [];
     public function petugas(){
     	return $this->belongsTo('App\Models\Petugas');

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('tgl','20');
             $table->string('mulai','20');
             $table->string('selesai','20');
+            $table->string('status','2');
             $table->timestamps();
         });
     }

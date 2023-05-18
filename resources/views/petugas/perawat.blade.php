@@ -24,8 +24,8 @@
             <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">NIP</th>
-                <th scope="col" align="left">Nama</th>
+                <th scope="col" width="20%" >NIP</th>
+                <th scope="col" width="30%" align="left">Nama</th>
                 <th scope="col">Spesialis</th>
                 <th scope="col">kelompok</th>
                 <th scope="col" align="center">Aksi</th>
@@ -49,8 +49,9 @@
                        }if($tugas->kelompok =='perawat'){
                            echo '<a href="edit_perawat/'.$tugas->id.'" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>';
                         }?>
-                        {{-- <a href="edit_dokter/{{$tugas->id}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a> --}}
+                        <a href="edit_perawat/{{$tugas->id}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                         <a href="hapus_petugas/{{$tugas->id}}" class="btn btn-danger" onclick="javascript: return confirm('Konfirmasi data akan dihapus');"><i class="fa-solid fa-trash"></i> hapus</a>
+                        <a href="tambah_jaga/{{$tugas->id}}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Jaga</a>
                     </td>
                 </tr>
             @endforeach

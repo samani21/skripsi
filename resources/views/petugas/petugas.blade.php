@@ -40,14 +40,14 @@
         @endphp
         @foreach($jadwal as  $index=>$jad)
         <tr>
-            <td data-title="No">{{ $index + $jadwal->firstItem() }}</td>
+            <td data-title="No" align="center">{{ $index + $jadwal->firstItem() }}</td>
             <td data-title="Nip">{{$jad->nip}}</td>
-            <td data-title="Nama">{{$jad->nama}}</td>
-            <td data-title="Kelompok/Spesialis">{{$jad->kelompok}}</td>
-            <td data-title="Tgl">{{$jad->tgl}}</td>
-            <td data-title="Mulai">{{$jad->mulai}}</td>
-            <td data-title="selesai">{{$jad->selesai}}</td>
-            {{-- <td data-title="aksi">{{$jad->nip}}</td> --}}
+            <td data-title="Nama" style="text-transform: uppercase">{{$jad->nama}}</td>
+            <td data-title="Kelompok/Spesialis" align="center">{{$jad->kelompok}}/{{$jad->spesialis}}</td>
+            <td data-title="Tgl" align="center">{{$jad->tgl}}</td>
+            <td data-title="Mulai" align="center">{{$jad->mulai}}</td>
+            <td data-title="selesai" align="center">{{$jad->selesai}}</td>
+            <td data-title="aksi" align="center"><a href="selesai/{{$jad->id_jadwal}}" class="btn btn-success"> Selesai</a></td>
         </tr>
         @endforeach
 
