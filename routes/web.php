@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\VerificationController;
@@ -88,23 +89,26 @@ Route::get('petugas/petugas', [JadwalController::class,'index'])->name('petugas/
 
 Route::get('petugas/tambah_jaga/{id}', [JadwalController::class, 'create'])->name('petugas/tambah_jaga'); //tambah jaga
 Route::post('petugas/tambah_jaga', [JadwalController::class, 'store'])->name('jaga.store'); //jadwal jaga
-Route::get('petugas/selesai/{id_jadwal}',[JadwalController::class,'selesai'])->name('petugas/selesai');
-Route::post('selesai/{id}',[JadwalController::class,'selesai_jaga'])->name('selesai');
+Route::get('petugas/selesai/{id_jadwal}',[JadwalController::class,'selesai'])->name('petugas/selesai');//selesai jaga
+Route::post('selesai/{id}',[JadwalController::class,'selesai_jaga'])->name('selesai');//perbarui jadwal
 
 Route::get('petugas/dokter', [PetugasController::class,'data_dokter'])->name('petugas/dokter');//data dokter
-Route::get('petugas/perawat', [PetugasController::class,'data_perawat'])->name('petugas/perawat');//data dokter
-Route::get('petugas/tambah_dokter', [PetugasController::class, 'dokter'])->name('petugas/tambah_dokter');
-Route::get('petugas/tambah_perawat', [PetugasController::class, 'perawat'])->name('petugas/tambah_perawat');
-Route::post('petugas/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');
-Route::get('petugas/edit_dokter/{id}',[PetugasController::class,'editdokter'])->name('petugas/edit_dokter');
-Route::get('petugas/edit_perawat/{id}',[PetugasController::class,'editperawat'])->name('petugas/edit_perawat');
-Route::post('updatepetugas/{id}',[PetugasController::class,'updatepetugas'])->name('updatepetugas');
-Route::get('petugas/hapus_petugas/{id}', [PetugasController::class,'destroy'])->name('hapus_petugas');
+Route::get('petugas/tambah_dokter', [PetugasController::class, 'dokter'])->name('petugas/tambah_dokter');//tambah dokter
+Route::get('petugas/edit_dokter/{id}',[PetugasController::class,'editdokter'])->name('petugas/edit_dokter');//edit dokter
 
+Route::get('petugas/perawat', [PetugasController::class,'data_perawat'])->name('petugas/perawat');//data perawat
+Route::get('petugas/tambah_perawat', [PetugasController::class, 'perawat'])->name('petugas/tambah_perawat');//tambah perawat
+Route::get('petugas/edit_perawat/{id}',[PetugasController::class,'editperawat'])->name('petugas/edit_perawat');//edit perawat
 
+Route::post('updatepetugas/{id}',[PetugasController::class,'updatepetugas'])->name('updatepetugas');//update dokter dan perawat
+Route::get('petugas/hapus_petugas/{id}', [PetugasController::class,'destroy'])->name('hapus_petugas');//hapus dokter dan perawat
+Route::post('petugas/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');// tambah dokter dan perawat
 
+//pasien
+Route::get('pasien/pasien', [PasienController::class, 'index'])->name('pasien/pasien');//data pasien
+Route::get('pasien/tambah_pasien', [PasienController::class, 'create'])->name('pasien/tambah_pasien');//tambah pasien
+Route::post('pasien/tambah_pasien', [PasienController::class, 'store'])->name('pasien.store');//proses tambah pasien
+Route::get('pasien/edit_pasien/{id}',[PasienController::class,'editpasien'])->name('pasien/edit_pasien');//edit pasien
+Route::post('updatepasien/{id}',[PasienController::class,'updatepasien'])->name('updatepasien');//update pasien
+Route::get('pasien/hapus_pasien/{id}', [PasienController::class,'destroy'])->name('hapus_pasien');//hapus pasien
 
-
-// Route::get('dashboard/dashboard', function(){
-//     return view('dashboard/dashboard');
-// })->name('dashboard/dashboard');
