@@ -24,7 +24,7 @@ class Berobat extends Model
     }
 
     public function resep(){
-    	return $this->hasMany('App\Models\Obat');
+    	return $this->hasMany('App\Models\Resep');
     }
     // public function pasi(){
     // 	return $this->belongsTo('App\Models\Pasien');

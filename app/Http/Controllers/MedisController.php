@@ -6,7 +6,9 @@ use App\Models\Berobat;
 use App\Models\Diagnosa;
 use App\Models\Icd;
 use App\Models\Medis;
+use App\Models\Obat;
 use App\Models\Pasien;
+use App\Models\Resep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -108,6 +110,80 @@ class MedisController extends Controller
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
+        return Redirect::back();
+    }
+
+    public function diagnosa($id)
+    {   $berobat = Berobat::find($id);
+        $icd = Icd::all();
+        $data['title'] = 'Periksa pasien';
+        return view('medis/periksa_diagnosa',compact(['berobat','icd']), $data);
+    }
+
+    public function diagnosa_store(Request $request , $id){
+        $diagnosa = new Diagnosa([
+            'berobat_id' => $request->berobat_id,
+            'diagnosa' => $request->diagnosa,
+            
+        ]);
+        $diagnosa->save();
+        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
+        return Redirect::back();
+    }
+    
+    public function hapus_diagnosa($id){
+        $diagnosa = Diagnosa::find($id);
+        $diagnosa->delete();
+        toast('Yeay Berhasil menghapus data','success');
+        return Redirect::back();
+    }
+
+    public function obat($id,$pasien_id)
+    {   $berobat = Berobat::find($id);
+        $pasien = Pasien::find($pasien_id);
+        
+        $obat = Obat::all();
+        $data['title'] = 'Periksa pasien';
+        return view('medis/periksa_obat',['berobat' =>$berobat,'pasien' =>$pasien,'obat'=>$obat],$data);
+    }
+
+    public function obat_store(Request $request ){
+
+        $obat = new Resep([
+            'berobat_id' => $request->berobat_id,
+            'kd_obat' => $request->kd_obat,
+            'jumlah' => $request->jumlah,
+            'dosis' => $request->dosis,
+            'pakai' => $request->pakai,
+            'tgl' => $request->tgl,
+            'bulan' => $request->bulan,
+            'tahun' => $request->tahun,
+        ]);
+        $obat->save();
+
+        // $ubah = Berobat::findorfail($id);
+        // $dt =[
+        //     'status' => $request['status'],
+        // ];
+        // $ubah->update($dt);
+        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
+        return Redirect::back();
+    }
+
+    public function selesai(Request $request , $id){
+        $ubah = Berobat::findorfail($id);
+        $dt =[
+            'status' => $request['status'],
+        ];
+        $ubah->update($dt);
+        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
+        return Redirect::back();
+    }
+
+    public function hapus_resep($id){
+        $resep = Obat::find($id);
+        $resep->delete();
+        toast('Yeay Berhasil menghapus data','success');
         return Redirect::back();
     }
 }

@@ -118,13 +118,25 @@ Route::get('pasien/detail/id={id}&pasien_id={pasien_id}',[PasienController::clas
 
 Route::get('pasien/daftar/{id}', [BerobatController::class, 'create'])->name('pasien/daftar');//daftar pasien berobat
 Route::post('pasien/daftar/{id}', [BerobatController::class, 'store'])->name('tambah.store');//proses pasien berobat
+Route::get('pasien/detail/rekam_medis/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
+
 
 //rekam medis
 Route::get('medis/medis', [BerobatController::class, 'index'])->name('medis/medis');//data pasien berobat
 Route::get('medis/rekam_medis/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
+Route::post('selesai/{id}',[MedisController::class,'selesai'])->name('selesai');//selesai pemeriksaan
+
 
 Route::get('medis/periksa_fisik/{id}',[MedisController::class,'periksa'])->name('medis/periksa_fisik');//pemeriksaan fisik
 Route::post('medis/periksa_fisik/{id}',[MedisController::class,'store'])->name('fisik.store');//proses pemeriksaan fisik
 
 Route::get('medis/edit_fisik/medis={id}&pasien={berobat_id}',[MedisController::class,'edit_fisik'])->name('medis/edit_fisik');//edit pemeriksaan fisik
 Route::post('updatefisik/medis={id}',[MedisController::class,'update'])->name('updatefisik');// update pemeriksaan fisik
+
+Route::get('medis/periksa_diagnosa/berobat={id}&pasien{pasien}',[MedisController::class,'diagnosa'])->name('medis/diagnosa');//tambah diagnosa
+Route::post('medis/periksa_diagnosa/{id}',[MedisController::class,'diagnosa_store'])->name('diagnosa.store');//proses tambah diagnosa
+Route::get('medis/rekam_medis/hapus_diagnosa/{id}', [MedisController::class,'hapus_diagnosa'])->name('hapus_diagnosa');//hapus diagnosa
+
+Route::get('medis/periksa_obat/berobat={id}&pasien{pasien}',[MedisController::class,'obat'])->name('medis/periksa_obat');//resep
+Route::post('medis/periksa_obat/{id}',[MedisController::class,'obat_store'])->name('resep.store');//tambah resep
+Route::post('medis/hapus_resep/{id}',[MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus resep
