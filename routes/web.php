@@ -123,3 +123,5 @@ Route::post('pasien/daftar/{id}', [BerobatController::class, 'store'])->name('ta
 Route::get('medis/medis', [BerobatController::class, 'index'])->name('medis/medis');//data pasien berobat
 Route::get('medis/periksa_fisik/{id}',[MedisController::class,'periksa'])->name('medis/periksa_fisik');//pemeriksaan 
 Route::post('medis/periksa_fisik/{id}',[MedisController::class,'store'])->name('fisik.store');//proses pemeriksaan
+
+Route::get('medis/rekam_medis/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien

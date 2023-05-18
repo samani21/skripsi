@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Medis extends Model
+class Resep extends Model
 {
     use HasFactory;
-    protected $table = 'tb_medis';
+    protected $table = 'tb_resep';
     protected $guarded = [];
     public function ber(){
     	return $this->belongsTo('App\Models\Berobat');

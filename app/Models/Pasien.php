@@ -15,4 +15,10 @@ class Pasien extends Model
     // public function bero(){
     // 	return $this->hasMany('App\Models\Berobat');
     // }
+    // public function ber(){
+    // 	return $this->belongsTo('App\Models\Berobat');
+    // }
+    // public function bero(){
+    // 	return $this->hasMany('App\Models\Berobat');
+    // }
 }

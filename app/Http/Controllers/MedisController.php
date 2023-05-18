@@ -6,6 +6,7 @@ use App\Models\Berobat;
 use App\Models\Diagnosa;
 use App\Models\Icd;
 use App\Models\Medis;
+use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,5 +57,13 @@ class MedisController extends Controller
         $ubah->update($dt);
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
         return redirect('medis/medis?tgl='.date('d-m-Y').'');
+    }
+
+    public function rekam($id,$pasien_id){
+        $berobat = Berobat::find($id);
+        $pasien = Pasien::find($pasien_id);
+        $resep = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('berobat_id','=',''.$id.'')->get();
+        $data['title'] = 'Rekam medis pasien';
+        return view('medis/rekam_medis',['berobat' =>$berobat,'pasien' =>$pasien,'resep'=>$resep],$data);
     }
 }
