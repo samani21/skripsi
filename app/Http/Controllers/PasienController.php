@@ -87,4 +87,12 @@ class PasienController extends Controller
         toast('Yeay Berhasil menghapus data','success');
         return redirect('pasien/pasien');
     }
+
+    public function detail($id,$pasien_id){
+        $pasien = Pasien::find($id);
+        $berobat = DB::table('tb_berobat')->where('pasien_id','=',''.$pasien_id.'')->paginate(10);
+        $data['title'] = 'Data Pasien';
+        return view('pasien.detail',['berobat' =>$berobat,'pasien' =>$pasien],$data);
+    }
+
 }

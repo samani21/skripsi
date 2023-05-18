@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pasien extends Model
+class Berobat extends Model
 {
     use HasFactory;
-    protected $table = 'tb_pasien';
-    protected $primaryKey = 'id_pasien';
+    protected $table = 'tb_berobat';
     protected $guarded = [];
 
-    // public function bero(){
-    // 	return $this->hasMany('App\Models\Berobat');
+    // public function pasi(){
+    // 	return $this->belongsTo('App\Models\Pasien');
     // }
 }

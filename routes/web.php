@@ -112,3 +112,4 @@ Route::get('pasien/edit_pasien/{id}',[PasienController::class,'editpasien'])->na
 Route::post('updatepasien/{id}',[PasienController::class,'updatepasien'])->name('updatepasien');//update pasien
 Route::get('pasien/hapus_pasien/{id}', [PasienController::class,'destroy'])->name('hapus_pasien');//hapus pasien
 
+Route::get('pasien/detail/id={id}&pasien_id={pasien_id}',[PasienController::class,'detail'])->name('pasien/detail');//data lengkap pasien
