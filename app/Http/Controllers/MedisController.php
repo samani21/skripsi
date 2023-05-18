@@ -9,6 +9,7 @@ use App\Models\Medis;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class MedisController extends Controller
 {
@@ -24,7 +25,8 @@ class MedisController extends Controller
         $data['title'] = 'Periksa pasien';
         return view('medis/periksa_fisik',compact(['berobat','dokter','perawat','icd']), $data);
     }
-    public function store(Request $request , $id){
+    public function store(Request $request , $id)
+    {
         $medis = new Medis([
             'berobat_id' => $request->berobat_id,
             'tgl' => $request->tgl,
@@ -59,11 +61,53 @@ class MedisController extends Controller
         return redirect('medis/medis?tgl='.date('d-m-Y').'');
     }
 
-    public function rekam($id,$pasien_id){
+    public function rekam($id,$pasien_id)
+    {
         $berobat = Berobat::find($id);
         $pasien = Pasien::find($pasien_id);
         $resep = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('berobat_id','=',''.$id.'')->get();
         $data['title'] = 'Rekam medis pasien';
         return view('medis/rekam_medis',['berobat' =>$berobat,'pasien' =>$pasien,'resep'=>$resep],$data);
+    }
+
+    public function edit_fisik (Request $request,$id,$berobat)
+    {
+        $tgl = $request->tgl;
+        $berobat = Berobat::find($berobat);
+        $dokter = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
+        ->where('status','=','1')->where('kelompok','=','dokter')->where('tgl','=',"".$tgl."")->paginate(100);
+        $perawat = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
+        ->where('status','=','1')->where('kelompok','=','perawat')->where('tgl','=',"".$tgl."")->paginate(100);
+        $icd = Icd::all();
+        $fisik = Medis::find($id);
+        $data['title'] = 'Edit Rekam medis pasien';
+        return view('medis/edit_fisik',compact(['fisik','berobat','dokter','perawat','icd']),$data);
+    }
+
+    public function update(Request $request,$id)
+    {
+        $ubah = Medis::findorfail($id);
+        $dt =[
+            'berobat_id' => $request['berobat_id'],
+            'tgl' => $request['tgl'],
+            'umur' => $request['umur'],
+            'dokter' => $request['dokter'],
+            'perawat' => $request['perawat'],
+            'sistolik' => $request['sistolik'],
+            'diastolik' => $request['diastolik'],
+            'saturasi' => $request['saturasi'],
+            'suhu' => $request['suhu'],
+            'tinggi' => $request['tinggi'],
+            'berat' => $request['berat'],
+            'napas' => $request['napas'],
+            'keluhan' => $request['keluhan'],
+            'tindakan' => $request['tindakan'],
+            'keterangan' => $request['keterangan'],
+            'biaya' => $request['biaya'],
+
+        ];
+        $ubah->update($dt);
+        alert('Sukses','Simpan Data Berhasil', 'success');
+        return Redirect::back();
     }
 }
