@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Petugas extends Model
+class Jadwal extends Model
 {
     use HasFactory;
-    protected $table = 'tb_petugas';
+    protected $table = 'tb_jadwal';
     protected $guarded = [];
-
-    public function jadwal(){
-    	return $this->hasMany('App\Models\Jadwal');
+    public function petugas(){
+    	return $this->belongsTo('App\Models\Petugas');
     }
 }

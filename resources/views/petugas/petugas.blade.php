@@ -2,61 +2,57 @@
 
 @section('content')
 
-    <div>
-        
-        <form action="{{route('petugas/petugas')}}" method="get" class="row g-12">
-            <div class="col-md-8">
-            <input class="form-control" type="hidden" name="dokter" value="dokter" placeholder="Cari surat berdasarkan no surat" aria-label="default input example">
+<div class="row">
+    <div class="col-md-4 col-xl-6">
+        <div class="card bg-c-blue order-card">
+            <div class="card-block-petugas">
+                <a href="{{ url('petugas/dokter') }}" class="text-white" style="text-decoration:none"><h4 class="m-b-20"> <i class="las la-user-friends"></i><span> Dokter</span></h4></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 col-xl-6">
+        <div class="card bg-c-green order-card">
+            <div class="card-block-petugas">
+                <a href="{{ url('petugas/perawat') }}"" class="text-white" style="text-decoration:none"><h4 class="m-b-20"> <i class="las la-user-friends"></i><span> Perawat</span></h4></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <input class="form-control" type="text" name="nama" placeholder="Cari nama petugas" aria-label="default input example">
-            </div>
-            <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-            </div>
-            <div class="col-auto">
-                <a href="{{url('petugas/tambah_dokter')}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Dokter</a>
-                <a href="{{url('petugas/tambah_perawat')}}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Perawat</a>
-                {{-- <a href="{{url('pegawai/cetak')}}" class="btn btn-success"><i class="fa-solid fa-print"></i> Cetak</a> --}}
-            </div>
-        </form>
-    </div>
-    <div class="table-responsive bg-white" id="no-more-tables">
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">NIP</th>
-                <th scope="col" align="left">Nama</th>
-                <th scope="col">Spesialis</th>
-                <th scope="col">kelompok</th>
-                <th scope="col" align="center">Aksi</th>
-            </tr>
-            </thead>
-            <tbody>
-                @php 
-                $no=1;
-            @endphp
-            @foreach($petugas as $index=> $tugas)
-                <tr >
-                    <td data-title="No">{{ $index + $petugas->firstItem() }}</td>
-                    <td data-title="Nip">{{$tugas->nip}}</td>
-                    <td data-title="nama" align="left" style="text-transform: uppercase">{{$tugas->nama}}</td>
-                    <td data-title="Spesialis">{{$tugas->spesialis}}</td>
-                    <td data-title="Spesialis">{{$tugas->kelompok}}</td>
-                    <td data-title="Aksi">
-                        <?php
-                        if($tugas->kelompok =='dokter'){
-                          echo '<a href="edit_dokter/'.$tugas->id.'" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>';
-                       }if($tugas->kelompok =='perawat'){
-                           echo '<a href="edit_perawat/'.$tugas->id.'" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Edit</a>';
-                        }?>
-                        {{-- <a href="edit_dokter/{{$tugas->id}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a> --}}
-                        <a href="hapus_petugas/{{$tugas->id}}" class="btn btn-danger" onclick="javascript: return confirm('Konfirmasi data akan dihapus');"><i class="fa-solid fa-trash"></i> hapus</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-        </table>
-        {{ $petugas->links() }}
-    </div>
+<div class="table-responsive bg-white" id="no-more-tables">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr align="center">
+            <th scope="col">No</th>
+            <th scope="col">NIP</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Kelompok/Spesialis</th>
+            <th scope="col">TGL</th>
+            <th scope="col">Mulai</th>
+            <th scope="col">Selesai</th>
+            <th scope="col">Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+            @php 
+            $no=1;
+        @endphp
+        @foreach($jadwal as  $index=>$jad)
+        <tr>
+            <td data-title="No">{{ $index + $jadwal->firstItem() }}</td>
+            <td data-title="Nip">{{$jad->nip}}</td>
+            <td data-title="Nama">{{$jad->nama}}</td>
+            <td data-title="Kelompok/Spesialis">{{$jad->kelompok}}</td>
+            <td data-title="Tgl">{{$jad->tgl}}</td>
+            <td data-title="Mulai">{{$jad->mulai}}</td>
+            <td data-title="selesai">{{$jad->selesai}}</td>
+            {{-- <td data-title="aksi">{{$jad->nip}}</td> --}}
+        </tr>
+        @endforeach
+
+    </tbody>
+    </table>
+    {{ $jadwal->links() }}
+</div>
 @endsection

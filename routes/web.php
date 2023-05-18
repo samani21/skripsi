@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\VerificationController;
@@ -83,7 +84,9 @@ Route::post('updatepegawai/{id}',[PegawaiController::class,'updatepegawai'])->na
 Route::get('pegawai/hapus_pegawai/{id}', [PegawaiController::class,'destroy'])->name('hapus_pegawai');
 
 //petugas
-Route::get('petugas/petugas', [PetugasController::class,'index'])->name('petugas/petugas');
+Route::get('petugas/petugas', [JadwalController::class,'index'])->name('petugas/petugas');//jadwal petugas
+Route::get('petugas/dokter', [PetugasController::class,'data_dokter'])->name('petugas/dokter');//data dokter
+Route::get('petugas/perawat', [PetugasController::class,'data_perawat'])->name('petugas/perawat');//data dokter
 Route::get('petugas/tambah_dokter', [PetugasController::class, 'dokter'])->name('petugas/tambah_dokter');
 Route::get('petugas/tambah_perawat', [PetugasController::class, 'perawat'])->name('petugas/tambah_perawat');
 Route::post('petugas/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');
@@ -94,6 +97,8 @@ Route::get('petugas/hapus_petugas/{id}', [PetugasController::class,'destroy'])->
 
 
 
-Route::get('dashboard/dashboard', function(){
-    return view('dashboard/dashboard');
-})->name('dashboard/dashboard');
+
+
+// Route::get('dashboard/dashboard', function(){
+//     return view('dashboard/dashboard');
+// })->name('dashboard/dashboard');

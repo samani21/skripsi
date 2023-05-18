@@ -8,12 +8,29 @@ use Illuminate\Support\Facades\DB;
 
 class PetugasController extends Controller
 {
+
     public function index(Request $request){
+        // $nama = $request->nama;
+        // $petugas = DB::table('tb_petugas')->where('nama','like',"%".$nama."%",'')
+		// ->paginate(6);
+ 
+        return view('petugas/petugas', ['title' => 'Petugas'] );
+    }
+
+    public function data_dokter(Request $request){
         $nama = $request->nama;
-        $petugas = DB::table('tb_petugas')->where('nama','like',"%".$nama."%",'')
+        $petugas = DB::table('tb_petugas')->where('kelompok','=',"Dokter")->where('nama','like',"%".$nama."%")
 		->paginate(6);
  
-        return view('petugas/petugas', ['petugas' => $petugas,'title' => 'Petugas'] );
+        return view('petugas/dokter', ['petugas' => $petugas,'title' => 'Dokter'] );
+    }
+
+    public function data_perawat(Request $request){
+        $nama = $request->nama;
+        $petugas = DB::table('tb_petugas')->where('kelompok','=',"Perawat")->where('nama','like',"%".$nama."%")
+		->paginate(6);
+ 
+        return view('petugas/perawat', ['petugas' => $petugas,'title' => 'Perawat'] );
     }
 
     public function dokter()

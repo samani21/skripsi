@@ -357,7 +357,11 @@ main{
 }
 
 .card .card-block {
-    padding: 25px;
+    padding: 10px;
+}
+
+.card .card-block-petugas {
+    padding: 10px;
 }
 
 .order-card i {
