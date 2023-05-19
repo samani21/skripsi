@@ -181,7 +181,7 @@ class MedisController extends Controller
     }
 
     public function hapus_resep($id){
-        $resep = Obat::find($id);
+        $resep = Resep::find($id);
         $resep->delete();
         toast('Yeay Berhasil menghapus data','success');
         return Redirect::back();

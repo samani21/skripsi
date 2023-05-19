@@ -75,6 +75,26 @@
                             <span>Rekam Medis</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{url('obat/obat')}}" class="{{ request()->is('obat/obat')?'active' :'' }}">
+                            <span class="las la-capsules"></span>
+                            <span>Obat</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('obat/obatkeluar?tgl='.date('d-m-Y').'')}}"
+                            class="{{ request()->is('obat/obatkeluar')?'active' :'' }}">
+                            <span class="las la-capsules"></span>
+                            <span>Obat Keluar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('obat/masuk?tgl='.date('d-m-Y').'') }}"
+                            class="{{ request()->is('obat/masuk')?'active' :'' }}">
+                            <span class="las la-capsules"></span>
+                            <span>Obat Masuk</span>
+                        </a>
+                    </li>
                     {{-- <li>
                         <a class="dropdown-btn">Laporan
                             <i class="fa fa-caret-down"></i>

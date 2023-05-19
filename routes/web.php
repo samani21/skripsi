@@ -6,6 +6,7 @@ use App\Http\Controllers\BerobatController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\MedisController;
+use App\Http\Controllers\ObatController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PetugasController;
@@ -125,6 +126,7 @@ Route::get('pasien/detail/rekam_medis/pasien={id}&rekammedis={pasien_id}',[Medis
 Route::get('medis/medis', [BerobatController::class, 'index'])->name('medis/medis');//data pasien berobat
 Route::get('medis/rekam_medis/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
 Route::post('selesai/{id}',[MedisController::class,'selesai'])->name('selesai');//selesai pemeriksaan
+Route::get('medis/rekam_medis/hapus_resep/{id}', [MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus resep
 
 
 Route::get('medis/periksa_fisik/{id}',[MedisController::class,'periksa'])->name('medis/periksa_fisik');//pemeriksaan fisik
@@ -140,3 +142,11 @@ Route::get('medis/rekam_medis/hapus_diagnosa/{id}', [MedisController::class,'hap
 Route::get('medis/periksa_obat/berobat={id}&pasien{pasien}',[MedisController::class,'obat'])->name('medis/periksa_obat');//resep
 Route::post('medis/periksa_obat/{id}',[MedisController::class,'obat_store'])->name('resep.store');//tambah resep
 Route::post('medis/hapus_resep/{id}',[MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus resep
+
+//obat
+Route::get('obat/obat', [ObatController::class, 'index'])->name('obat/obat');//data obat
+Route::get('obat/tambah_obat', [ObatController::class, 'create'])->name('obat/tambah_obat');//tambah data obat
+Route::post('obat/tambah_obat', [ObatController::class, 'store'])->name('obat.store');//proses tambah obat
+Route::get('obat/edit_obat/{id}',[ObatController::class,'editobat'])->name('obat/edit_obat');//edit obat
+Route::post('updateobat/{id}',[ObatController::class,'updateobat'])->name('updateobat');//update obat
+Route::get('obat/hapus_obat/{id}', [ObatController::class,'destroy'])->name('hapus_obat');//hapus obat

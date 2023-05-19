@@ -10,4 +10,5 @@ class Obat extends Model
     use HasFactory;
     protected $table = 'tb_obat';
     protected $primaryKey = 'kode';
+    protected $guarded = [];
 }
