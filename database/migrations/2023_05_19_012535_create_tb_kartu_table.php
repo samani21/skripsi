@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('alamat','100');
             $table->string('tgl','20');
             $table->string('tempat','20');
+            $table->string('jk','20');
             $table->timestamps();
         });
     }

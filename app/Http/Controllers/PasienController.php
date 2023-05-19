@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class PasienController extends Controller
 {
@@ -93,6 +94,28 @@ class PasienController extends Controller
         $berobat = DB::table('tb_berobat')->where('pasien_id','=',''.$pasien_id.'')->paginate(10);
         $data['title'] = 'Data Pasien';
         return view('pasien.detail',['berobat' =>$berobat,'pasien' =>$pasien],$data);
+    }
+
+    public function cetak_pasien(Request $request)
+    {
+        $tgl = $request->tgl;
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+        $cari = $request->cari;
+        $pasien = DB::table('tb_pasien')->where('tahun_pasien','like',"%".$tahun."%")
+        ->where('bulan_pasien','like',"%".$bulan."%")->get();
+        $pdf = PDF::loadView('pasien/cetak_pasien',compact('pasien'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('cetak_pasien.pdf');
+    }
+    public function laporan(Request $request)
+	{   
+        $cari = $request->cari;
+        $pasien = DB::table('tb_pasien')
+        ->where('nama','like',"%".$cari."%")
+		->paginate(7);
+        $pasien->withPath('pasien?tgl=14-01-2023&');
+        return view('laporan/pasien', ['pasien' => $pasien,'title' => 'Laporan pasien'] );
     }
 
 }

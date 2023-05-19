@@ -6,6 +6,7 @@ use App\Models\Berobat;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class BerobatController extends Controller
 {
@@ -67,5 +68,30 @@ class BerobatController extends Controller
         $berobat->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
         return redirect()->route('pasien/pasien');
+    }
+
+    public function laporan(Request $request)
+	{   $tgl = $request->tgl;
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+        $berobat = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%")
+        ->where('tahun','like',"%".$tahun."%")
+        ->where('bulan','like',"%".$bulan."%")
+		->paginate(7);
+ 
+        return view('laporan/medis', ['berobat' => $berobat,'title' => 'Laporan Berobat'] );
+    }
+
+    public function cetak_medis(Request $request)
+    {   $tgl = $request->tgl;
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+        $medis = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%")
+        ->where('tahun','like',"%".$tahun."%")
+        ->where('bulan','like',"%".$bulan."%")
+		->paginate();
+        $pdf = PDF::loadView('medis/cetak_medis',compact('medis'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('cetak_medis.pdf');
     }
 }

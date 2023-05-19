@@ -172,3 +172,21 @@ Route::post('kartu/tambah_kartu', [KartuController::class, 'store'])->name('kart
 Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('pegawai/edit_kartu');
 Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');
 Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');
+
+
+//laporan
+Route::get('laporan/pegawai', [PegawaiController::class, 'laporan'])->name('laporan/pegawai');
+Route::get('laporan/pasien', [PasienController::class, 'laporan'])->name('laporan/pasien');
+Route::get('laporan/medis', [BerobatController::class, 'laporan'])->name('laporan/medis');
+Route::get('laporan/obat', [ObatController::class, 'laporan'])->name('laporan/obat');
+Route::get('laporan/obat_masuk', [ObatController::class, 'laporan_masuk'])->name('laporan/obat_masuk');
+Route::get('laporan/obat_keluar', [ObatController::class, 'laporan_keluar'])->name('laporan/obat_keluar');
+
+//cetak
+Route::get('pegawai/cetak', [PegawaiController::class, 'cetak_pegawai'])->name('pegawai/cetak');
+Route::get('pasien/cetak_pasien', [PasienController::class, 'cetak_pasien'])->name('pasien/cetak_pasien');
+Route::get('medis/cetak_medis', [BerobatController::class, 'cetak_medis'])->name('medis/cetak_medis');
+Route::get('obat/cetak_obat', [ObatController::class, 'cetak_obat'])->name('obat/cetak_obat');
+Route::get('obat/cetak_obatmasuk', [ObatController::class, 'cetak_obatmasuk'])->name('obat/cetak_obatmasuk');
+Route::get('obat/cetak_obatkeluar', [ObatController::class, 'cetak_obatkeluar'])->name('obat/cetak_obatkeluar');
+Route::get('medis/cetak_rm/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'cetak_rm'])->name('medis/cetak_rm');

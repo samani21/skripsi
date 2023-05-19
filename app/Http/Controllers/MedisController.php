@@ -12,6 +12,7 @@ use App\Models\Resep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use PDF;
 
 class MedisController extends Controller
 {
@@ -185,5 +186,13 @@ class MedisController extends Controller
         $resep->delete();
         toast('Yeay Berhasil menghapus data','success');
         return Redirect::back();
+    }
+
+    public function cetak_rm($id,$pasien_id){
+        $berobat = Berobat::find($id);
+        $pasien = Pasien::find($pasien_id);
+        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','berobat'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('cetak_rekam_medis.pdf');
     }
 }
