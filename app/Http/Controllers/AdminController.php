@@ -12,14 +12,14 @@ class AdminController extends Controller
         $data['title'] = 'Dashboard';
         $tgl = $request->tgl;
         $pegawai = DB::table('tb_pegawai')->paginate();
-        // $dokter = DB::table('tb_pelayanan')->where('kelompok','like','dokter','')->paginate();
-        // $perawat = DB::table('tb_pelayanan')->where('kelompok','like','perawat','')->paginate();
-        // $pasien = DB::table('tb_pasien')->paginate();
-        // $berobat = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%");
-        // $obatmasuk = DB::table('tb_obatmasuk')->where('tgl','like',"%".$tgl."%");
-        // $obatkeluar = DB::table('tb_resep')->where('tgl','like',"%".$tgl."%");
-        // $obat = DB::table('tb_obat')->paginate();
-         return view('dashboard/dashboard', ['title'=>'Dashboard','pegawai'=>$pegawai] );
+        $dokter = DB::table('tb_petugas')->where('kelompok','like','dokter','')->paginate();
+        $perawat = DB::table('tb_petugas')->where('kelompok','like','perawat','')->paginate();
+        $pasien = DB::table('tb_pasien')->paginate();
+        $berobat = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%");
+        $obatmasuk = DB::table('tb_obatmasuk')->where('tgl','like',"%".$tgl."%");
+        $obatkeluar = DB::table('tb_resep')->where('tgl','like',"%".$tgl."%");
+        $obat = DB::table('tb_obat')->paginate();
+         return view('dashboard/dashboard', ['pegawai' => $pegawai,'dokter' => $dokter,'perawat' => $perawat,'pasien' => $pasien,'berobat' => $berobat,'obat' => $obat,'obatmasuk' => $obatmasuk,'obatkeluar' => $obatkeluar,'title'=>'Dashboard'] );
     }
 
     public function dashboard(Request $request){

@@ -160,3 +160,6 @@ Route::get('obat/edit_stok/{id}',[ObatmasukController::class,'editstok'])->name(
 Route::get('obat/hapus_masuk/{id}', [ObatmasukController::class,'destroy'])->name('hapus_masuk');//hapus obat masuk
 Route::post('updatestok/{id}', [ObatmasukController::class, 'updatestok'])->name('updatestok');//update obat masuik
 // Route::post('obat/edit_stok/{id}', [StokobatController::class, 'stok_edit'])->name('edit.store');
+
+//obat keluar
+Route::get('obat/obatkeluar', [ObatController::class, 'keluar'])->name('obat/obatkeluar');//data obat keluar

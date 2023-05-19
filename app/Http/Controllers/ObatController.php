@@ -24,6 +24,16 @@ class ObatController extends Controller
         return view('obat/masuk', ['obat' => $obat,'title' => 'Obat Masuk'] );
     }
 
+    public function keluar(Request $request)
+	{   $tgl = $request->tgl;
+        $cari = $request->cari;
+        $obat = DB::table('tb_resep')->where('tgl','LIKE',"%".$tgl."%")
+                                    ->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')
+                                    ->where('nm_obat','LIKE',"%".$cari."%")->get();
+ 
+        return view('obat/obatkeluar', ['obat' => $obat,'title' => 'Obat'] );
+    }
+
     public function create()
     {
         $data['title'] = 'Tambah Obat';
