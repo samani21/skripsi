@@ -95,6 +95,13 @@
                             <span>Obat Masuk</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('kartu/kartu') }}"
+                            class="{{ request()->is('kartu/kartu','kartu/*')?'active' :'' }}">
+                            <span class="fa-regular fa-address-card"></span>
+                            <span> Kartu Berobat</span>
+                        </a>
+                    </li>
                     {{-- <li>
                         <a class="dropdown-btn">Laporan
                             <i class="fa fa-caret-down"></i>

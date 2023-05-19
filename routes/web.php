@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerobatController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\KartuController;
 use App\Http\Controllers\MedisController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\ObatmasukController;
@@ -163,3 +164,11 @@ Route::post('updatestok/{id}', [ObatmasukController::class, 'updatestok'])->name
 
 //obat keluar
 Route::get('obat/obatkeluar', [ObatController::class, 'keluar'])->name('obat/obatkeluar');//data obat keluar
+
+//kartu berobat
+Route::get('kartu/kartu', [KartuController::class, 'index'])->name('kartu/kartu');
+Route::get('kartu/tambah_kartu', [KartuController::class, 'create'])->name('kartu/tambah_kartu');
+Route::post('kartu/tambah_kartu', [KartuController::class, 'store'])->name('kartu.store');
+Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('pegawai/edit_kartu');
+Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');
+Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');
