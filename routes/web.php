@@ -7,6 +7,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\MedisController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\ObatmasukController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PetugasController;
@@ -150,3 +151,12 @@ Route::post('obat/tambah_obat', [ObatController::class, 'store'])->name('obat.st
 Route::get('obat/edit_obat/{id}',[ObatController::class,'editobat'])->name('obat/edit_obat');//edit obat
 Route::post('updateobat/{id}',[ObatController::class,'updateobat'])->name('updateobat');//update obat
 Route::get('obat/hapus_obat/{id}', [ObatController::class,'destroy'])->name('hapus_obat');//hapus obat
+
+//obat masuk
+Route::get('obat/masuk', [ObatController::class, 'obat_masuk'])->name('obat/obat_masuk');//data obat masuk
+Route::get('obat/tambah_stok/{kode}', [ObatmasukController::class, 'create'])->name('obat/tambah_stok');//tambah stok obat masuk
+Route::post('obat/tambah_stok/{kode}', [ObatmasukController::class, 'stok_store'])->name('stok.store');//proses tambah stok obat masuk
+Route::get('obat/edit_stok/{id}',[ObatmasukController::class,'editstok'])->name('obat/edit_stok');//edit obat masuk
+Route::get('obat/hapus_masuk/{id}', [ObatmasukController::class,'destroy'])->name('hapus_masuk');//hapus obat masuk
+Route::post('updatestok/{id}', [ObatmasukController::class, 'updatestok'])->name('updatestok');//update obat masuik
+// Route::post('obat/edit_stok/{id}', [StokobatController::class, 'stok_edit'])->name('edit.store');
