@@ -67,7 +67,7 @@
                 <td data-title="Tanggal berobat"><?php echo $medis->tgl;?></td>
                 <td data-title="Status"><?php if($medis->status =='2'){
                     echo '<span class="badge bg-success">Selesai diperiksa</span>';
-                 }if($medis->status =='1'){
+                 }if($medis->status =='1'||$medis->status =='3'){
                     echo '<span class="badge bg-warning">Sedang diperiksa</span>';
                  }if($medis->status =='0'){
                      echo '<span class="badge bg-danger">Belum diperiksa</span>';
@@ -86,14 +86,14 @@
             <td data-title="Aksi">
                 <?php if($medis->status =='0'){
                         echo '<a href="periksa_fisik/'.$medis->id.'?tgl='.date('d-m-Y').'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';
-                     }if($medis->status =='1'){
+                     }if($medis->status =='1'||$medis->status =='3'){
                          echo '';
                       }?>
-                <?php if($medis->status =='1'){
-                        echo '<a href="rekam_medis/pasien='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-warning"><i class="fa-solid fa-laptop-medical"></i></a>';
+                <?php if($medis->status =='1'||$medis->status =='3'){
+                        echo '<a href="rekam_medis/berobat='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-warning"><i class="fa-solid fa-laptop-medical"></i></a>';
                      }
                       if($medis->status =='2'){
-                        echo '<a href="rekam_medis/pasien='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
+                        echo '<a href="rekam_medis/berobat='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
                      }if($medis->status =='0'){
                          echo '';
                       }?>

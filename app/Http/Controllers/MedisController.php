@@ -60,7 +60,7 @@ class MedisController extends Controller
         ]);
         $diagnosa->save();
         $ubah->update($dt);
-        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
+        Alert()->success('SuccessAlert','Tambah data berhasil');
         return redirect('medis/medis?tgl='.date('d-m-Y').'');
     }
 
@@ -68,9 +68,10 @@ class MedisController extends Controller
     {
         $berobat = Berobat::find($id);
         $pasien = Pasien::find($pasien_id);
+        $surat = DB::table('tb_surat')->where('berobat_id','=',''.$id.'')->get();
         $resep = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('berobat_id','=',''.$id.'')->get();
         $data['title'] = 'Rekam medis pasien';
-        return view('medis/rekam_medis',['berobat' =>$berobat,'pasien' =>$pasien,'resep'=>$resep],$data);
+        return view('medis/rekam_medis',['berobat' =>$berobat,'pasien' =>$pasien,'resep'=>$resep,'surat'=>$surat],$data);
     }
 
     public function edit_fisik (Request $request,$id,$berobat)
@@ -122,6 +123,8 @@ class MedisController extends Controller
     }
 
     public function diagnosa_store(Request $request , $id){
+        $a = $request->berobat;
+        $b = $request->pasien;
         $diagnosa = new Diagnosa([
             'berobat_id' => $request->berobat_id,
             'diagnosa' => $request->diagnosa,
@@ -129,7 +132,7 @@ class MedisController extends Controller
         ]);
         $diagnosa->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return Redirect::back();
+        return redirect('medis/rekam_medis/berobat='.$a.'&rekammedis='.$b.'');
     }
     
     public function hapus_diagnosa($id){
@@ -148,8 +151,10 @@ class MedisController extends Controller
         return view('medis/periksa_obat',['berobat' =>$berobat,'pasien' =>$pasien,'obat'=>$obat],$data);
     }
 
-    public function obat_store(Request $request ){
-
+    public function obat_store(Request $request )
+    {
+        $a = $request->berobat;
+        $b = $request->pasien;
         $obat = new Resep([
             'berobat_id' => $request->berobat_id,
             'kd_obat' => $request->kd_obat,
@@ -168,7 +173,7 @@ class MedisController extends Controller
         // ];
         // $ubah->update($dt);
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return Redirect::back();
+        return redirect('medis/rekam_medis/berobat='.$a.'&rekammedis='.$b.'');
     }
 
     public function selesai(Request $request , $id){
@@ -191,7 +196,8 @@ class MedisController extends Controller
     public function cetak_rm($id,$pasien_id){
         $berobat = Berobat::find($id);
         $pasien = Pasien::find($pasien_id);
-        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','berobat'));
+        $resep = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('berobat_id','=',''.$id.'')->get();
+        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','berobat','resep'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_rekam_medis.pdf');
     }

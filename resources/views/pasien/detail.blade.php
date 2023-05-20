@@ -86,7 +86,7 @@
                           }?></td>
                        <td>
                         <?php if($pas->status =='2'){
-                            echo '<a href="rekam_medis/pasien='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i>Lihat</a>';
+                            echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i>Lihat</a>';
                          }if($pas->status =='1'){
                             echo '';
                          }if($pas->status =='0'){

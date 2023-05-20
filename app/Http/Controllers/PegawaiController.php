@@ -87,4 +87,5 @@ class PegawaiController extends Controller
  
         return view('laporan/pegawai', ['pegawai' => $pegawai,'title' => 'Laporan Pegawai'] );
     }
+
 }

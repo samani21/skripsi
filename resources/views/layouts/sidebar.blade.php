@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('petugas/petugas') }}"
+                        <a href="{{ url('petugas/petugas?tgl='.date('d-m-Y').'') }}"
                             class="{{ request()->is('petugas/petugas*','petugas/*')?'active' :'' }}">
                             <span class="fa-solid fa-user-doctor"></span>
                             <span>Petugas</span>

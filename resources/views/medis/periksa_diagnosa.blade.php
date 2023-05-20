@@ -17,7 +17,8 @@
                     @endforeach
             </datalist>
         </div>
-
+        <input type="text" value="{{$berobat->id}}" name="berobat">
+        <input type="text" value="{{$berobat->pasien_id}}" name="pasien">
         <br>
         <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
         <a href="/medis/rekam_medis/pasien={{$berobat->id}}&rekammedis={{$berobat->pasien_id}}" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>

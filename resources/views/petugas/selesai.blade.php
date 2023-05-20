@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="{{url('selesai',$jadwal->id_jadwal)}}" method="POST">
+<form action="{{url('updatejadwal',$jadwal->id_jadwal)}}" method="POST">
     @csrf
         <div>
             <label for="">NIP</label>

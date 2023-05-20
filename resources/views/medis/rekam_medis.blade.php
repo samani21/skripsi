@@ -2,22 +2,44 @@
 
 @section('content')
 <div class="container">
-    <a href="/medis/medis?tgl={{date('d-m-Y')}}" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i> Kembali</a>
-    <a href="/medis/cetak_rm/pasien={{$berobat->id}}&rekammedis={{$pasien->id_pasien}}" class="btn btn-primary"><i class="fa-solid fa-print"></i> Cetak rekam medis</a>
+    <button onclick="history.back()" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
+    {{-- <a href="/medis/medis?tgl={{date('d-m-Y')}}" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>
+        Kembali
+    </a> --}}
+    @foreach($surat as $s)
+    @php
+    if ($s->status == '1') {
+    echo '<a
+        href="/medis/cetak_sakit/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'"
+        class="btn btn-danger"><i class="fa-solid fa-print"></i> Cetak Surat Sakit</a>';
+    }
+    if ($s->status == '2') {
+    echo '<a
+        href="/medis/cetak_sehat/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'"
+        class="btn btn-success"><i class="fa-solid fa-print"></i> Cetak Surat Sehat</a>';
+    }
+    @endphp
+    @endforeach
+    <a href="/medis/cetak_rm/pasien={{$berobat->id}}&rekammedis={{$pasien->id_pasien}}" class="btn btn-primary"><i
+            class="fa-solid fa-print"></i> Cetak rekam medis</a>
     <div class="float-end">
 
         <form action="{{route('selesai',$berobat->id)}}" method="POST">
             @csrf
+            {{-- <a href="/medis/surat_sakit/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
+            class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
+            <a href="/medis/surat_sehat/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
+                class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a> --}}
             <input type="hidden" name="status" value="2">
-        <?php if($berobat->status =='1'){
+            <?php if($berobat->status =='1'||$berobat->status =='3'){
             echo '<button class="btn btn-success" type="submit" name="simpan">Selesai</button>
+            <a href="/medis/surat_sakit/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'" class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
+            <a href="/medis/surat_sehat/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a>
             <a href="/medis/edit_fisik/medis='.$berobat->medis->id.'&pasien='.$berobat->medis->berobat_id.'?tgl='.date('d-m-Y').'" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-             <a href="/medis/periksa_diagnosa/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Diagnosa</a>
-        <a href="/medis/periksa_obat/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Obat</a>';
-         }if($berobat->status =='2'){
-             echo '';
-          }?>
-          </form>
+            <a href="/medis/periksa_diagnosa/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Diagnosa</a>
+            <a href="/medis/periksa_obat/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Obat</a>';
+         }?>
+        </form>
     </div>
     <hr>
     <div class="row g-2">
@@ -227,9 +249,10 @@
                             <h5><b>Diagnosa</b></h5>
                         </td>
                         <td> @foreach($berobat->diagnosa as $d)
-                            <h5>{{ $d->diagnosa }},  <?php if($berobat->status =='1'){
+                            <h5>{{ $d->diagnosa }}, <?php if($berobat->status =='1'){
                                 ?>
-                                <a href="hapus_diagnosa/{{$d->id}}"  class=""onclick="javascript: return confirm('Konfirmasi data akan dihapus');">Hapus</a>
+                                <a href="hapus_diagnosa/{{$d->id}}" class=""
+                                    onclick="javascript: return confirm('Konfirmasi data akan dihapus');">Hapus</a>
                                 <?php
                              }if($berobat->status =='2'){
                                  echo '';
@@ -278,8 +301,9 @@
             <td>{{ $a->pakai }}</td>
             <?php if($berobat->status =='1'){
                 ?>
-                <td><a href="hapus_resep/{{$a->id}}" class="" onclick="javascript: return confirm('Konfirmasi data akan dihapus');">Hapus</a></td>
-                <?php
+            <td><a href="hapus_resep/{{$a->id}}" class=""
+                    onclick="javascript: return confirm('Konfirmasi data akan dihapus');">Hapus</a></td>
+            <?php
              }if($berobat->status =='2'){
                  echo '';
               }?>

@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class JadwalController extends Controller
 {
-    public function index(){
-        $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')->paginate(6);
+    public function index(Request $request)
+    {
+        $tgl = $request->tgl;
+        $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
+        ->where('tgl','=',''.$tgl.'')
+        ->paginate(6);
         return view('petugas/petugas', ['jadwal'=>$jadwal,'title' => 'Petugas'] );
     }
 
@@ -30,7 +34,7 @@ class JadwalController extends Controller
         ]);
         $jadwal->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return redirect()->route('petugas/petugas');
+        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
     }
 
     public function selesai($id_jadwal){
@@ -39,7 +43,7 @@ class JadwalController extends Controller
         return view('petugas.selesai',compact(['jadwal']),$data);
     }
 
-    public function selesai_jaga(Request $request, $id){
+    public function updatejadwal(Request $request, $id){
         $ubah = Jadwal::findorfail($id);
         $dt =[
             'petugas_id' => $request['petugas_id'],
@@ -50,6 +54,6 @@ class JadwalController extends Controller
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
-        return redirect('petugas/petugas');
+        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
     }
 }

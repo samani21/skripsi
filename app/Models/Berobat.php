@@ -15,9 +15,9 @@ class Berobat extends Model
     	return $this->hasOne('App\Models\Medis');
     }
 
-    // public function pasien(){
-    // 	return $this->hasOne('App\Models\Pasien');
-    // }
+    public function pasien(){
+    	return $this->hasOne('App\Models\Pasien');
+    }
 
     public function diagnosa(){
     	return $this->hasMany('App\Models\Diagnosa');
@@ -26,7 +26,7 @@ class Berobat extends Model
     public function resep(){
     	return $this->hasMany('App\Models\Resep');
     }
-    // public function pasi(){
-    // 	return $this->belongsTo('App\Models\Pasien');
-    // }
+    public function pasi(){
+    	return $this->belongsTo('App\Models\Pasien');
+    }
 }

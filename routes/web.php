@@ -12,6 +12,7 @@ use App\Http\Controllers\ObatmasukController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\SuratController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,12 +83,12 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //pegawai
-Route::get('pegawai/pegawai', [PegawaiController::class,'index'])->name('pegawai/pegawai');
-Route::get('pegawai/tambah_pegawai', [PegawaiController::class, 'create'])->name('pegawai/tambah_pegawai');
-Route::post('pegawai/tambah_pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
-Route::get('pegawai/edit_pegawai/{id}',[PegawaiController::class,'editpegawai'])->name('pegawai/edit_pegawai');
-Route::post('updatepegawai/{id}',[PegawaiController::class,'updatepegawai'])->name('updatepegawai');
-Route::get('pegawai/hapus_pegawai/{id}', [PegawaiController::class,'destroy'])->name('hapus_pegawai');
+Route::get('pegawai/pegawai', [PegawaiController::class,'index'])->name('pegawai/pegawai');//data pegawai
+Route::get('pegawai/tambah_pegawai', [PegawaiController::class, 'create'])->name('pegawai/tambah_pegawai');//tambah data pegawai
+Route::post('pegawai/tambah_pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');//proses tambah data pegawai
+Route::get('pegawai/edit_pegawai/{id}',[PegawaiController::class,'editpegawai'])->name('pegawai/edit_pegawai');//edit data pegawai
+Route::post('updatepegawai/{id}',[PegawaiController::class,'updatepegawai'])->name('updatepegawai');//update data pergawai
+Route::get('pegawai/hapus_pegawai/{id}', [PegawaiController::class,'destroy'])->name('hapus_pegawai');//hapus data pegawai
 
 //petugas
 Route::get('petugas/petugas', [JadwalController::class,'index'])->name('petugas/petugas');//jadwal petugas
@@ -95,7 +96,7 @@ Route::get('petugas/petugas', [JadwalController::class,'index'])->name('petugas/
 Route::get('petugas/tambah_jaga/{id}', [JadwalController::class, 'create'])->name('petugas/tambah_jaga'); //tambah jaga
 Route::post('petugas/tambah_jaga', [JadwalController::class, 'store'])->name('jaga.store'); //jadwal jaga
 Route::get('petugas/selesai/{id_jadwal}',[JadwalController::class,'selesai'])->name('petugas/selesai');//selesai jaga
-Route::post('selesai/{id}',[JadwalController::class,'selesai_jaga'])->name('selesai');//perbarui jadwal
+Route::post('updatejadwal/{id}',[JadwalController::class,'updatejadwal'])->name('updatejadwal');//perbarui jadwal
 
 Route::get('petugas/dokter', [PetugasController::class,'data_dokter'])->name('petugas/dokter');//data dokter
 Route::get('petugas/tambah_dokter', [PetugasController::class, 'dokter'])->name('petugas/tambah_dokter');//tambah dokter
@@ -121,12 +122,12 @@ Route::get('pasien/detail/id={id}&pasien_id={pasien_id}',[PasienController::clas
 
 Route::get('pasien/daftar/{id}', [BerobatController::class, 'create'])->name('pasien/daftar');//daftar pasien berobat
 Route::post('pasien/daftar/{id}', [BerobatController::class, 'store'])->name('tambah.store');//proses pasien berobat
-Route::get('pasien/detail/rekam_medis/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
+Route::get('pasien/detail/rekam_medis/berobat={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
 
 
 //rekam medis
 Route::get('medis/medis', [BerobatController::class, 'index'])->name('medis/medis');//data pasien berobat
-Route::get('medis/rekam_medis/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
+Route::get('medis/rekam_medis/berobat={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
 Route::post('selesai/{id}',[MedisController::class,'selesai'])->name('selesai');//selesai pemeriksaan
 Route::get('medis/rekam_medis/hapus_resep/{id}', [MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus resep
 
@@ -143,7 +144,13 @@ Route::get('medis/rekam_medis/hapus_diagnosa/{id}', [MedisController::class,'hap
 
 Route::get('medis/periksa_obat/berobat={id}&pasien{pasien}',[MedisController::class,'obat'])->name('medis/periksa_obat');//resep
 Route::post('medis/periksa_obat/{id}',[MedisController::class,'obat_store'])->name('resep.store');//tambah resep
-Route::post('medis/hapus_resep/{id}',[MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus resep
+Route::post('medis/hapus_resep/{id}',[MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus 
+
+Route::get('medis/surat_sakit/pasien={id}&rekammedis={medis}&berobat={berobat}', [SuratController::class, 'surat_sakit'])->name('medis/sakit');//buat surat sakit
+Route::post('medis/surat_sakit/berobat={berobat}', [SuratController::class, 'sakit'])->name('surat.sakit');//proses surat sakit 
+
+Route::get('medis/surat_sehat/pasien={id}&rekammedis={medis}&berobat={berobat}', [SuratController::class, 'surat_sehat'])->name('medis/sehat');//buat surat sehat
+Route::post('medis/surat_sehat/berobat={berobat}', [SuratController::class, 'sakit'])->name('surat.sehat');//proses surat sehat 
 
 //obat
 Route::get('obat/obat', [ObatController::class, 'index'])->name('obat/obat');//data obat
@@ -166,27 +173,29 @@ Route::post('updatestok/{id}', [ObatmasukController::class, 'updatestok'])->name
 Route::get('obat/obatkeluar', [ObatController::class, 'keluar'])->name('obat/obatkeluar');//data obat keluar
 
 //kartu berobat
-Route::get('kartu/kartu', [KartuController::class, 'index'])->name('kartu/kartu');
-Route::get('kartu/tambah_kartu', [KartuController::class, 'create'])->name('kartu/tambah_kartu');
-Route::post('kartu/tambah_kartu', [KartuController::class, 'store'])->name('kartu.store');
-Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('pegawai/edit_kartu');
-Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');
-Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');
+Route::get('kartu/kartu', [KartuController::class, 'index'])->name('kartu/kartu');//data kartu berobat
+Route::get('kartu/tambah_kartu', [KartuController::class, 'create'])->name('kartu/tambah_kartu');//tambah data kartu berobat
+Route::post('kartu/tambah_kartu', [KartuController::class, 'store'])->name('kartu.store');//proses tambah kartu berobat
+Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('kartu/edit_kartu');//edit kartu berobat
+Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');//update kartu berobat
+Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');//hapus kartu berobat
 
 
 //laporan
-Route::get('laporan/pegawai', [PegawaiController::class, 'laporan'])->name('laporan/pegawai');
-Route::get('laporan/pasien', [PasienController::class, 'laporan'])->name('laporan/pasien');
-Route::get('laporan/medis', [BerobatController::class, 'laporan'])->name('laporan/medis');
-Route::get('laporan/obat', [ObatController::class, 'laporan'])->name('laporan/obat');
-Route::get('laporan/obat_masuk', [ObatController::class, 'laporan_masuk'])->name('laporan/obat_masuk');
-Route::get('laporan/obat_keluar', [ObatController::class, 'laporan_keluar'])->name('laporan/obat_keluar');
+Route::get('laporan/pegawai', [PegawaiController::class, 'laporan'])->name('laporan/pegawai');//laporan data pegawai
+Route::get('laporan/pasien', [PasienController::class, 'laporan'])->name('laporan/pasien');//laporan data pasien
+Route::get('laporan/medis', [BerobatController::class, 'laporan'])->name('laporan/medis');//laporan data pasien berobat
+Route::get('laporan/obat', [ObatController::class, 'laporan'])->name('laporan/obat');//laporan data obat
+Route::get('laporan/obat_masuk', [ObatController::class, 'laporan_masuk'])->name('laporan/obat_masuk');//laporan data obat masuk
+Route::get('laporan/obat_keluar', [ObatController::class, 'laporan_keluar'])->name('laporan/obat_keluar');//laporan data obat keluar
 
 //cetak
-Route::get('pegawai/cetak', [PegawaiController::class, 'cetak_pegawai'])->name('pegawai/cetak');
-Route::get('pasien/cetak_pasien', [PasienController::class, 'cetak_pasien'])->name('pasien/cetak_pasien');
-Route::get('medis/cetak_medis', [BerobatController::class, 'cetak_medis'])->name('medis/cetak_medis');
-Route::get('obat/cetak_obat', [ObatController::class, 'cetak_obat'])->name('obat/cetak_obat');
-Route::get('obat/cetak_obatmasuk', [ObatController::class, 'cetak_obatmasuk'])->name('obat/cetak_obatmasuk');
-Route::get('obat/cetak_obatkeluar', [ObatController::class, 'cetak_obatkeluar'])->name('obat/cetak_obatkeluar');
-Route::get('medis/cetak_rm/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'cetak_rm'])->name('medis/cetak_rm');
+Route::get('pegawai/cetak', [PegawaiController::class, 'cetak_pegawai'])->name('pegawai/cetak');//cetak pegawai
+Route::get('pasien/cetak_pasien', [PasienController::class, 'cetak_pasien'])->name('pasien/cetak_pasien');//cetak pasien
+Route::get('medis/cetak_medis', [BerobatController::class, 'cetak_medis'])->name('medis/cetak_medis');//cetak pasien berobat
+Route::get('obat/cetak_obat', [ObatController::class, 'cetak_obat'])->name('obat/cetak_obat');//cetak obat
+Route::get('obat/cetak_obatmasuk', [ObatController::class, 'cetak_obatmasuk'])->name('obat/cetak_obatmasuk');//cetak obat masuk
+Route::get('obat/cetak_obatkeluar', [ObatController::class, 'cetak_obatkeluar'])->name('obat/cetak_obatkeluar');//cetak obat keluar
+Route::get('medis/cetak_rm/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'cetak_rm'])->name('medis/cetak_rm');//cetal rekam medis pasien
+Route::get('medis/cetak_sakit/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sakit'])->name('medis/cetak_sakit');//cetak surat sakit
+Route::get('medis/cetak_sehat/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sehat'])->name('medis/cetak_sehat');//cetak surat sakit

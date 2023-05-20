@@ -99,10 +99,10 @@
             @php
             $no=1;
             @endphp
-            @foreach($berobat->resep as $a)
+            @foreach($resep as $a)
             <tr>
                 <td>{{ $no++ }}</td>
-                <td>{{ $a->obat }}</td>
+                <td>{{ $a->nm_obat }}</td>
                 <td align="center">{{ $a->jumlah }}</td>
                 <td align="center">{{ $a->dosis }}</td>
             </tr>
