@@ -90,6 +90,7 @@
                 <label for="">No hp</label>
                 <input class="form-control" type="text" id="no_hp" name="no_hp" value="{{$pasien->no_hp}}" placeholder="Masukkan no hp" aria-label="default input example"readonly>
             </div>
+            <input type="hidden" value="{{$pasien->password}}" name="password">
             <div>
                 <input class="form-control" type="hidden" id="status" name="status" value="0" placeholder="Masukkan no hp" aria-label="default input example">
             </div>

@@ -47,6 +47,7 @@ class PasienController extends Controller
             'tgl_pasien' => $request->tgl_pasien,
             'bulan_pasien' => $request->bulan_pasien,
             'tahun_pasien' => $request->tahun_pasien,
+            'password' => $request->password,
         ]);
         $pasien->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
@@ -76,6 +77,7 @@ class PasienController extends Controller
             'tgl_pasien' => $request['tgl_pasien'],
             'bulan_pasien' => $request['bulan_pasien'],
             'tahun_pasien' => $request['tahun_pasien'],
+            'password' => $request['password'],
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');

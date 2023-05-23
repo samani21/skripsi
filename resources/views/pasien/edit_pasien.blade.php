@@ -83,6 +83,11 @@
                 <input class="form-control" maxlength="15" type="text" id="no_hp" name="no_hp" value="{{$pasien->no_hp}}"
                     placeholder="Masukkan no hp" aria-label="default input example">
             </div>
+            <div>
+                <label for="">passwrod</label>
+                <input class="form-control" type="text" id="password" value="{{$pasien->password}}" name="password"
+                    placeholder="Masukkan no hp" aria-label="default input example">
+            </div>
             <hr>
             <div>
                 <button type="submit" class="btn btn-success" name="simpan">Simpan</button>

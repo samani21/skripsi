@@ -55,6 +55,10 @@
                         <td><h5><b>Tanggal dibuat</b></h5></td>
                         <td><h5>{{$pasien->tgl_pasien}}</h5></td>
                     </tr>
+                    <tr>
+                        <td><h5><b>Password</b></h5></td>
+                        <td><h5>{{$pasien->password}}</h5></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -77,7 +81,7 @@
                     <tr align="center">
                         <td data-title="No">{{ $index + $berobat->firstItem() }}</td>
                         <td data-title="No">{{ $pas->tgl }}</td>
-                        <td data-title="Status"><?php if($pas->status =='1'){
+                        <td data-title="Status"><?php if($pas->status =='1'|| $pas->status == '3'){
                             echo '<span class="badge bg-warning text-black">Sedang diperiksa</span>';
                          }if($pas->status =='2'){
                             echo '<span class="badge bg-success">Selesai diperiksa</span>';

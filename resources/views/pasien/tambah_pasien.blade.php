@@ -76,6 +76,7 @@
                 <label for="">No hp</label>
                 <input class="form-control" type="text" id="no_hp" maxlength="15" name="no_hp" placeholder="Masukkan no hp" aria-label="default input example" required>
             </div>
+            <input type="hidden" value="{{date('jnyGi')}}" name="password">
             <hr>
             <div>
                 <button name="simpan" type="submit" class="btn btn-success">Simpan</button>
