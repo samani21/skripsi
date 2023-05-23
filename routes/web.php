@@ -12,6 +12,7 @@ use App\Http\Controllers\ObatmasukController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SuratController;
 use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('/home');
+});
+
+Route::get('login', function () {
     return view('login');
 });
 
@@ -180,6 +185,9 @@ Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('
 Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');//update kartu berobat
 Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');//hapus kartu berobat
 
+//cek riwayat berobat
+Route::get('riwayat/riwayat', [RiwayatController::class,'index'])->name('riwayat/riwayat');//data pegawai
+Route::get('riwayat/rekam_medis/berobat={id}&rekammedis={pasien_id}',[RiwayatController::class,'rekam'])->name('riwayat/rekam_medis');//data rekam medis pasien
 
 //laporan
 Route::get('laporan/pegawai', [PegawaiController::class, 'laporan'])->name('laporan/pegawai');//laporan data pegawai

@@ -52,7 +52,7 @@ class AuthController extends Controller
                         return redirect()->intended('kapus?tgl='.date('d-m-Y').'');
                     }
                 }
-                return redirect()->intended('/');
+                return redirect()->intended('login');
             }
 
         return redirect('login')
