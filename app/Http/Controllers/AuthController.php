@@ -15,7 +15,7 @@ class AuthController extends Controller
     {
         if ($user = Auth::user()) {
             if ($user->level == 'admin') {
-                return redirect()->intended('admin?tgl='.date('d-m-Y').'');
+                return redirect()->intended('admin?tgl='.date('d-m-Y').'&tahun='.date('Y').'');
             } elseif ($user->level == 'rekam_medis') {
                 return redirect()->intended('rekam_medis?tgl='.date('d-m-Y').'');
             }elseif ($user->level == 'apotek') {
@@ -43,7 +43,7 @@ class AuthController extends Controller
                     return redirect()->intended('verifikasi');
                 } else{
                     if ($user->level == 'admin') {
-                        return redirect()->intended('admin?tgl='.date('d-m-Y').'');
+                        return redirect()->intended('admin?tgl='.date('d-m-Y').'&tahun='.date('Y').'');
                     } elseif ($user->level == 'rekam_medis') {
                         return redirect()->intended('rekam_medis?tgl='.date('d-m-Y').'');
                     }elseif ($user->level == 'apotek') {

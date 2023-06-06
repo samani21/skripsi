@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('tgl_pasien','11');
             $table->string('bulan_pasien','3');
             $table->string('tahun_pasien','5');
+            $table->string('password','255');
             $table->timestamps();
         });
     }

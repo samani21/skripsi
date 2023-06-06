@@ -13,7 +13,7 @@
             <input class="form-control" type="text" id="nik" name="nik"  aria-label="default input example" autofocus required>
         </div>
         <div>
-            <label for="">Nama</label>
+            <label for="">Nama KK</label>
             <input class="form-control" type="text" id="nama" name="nama" placeholder="Masukkan nama" maxlength="50" style="text-transform: uppercase" aria-label="default input example" required>
         </div>
         <div>

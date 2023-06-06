@@ -12,6 +12,8 @@
     <script src="https://kit.fontawesome.com/a284c48079.js" crossorigin="anonymous"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -41,7 +43,7 @@
                 <ul>
                     @if(Auth::user()->level =='admin')
                     <li>
-                        <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
                             class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>

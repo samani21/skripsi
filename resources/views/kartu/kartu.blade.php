@@ -21,7 +21,7 @@
                 <th scope="col">No</th>
                 <th scope="col">Kartu Berobat</th>
                 <th scope="col">NIK</th>
-                <th scope="col">Nama</th>
+                <th scope="col">Nama KK</th>
                 <th scope="col">Alamat</th>
                 <th scope="col">TTL</th>
                 <th scope="col">Jenis Kelamin</th>
