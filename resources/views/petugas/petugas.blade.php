@@ -29,6 +29,7 @@
             <th scope="col">Nama</th>
             <th scope="col">Kelompok/Spesialis</th>
             <th scope="col">TGL</th>
+            <th scope="col">Poli</th>
             <th scope="col">Mulai</th>
             <th scope="col">Selesai</th>
             <th scope="col">Aksi</th>
@@ -45,9 +46,18 @@
             <td data-title="Nama" style="text-transform: uppercase">{{$jad->nama}}</td>
             <td data-title="Kelompok/Spesialis" align="center">{{$jad->kelompok}}/{{$jad->spesialis}}</td>
             <td data-title="Tgl" align="center">{{$jad->tgl}}</td>
+            <td data-title="Poli" align="center">{{$jad->poli}}</td>
             <td data-title="Mulai" align="center">{{$jad->mulai}}</td>
             <td data-title="selesai" align="center">{{$jad->selesai}}</td>
-            <td data-title="aksi" align="center"><a href="selesai/{{$jad->id_jadwal}}" class="btn btn-success"> Selesai</a></td>
+            <td data-title="aksi" align="center">
+                <?php
+                    if($jad->status == '1'){
+                        ?>
+                        <a href="selesai/{{$jad->id_jadwal}}" class="btn btn-success"> Selesai</a>
+                        <?php
+                    }
+                ?>
+            </td>
         </tr>
         @endforeach
 

@@ -28,6 +28,7 @@
                 <th scope="col" width="30%" align="left">Nama</th>
                 <th scope="col">Spesialis</th>
                 <th scope="col">kelompok</th>
+                <th scope="col">Poli</th>
                 <th scope="col">Aksi</th>
             </tr>
             </thead>
@@ -38,10 +39,11 @@
             @foreach($petugas as $index=> $tugas)
                 <tr >
                     <td data-title="No" align="center">{{ $index + $petugas->firstItem() }}</td>
-                    <td data-title="Nip">{{$tugas->nip}}</td>
+                    <td data-title="Nip" align="center">{{$tugas->nip}}</td>
                     <td data-title="nama" align="left" style="text-transform: uppercase">{{$tugas->nama}}</td>
                     <td data-title="Spesialis" align="center">{{$tugas->spesialis}}</td>
-                    <td data-title="Spesialis" align="center">{{$tugas->kelompok}}</td>
+                    <td data-title="Kelompok" align="center">{{$tugas->kelompok}}</td>
+                    <td data-title="Poli" align="center">{{$tugas->poli}}</td>
                     <td data-title="Aksi" align="center">
                         <?php
                         if($tugas->kelompok =='dokter'){

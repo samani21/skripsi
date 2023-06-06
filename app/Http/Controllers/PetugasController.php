@@ -53,6 +53,7 @@ class PetugasController extends Controller
             'nama' => $request->nama,
             'kelompok' => $request->kelompok,
             'spesialis' => $request->spesialis,
+            'poli' => $request->poli,
         ]);
         $petugas->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
@@ -78,6 +79,7 @@ class PetugasController extends Controller
             'nama' => $request['nama'],
             'kelompok' => $request['kelompok'],
             'spesialis' => $request['spesialis'],
+            'poli' => $request['poli'],
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');

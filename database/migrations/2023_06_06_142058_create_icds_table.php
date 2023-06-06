@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_jadwal', function (Blueprint $table) {
-            $table->increments('id_jadwal');
-            $table->integer('petugas_id');
-            $table->string('tgl','20');
-            $table->string('mulai','20');
-            $table->string('selesai','20');
-            $table->string('status','2');
+        Schema::create('icds', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('code','255');
+            $table->text('name_en');
+            $table->text('name_id');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_jadwal');
+        Schema::dropIfExists('icds');
     }
 };

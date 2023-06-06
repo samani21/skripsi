@@ -23,6 +23,18 @@
                 <option value="Dokter Gigi">Dokter Gigi</option>
               </select>
         </div>
+        <div>
+                <label>Poli</label>
+                <select name="poli" class="form-control" required>
+                    <option value="">--Pilih--</option>
+                    <option value="Poli Umum">Poli Umum</option>
+                    <option value="Poli Anak">Poli Anak</option>
+                    <option value="Poli Gigi">Poli Gigi</option>
+                    <option value="Poli KB">Poli KB</option>
+                    <option value="Poli Gizi">Poli Gizi</option>
+                    <option value="Poli Kandungan">Poli Kandungan</option>
+                </select>
+            </div>
         <hr>
         <div>
             <button type="submit" class="btn btn-success" name="simpan">Simpan</button>

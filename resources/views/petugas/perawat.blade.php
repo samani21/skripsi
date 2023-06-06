@@ -28,6 +28,7 @@
                 <th scope="col" width="30%" align="left">Nama</th>
                 <th scope="col">Spesialis</th>
                 <th scope="col">kelompok</th>
+                <th scope="col">Poli</th>
                 <th scope="col" align="center">Aksi</th>
             </tr>
             </thead>
@@ -42,6 +43,7 @@
                     <td data-title="nama" align="left" style="text-transform: uppercase">{{$tugas->nama}}</td>
                     <td data-title="Spesialis">{{$tugas->spesialis}}</td>
                     <td data-title="Spesialis">{{$tugas->kelompok}}</td>
+                    <td data-title="Poli" align="center">{{$tugas->poli}}</td>
                     <td data-title="Aksi">
                         <?php
                         if($tugas->kelompok =='dokter'){

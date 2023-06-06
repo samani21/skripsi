@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <button onclick="history.back()" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
+    <a href="/medis/medis?tgl=<?php echo date('d-m-Y')?>" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
     {{-- <a href="/medis/medis?tgl={{date('d-m-Y')}}" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>
         Kembali
     </a> --}}

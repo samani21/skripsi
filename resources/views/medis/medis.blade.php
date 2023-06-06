@@ -76,7 +76,7 @@
                  <td data-title="Aksi">
                     <?php
                           if($medis->status =='2'){
-                            echo '<a href="rekam_medis/pasien='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
+                            echo '<a href="rekam_medis/berobat='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
                          }if($medis->status =='0'){
                              echo '';
                           }?>

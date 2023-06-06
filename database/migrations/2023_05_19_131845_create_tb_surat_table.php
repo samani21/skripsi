@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tb_surat', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pasien_id');
+            $table->integer('berobat_id');
             $table->integer('medis_id');
             $table->string('tgl1','15');
             $table->string('tgl2','15');

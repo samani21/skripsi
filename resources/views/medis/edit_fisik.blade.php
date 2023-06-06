@@ -1,11 +1,14 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<a href="/medis/rekam_medis/pasien={{$berobat->id}}&rekammedis={{$berobat->pasien_id}}" class="btn btn-warning float-end"><i class="fa-solid fa-chevron-left"></i>
+<a href="/medis/rekam_medis/berobat={{$fisik->id}}&rekammedis={{$berobat->pasien_id}}" class="btn btn-warning float-end"><i class="fa-solid fa-chevron-left"></i>
     Kembali</a>
 <form id="regForm" action="{{route('updatefisik',$fisik->id)}}" method="POST">
     @csrf
     <div class="tab">
+
+        <input type="text" name="berobat" value="{{$fisik->id}}">
+        <input type="text" name="rekammedis" value="{{$berobat->pasien_id}}">
          <p>Nama Pasien: <b style="text-transform: uppercase">{{$berobat->nama_berobat}}</b> <h3>Pemeriksa</h3></p>
         <div>
             <input type="hidden" id="berobat_id" name="berobat_id" value="{{$berobat->id}}">

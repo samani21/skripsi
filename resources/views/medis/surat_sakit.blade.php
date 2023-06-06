@@ -44,7 +44,7 @@ $tgl_lusa        =date('d-m-Y', strtotime("+3 day", $tgl_sekarang));
         <input type="hidden" value="{{$medis->id}}" name="medis_id">
         <input type="hidden" value="1" name="status">
         <input type="hidden" value="3" name="status1">
-        <input type="text" value="{{$berobat->id}}" name="berobat_id">
+        <input type="hidden" value="{{$berobat->id}}" name="berobat_id">
         <hr>
         <div>
             <button type="submit" class="btn btn-success" name="simpan">Simpan</button>

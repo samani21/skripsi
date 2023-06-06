@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama','50');
             $table->string('kelompok','50');
             $table->string('spesialis','50');
+            $table->string('poli','50');
             $table->timestamps();
         });
     }

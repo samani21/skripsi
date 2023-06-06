@@ -90,6 +90,8 @@ class MedisController extends Controller
 
     public function update(Request $request,$id)
     {
+        $b= $request->berobat;
+        $a= $request->rekammedis;
         $ubah = Medis::findorfail($id);
         $dt =[
             'berobat_id' => $request['berobat_id'],
@@ -105,14 +107,14 @@ class MedisController extends Controller
             'berat' => $request['berat'],
             'napas' => $request['napas'],
             'keluhan' => $request['keluhan'],
-            'tindakan' => $request['tindakan'],
+            'tindakan' => $request['tindakan'], 
             'keterangan' => $request['keterangan'],
             'biaya' => $request['biaya'],
 
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
-        return Redirect::back();
+        return redirect('medis/rekam_medis/berobat='.$b.'&rekammedis='.$a.'');
     }
 
     public function diagnosa($id)
