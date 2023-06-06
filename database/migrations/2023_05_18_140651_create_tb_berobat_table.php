@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('bulan','3');
             $table->string('tahun','5');
             $table->string('status','2');
+            $table->string('password','255');
             $table->timestamps();
         });
     }
