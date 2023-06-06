@@ -18,14 +18,6 @@ class AdminController extends Controller
         $perawat = DB::table('tb_petugas')->where('kelompok','like','perawat','')->paginate();
         $pasien = DB::table('tb_pasien')->paginate();
         $berobat = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%");
-        $bulan =  Berobat::select(DB::raw("MONTHNAME(created_at) as ba"))
-        ->where('tahun','=',"".$tahun."")
-        ->GroupBy(DB::raw("MONTHNAME(created_at)"))
-        ->pluck('ba');
-        $jum =  Berobat::select(DB::raw("COUNT(bulan) as jumlah"))
-        ->where('tahun','=',"".$tahun."")
-        ->GroupBy(DB::raw("Month(created_at)"))
-        ->pluck('jumlah');
         $obatmasuk = DB::table('tb_obatmasuk')->where('tgl','like',"%".$tgl."%");
         $obatkeluar = DB::table('tb_resep')->where('tgl','like',"%".$tgl."%");
         $obat = DB::table('tb_obat')->paginate();
