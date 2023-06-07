@@ -4,7 +4,9 @@
  <div class="container">
     <a href="/pasien/pasien" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i> Kembali</a>
     <div class="float-end">
-        <a href="/pasien/daftar/{{$pasien->id_pasien}}" class="btn btn-primary"><i class="fa-solid fa-syringe"></i></i> Daftar Pasien berobat</a>
+        @if(Auth::user()->level =='admin')
+            <a href="/pasien/daftar/{{$pasien->id_pasien}}" class="btn btn-primary"><i class="fa-solid fa-syringe"></i></i> Daftar Pasien berobat</a>
+        @endif
     </div>
     <hr>
     <div class="row g-2">
@@ -89,6 +91,7 @@
                              echo '<span class="badge bg-danger">Belum diperiksa</span>';
                           }?></td>
                        <td>
+                        @if(Auth::user()->level =='admin')
                         <?php if($pas->status =='2'){
                             echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i>Lihat</a>';
                          }if($pas->status =='1'){
@@ -96,6 +99,22 @@
                          }if($pas->status =='0'){
                              echo '';
                           }?>
+                          @endif
+                          @if(Auth::user()->level =='rekam_medis')
+                          <?php if($pas->status =='0'){
+                            echo '<a href="/medis/periksa_fisik/'.$pas->id.'?tgl='.date('d-m-Y').'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';
+                         }if($pas->status =='1'||$pas->status =='3'){
+                             echo '';
+                          }?>
+                    <?php if($pas->status =='1'||$pas->status =='3'){
+                            echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-warning"><i class="fa-solid fa-laptop-medical"></i></a>';
+                         }
+                          if($pas->status =='2'){
+                            echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
+                         }if($pas->status =='0'){
+                             echo '';
+                          }?>
+                            @endif
                        </td>
                     </tr>
                 @endforeach

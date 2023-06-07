@@ -20,6 +20,9 @@ return new class extends Migration
             $table->integer('medis_id');
             $table->string('tgl1','15');
             $table->string('tgl2','15');
+            $table->string('riwayat','50');
+            $table->string('keperluan','50');
+            $table->string('pekerjaan','50');
             $table->string('status','3');
             $table->timestamps();
         });

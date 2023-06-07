@@ -3,21 +3,15 @@
 @section('content')
 
 <div>
-    <form action="{{route('medis/medis')}}" method="get" class="row g-12">
+    <form action="{{route('medis/medis')}}" method="get" class="row">
         <div class="col-md-2">
-            <input class="form-control" type="text" name="tgl" value="{{date('d-m-Y')}}"
-                placeholder="Cari surat berdasarkan no surat" aria-label="default input example">
+            <label for=""><b>Cari rekam medis pasien</b></label>
         </div>
         <div class="col-md-4">
-            <input class="form-control" type="text" name="nama" placeholder="Cari nama pasien"
+            <input class="form-control" type="text" name="cari" placeholder="Cari pasien"
                 aria-label="default input example">
         </div>
         <div class="col-md-4">
-            <input class="form-control" type="text" name="no" placeholder="Cari pasien no berobat"
-                aria-label="default input example">
-        </div>
-        <div class="col-md-4">
-            <label></label>
             <select name="poli" class="form-control">
                 <option value="">--Pilih Poli--</option>
                 <option value="Umum">Umum</option>
@@ -29,7 +23,6 @@
             </select>
         </div>
         <div class="col-auto">
-            <br>
             <button type="submit" class="btn btn-primary mb-3"><i
                     class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
         </div>
@@ -82,7 +75,7 @@
                           }?>
                       </td>
                  @endif
-                @if(Auth::user()->level =='admin')
+                @if(Auth::user()->level =='rekam_medis')
             <td data-title="Aksi">
                 <?php if($medis->status =='0'){
                         echo '<a href="periksa_fisik/'.$medis->id.'?tgl='.date('d-m-Y').'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';

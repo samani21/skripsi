@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Kartu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
+
 
 class KartuController extends Controller
 {
@@ -73,5 +75,13 @@ class KartuController extends Controller
         $kartu->delete();
         toast('Yeay Berhasil menghapus data','success');
         return redirect('kartu/kartu');
+    }
+
+    public function cetak_kartu($id)
+    {   
+        $kartu = Kartu::find($id);
+        $pdf = PDF::loadView('kartu/cetak_kartu',compact('kartu'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('cetak_kartu.pdf');
     }
 }

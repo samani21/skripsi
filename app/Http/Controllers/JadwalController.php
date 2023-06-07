@@ -6,6 +6,7 @@ use App\Models\Jadwal;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class JadwalController extends Controller
 {
@@ -55,5 +56,22 @@ class JadwalController extends Controller
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
         return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
+    }
+    
+    public function laporan_jadwal(Request $request){
+        $tgl = $request->tgl;
+        $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
+        ->where('tgl','=',''.$tgl.'')
+        ->paginate(6);
+        return view('laporan/jadwal', ['jadwal'=>$jadwal,'title' => 'Jadwal Petugas'] );
+    }
+
+    public function cetak_jadwal(Request $request){
+        $tgl = $request->tgl;
+        $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
+        ->where('tgl','=',''.$tgl.'')->get();
+        $pdf = PDF::loadView('petugas/cetak_jadwal',compact('jadwal'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('Cetak_jadwal_petugas.pdf');
     }
 }

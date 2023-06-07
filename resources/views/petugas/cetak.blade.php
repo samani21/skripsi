@@ -28,38 +28,33 @@
         </thead>
     </table>
     <hr>
-    <h3 align="center">LAPORAN DATA PASIEN</h3>
-    <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
-        <thead>
-        <tr align="center">
-            <th width='10'>No</th>
-        <th width='40'>RM</th>
-        <th width='80'>NIK</th>
-        <th width='10'>Status</th>
-        <th width='70'>Nama</th>
-        <th width='50'>Tgl lahir</th>
-        <th width='50'>Tmpt lahir</th>
-        <th width='80'>Alamat</th>
-        </tr>
-        </thead>
-        <tbody>
-            @php 
-            $no=1;
-        @endphp
-        @foreach($pasien as $pas)
-            <tr>
-                <td align="center">{{ $no++ }}</td>
-                <td>{{$pas->no_berobat}}</td>
-                <td>{{$pas->nik}}</td>
-                <td>{{$pas->jenis_berobat}}</td>
-                <td style="text-transform: uppercase">{{$pas->nama}}</td>
-                <td align="center">{{$pas->tanggal}}</td>
-                <td>{{$pas->tempat}}</td>
-                <td>{{$pas->alamat}}</td>
-                
+    <h3 align="center">LAPORAN DATA PETUGAS</h3>
+        <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
+            <thead>
+            <tr align="center">
+                <th width='auto'>No</th>
+                <th width='100'>NIP</th>
+                <th width='130'>Nama</th>
+                <th width='80'>Kelompok</th>
+                <th width='90'>Spesialis</th>
+                <th width='100'>Poli</th>
             </tr>
-        @endforeach
-    </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @php 
+                $no=1;
+            @endphp
+            @foreach($petugas as $pet)
+                <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{$pet->nip}}</td>
+                    <td style="text-transform: uppercase">{{$pet->nama}}</td>
+                    <td>{{$pet->kelompok}}</td>
+                    <td>{{$pet->spesialis}}</td>
+                    <td>{{$pet->poli}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+        </table>
 </body>
 </html>

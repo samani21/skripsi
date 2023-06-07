@@ -28,7 +28,7 @@
         </thead>
     </table>
     <hr>
-    <h3 align="center">DATA PEGAWAI</h3>
+    <h3 align="center">LAPORAN DATA PEGAWAI</h3>
         <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
             <thead>
             <tr align="center">

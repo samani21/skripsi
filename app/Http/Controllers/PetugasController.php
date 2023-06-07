@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class PetugasController extends Controller
 {
@@ -91,5 +92,27 @@ class PetugasController extends Controller
         $petugas->delete();
         toast('Yeay Berhasil menghapus data','success');
         return redirect('petugas/petugas');
+    }
+
+    public function cetak_petugas(Request $request)
+    {   
+        $cari = $request->cari;
+        $petugas = DB::table('tb_petugas')->where('nama','like',"%".$cari."%")->orWhere('nip','like',"%".$cari."%")
+        ->orWhere('kelompok','like',"%".$cari."%")
+        ->orWhere('poli','like',"%".$cari."%")->get();
+        $pdf = PDF::loadView('petugas/cetak',compact('petugas'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('Cetak_petugas.pdf');
+    }
+
+    public function laporan(Request $request)
+	{   $cari = $request->cari;
+        $poli = $request->poli;
+        $petugas = DB::table('tb_petugas')->where('nama','like',"%".$cari."%")->orWhere('nip','like',"%".$cari."%")
+        ->orWhere('kelompok','like',"%".$cari."%")
+        ->orWhere('poli','like',"%".$cari."%")
+		->paginate(7);
+ 
+        return view('laporan/petugas', ['petugas' => $petugas,'title' => 'Laporan Pegawai'] );
     }
 }

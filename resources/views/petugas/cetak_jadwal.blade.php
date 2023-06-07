@@ -28,29 +28,37 @@
         </thead>
     </table>
     <hr>
-    <h3 align="center">LAPORAN DATA OBAT </h3>
-    <table align="center" style="border-collapse:collapse;border-spacing:1;" border="1">
-        <thead>
+    <h3 align="center">LAPORAN JADWAL PETUGAS</h3>
+        <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
+            <thead>
             <tr align="center">
-                <th width="40">No</th>
-                <th width="100">Kode obat</th>
-                <th width="200">Nama obat</th>
-                <th width="100">stok</th>
+                <th width='auto'>No</th>
+                <th width='80'>NIP</th>
+                <th width='100'>Nama</th>
+                <th width='auto'>Kelompok/Spesialis</th>
+                <th width='auto'>TGL</th>
+                <th width='auto'>Poli</th>
+                <th width='auto'>Mulai</th>
+                <th width='auto'>Selesai</th>   
             </tr>
+            </thead>
             <tbody>
                 @php 
                 $no=1;
             @endphp
-            @foreach($obat as $o)
+            @foreach($jadwal as $jad)
                 <tr>
                     <td align="center">{{ $no++ }}</td>
-                    <td align="center">{{$o->kode}}</td>
-                    <td>{{$o->nm_obat}}</td>
-                    <td align="center">{{$o->stok}}</td>
+                    <td>{{$jad->nip}}</td>
+                    <td style="text-transform: uppercase">{{$jad->nama}}</td>
+                    <td>{{$jad->kelompok}}/{{$jad->spesialis}}</td>
+                    <td>{{$jad->tgl}}</td>
+                    <td>{{$jad->poli}}</td>
+                    <td>{{$jad->mulai}}</td>
+                    <td>{{$jad->selesai}}</td>
                 </tr>
             @endforeach
         </tbody>
-        </thead>
-    </table>
+        </table>
 </body>
 </html>

@@ -11,23 +11,20 @@ use PDF;
 class BerobatController extends Controller
 {
     public function index(Request $request)
-	{   $tgl = $request->tgl;
-        $nama = $request->nama;
-        $no = $request->no;
+	{   
+        $cari = $request->cari;
         $poli = $request->poli;
-
-        if($no == ""){
+        if($cari == ""){
             $berobat = DB::table('tb_berobat')->join('tb_pasien','tb_pasien.id_pasien','=','tb_berobat.pasien_id')
-            ->where('tgl','like',"%".$tgl."%")
-            ->where('nama','like',"%".$nama."%")
             ->where('poli','like',"%".$poli."%")
             ->paginate(7);
-        }else if($no == $no){
+        }else if($cari == $cari){
             $berobat = DB::table('tb_berobat')->join('tb_pasien','tb_pasien.id_pasien','=','tb_berobat.pasien_id')
-            ->where('tgl','like',"%".$tgl."%")
-            ->where('nama','like',"%".$nama."%")
-            ->where('tb_berobat.no_berobat','=',"".$no."")
-            ->where('poli','like',"%".$poli."%")
+            ->where('tgl','like',"%".$cari."%")
+            ->orWhere('nama','like',"%".$cari."%")
+            ->orWhere('tb_berobat.no_berobat','=',"".$cari."")
+            ->orWhere('tb_berobat.nik','=',"".$cari."")
+            // ->where('poli','like',"%".$poli."%")
             ->paginate(7);
         }
 

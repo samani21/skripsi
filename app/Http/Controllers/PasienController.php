@@ -10,16 +10,19 @@ use PDF;
 class PasienController extends Controller
 {
     public function index(Request $request)
-	{   $nama = $request->nama;
-        $no_berobat = $request->no_berobat;
-        if($no_berobat == ""){
-            $pasien = DB::table('tb_pasien')->where('nama','like',"%".$nama."%")
+	{   $cari = $request->cari;
+        // $no_berobat = $request->no_berobat;
+        $pasien = DB::table('tb_pasien')->where('nama','like',"%".$cari."%")->orWhere('no_berobat','=',"".$cari."")->orWhere('nik','like',"%".$cari."%")
 		->paginate(7);
-        }else if($no_berobat == $no_berobat){
-            $pasien = DB::table('tb_pasien')
-            ->where('no_berobat','=',"".$no_berobat."")->where('nama','like',"%".$nama."%")
-		->paginate(7);
-        }
+
+        // if($no_berobat == ""){
+        //     $pasien = DB::table('tb_pasien')->where('nama','like',"%".$nama."%")
+		// ->paginate(7);
+        // }else if($no_berobat == $no_berobat){
+        //     $pasien = DB::table('tb_pasien')
+        //     ->where('no_berobat','=',"".$no_berobat."")->where('nama','like',"%".$nama."%")
+		// ->paginate(7);
+        // }
         return view('pasien/pasien', ['pasien' => $pasien,'title' => 'Pasien'] );
     }
 
@@ -113,8 +116,7 @@ class PasienController extends Controller
     public function laporan(Request $request)
 	{   
         $cari = $request->cari;
-        $pasien = DB::table('tb_pasien')
-        ->where('nama','like',"%".$cari."%")
+        $pasien = DB::table('tb_pasien')->where('nama','like',"%".$cari."%")->orWhere('no_berobat','=',"".$cari."")->orWhere('nik','like',"%".$cari."%")
 		->paginate(7);
         $pasien->withPath('pasien?tgl=14-01-2023&');
         return view('laporan/pasien', ['pasien' => $pasien,'title' => 'Laporan pasien'] );
