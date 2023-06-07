@@ -5,9 +5,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerobatController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\KapusController;
 use App\Http\Controllers\KartuController;
 use App\Http\Controllers\MedisController;
 use App\Http\Controllers\ObatController;
+use App\Http\Controllers\ObatkeluarController;
 use App\Http\Controllers\ObatmasukController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
@@ -194,6 +196,9 @@ Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('
 Route::get('riwayat/riwayat', [RiwayatController::class,'index'])->name('riwayat/riwayat');//data pegawai
 Route::get('riwayat/rekam_medis/berobat={id}&rekammedis={pasien_id}',[RiwayatController::class,'rekam'])->name('riwayat/rekam_medis');//data rekam medis pasien
 
+//halaman resep
+Route::get('resep/resep', [ObatkeluarController::class, 'index'])->name('resep/resep');//data resep
+
 //laporan
 Route::get('laporan/pegawai', [PegawaiController::class, 'laporan'])->name('laporan/pegawai');//laporan data pegawai
 Route::get('laporan/pasien', [PasienController::class, 'laporan'])->name('laporan/pasien');//laporan data pasien
@@ -216,4 +221,4 @@ Route::get('obat/cetak_obatkeluar', [ObatController::class, 'cetak_obatkeluar'])
 Route::get('medis/cetak_rm/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'cetak_rm'])->name('medis/cetak_rm');//cetal rekam medis pasien
 Route::get('medis/cetak_sakit/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sakit'])->name('medis/cetak_sakit');//cetak surat sakit
 Route::get('medis/cetak_sehat/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sehat'])->name('medis/cetak_sehat');//cetak surat sakit
-Route::get('kartu/cetak_kartu/{id}', [KartuController::Class, 'cetak_kartu'])->name('kartu/cetak_kartu');//cetak kartu berobat
+Route::get('kartu/cetak_kartu/{id}', [KartuController::class, 'cetak_kartu'])->name('kartu/cetak_kartu');//cetak kartu berobat

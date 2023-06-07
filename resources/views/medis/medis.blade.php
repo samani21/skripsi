@@ -64,11 +64,13 @@
                     echo '<span class="badge bg-warning">Sedang diperiksa</span>';
                  }if($medis->status =='0'){
                      echo '<span class="badge bg-danger">Belum diperiksa</span>';
-                  }?></td>
+                  }if($medis->status =='4'){
+                    echo '<span class="badge bg-primary">Selesai</span>';
+                 }?></td>
                  @If(Auth::user()->level =='admin')
                  <td data-title="Aksi">
                     <?php
-                          if($medis->status =='2'){
+                          if($medis->status =='2' || $medis->status =='4'){
                             echo '<a href="rekam_medis/berobat='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
                          }if($medis->status =='0'){
                              echo '';
@@ -85,7 +87,7 @@
                 <?php if($medis->status =='1'||$medis->status =='3'){
                         echo '<a href="rekam_medis/berobat='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-warning"><i class="fa-solid fa-laptop-medical"></i></a>';
                      }
-                      if($medis->status =='2'){
+                      if($medis->status =='2' || $medis->status =='4'){
                         echo '<a href="rekam_medis/berobat='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
                      }if($medis->status =='0'){
                          echo '';

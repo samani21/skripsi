@@ -89,10 +89,12 @@
                             echo '<span class="badge bg-success">Selesai diperiksa</span>';
                          }if($pas->status =='0'){
                              echo '<span class="badge bg-danger">Belum diperiksa</span>';
+                          }if($pas->status =='4'){
+                             echo '<span class="badge bg-primary">Selesai</span>';
                           }?></td>
                        <td>
                         @if(Auth::user()->level =='admin')
-                        <?php if($pas->status =='2'){
+                        <?php if($pas->status =='2' || $pas->status =='4'){
                             echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i>Lihat</a>';
                          }if($pas->status =='1'){
                             echo '';
@@ -109,7 +111,7 @@
                     <?php if($pas->status =='1'||$pas->status =='3'){
                             echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-warning"><i class="fa-solid fa-laptop-medical"></i></a>';
                          }
-                          if($pas->status =='2'){
+                          if($pas->status =='2'|| $pas->status =='4'){
                             echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
                          }if($pas->status =='0'){
                              echo '';

@@ -2,7 +2,12 @@
 
 @section('content')
 <div class="container">
-    <a href="/medis/medis?tgl=<?php echo date('d-m-Y')?>" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
+    @If(Auth::user()->level =='apotek')
+    <a href="/resep/resep?tgl='<?php.date('d-m-Y').?>'" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
+    @endif
+    <a  @If(Auth::user()->level =='apotek')
+        style="display: none;"
+        @endif href="/medis/medis?tgl=<?php echo date('d-m-Y')?>" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
     {{-- <a href="/medis/medis?tgl={{date('d-m-Y')}}" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>
         Kembali
     </a> --}}
@@ -23,23 +28,37 @@
     <a href="/medis/cetak_rm/pasien={{$berobat->id}}&rekammedis={{$pasien->id_pasien}}" class="btn btn-primary"><i
             class="fa-solid fa-print"></i> Cetak rekam medis</a>
     <div class="float-end">
-
-        <form action="{{route('selesai',$berobat->id)}}" method="POST">
-            @csrf
-            {{-- <a href="/medis/surat_sakit/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
-            class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
-            <a href="/medis/surat_sehat/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
-                class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a> --}}
-            <input type="hidden" name="status" value="2">
-            <?php if($berobat->status =='1'||$berobat->status =='3'){
-            echo '<button class="btn btn-success" type="submit" name="simpan">Selesai</button>
-            <a href="/medis/surat_sakit/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'" class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
-            <a href="/medis/surat_sehat/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a>
-            <a href="/medis/edit_fisik/medis='.$berobat->medis->id.'&pasien='.$berobat->medis->berobat_id.'?tgl='.date('d-m-Y').'" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-            <a href="/medis/periksa_diagnosa/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Diagnosa</a>
-            <a href="/medis/periksa_obat/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Obat</a>';
-         }?>
+        @If(Auth::user()->level =='rekam_medis')
+            <form action="{{route('selesai',$berobat->id)}}" method="POST">
+                @csrf
+                {{-- <a href="/medis/surat_sakit/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
+                class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
+                <a href="/medis/surat_sehat/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
+                    class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a> --}}
+                <input type="hidden" name="status" value="2">
+                <?php if($berobat->status =='1'||$berobat->status =='3'){
+                echo '<button class="btn btn-success" type="submit" name="simpan">Selesai</button>
+                <a href="/medis/surat_sakit/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'" class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
+                <a href="/medis/surat_sehat/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'" class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a>
+                <a href="/medis/edit_fisik/medis='.$berobat->medis->id.'&pasien='.$berobat->medis->berobat_id.'?tgl='.date('d-m-Y').'" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                <a href="/medis/periksa_diagnosa/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Diagnosa</a>
+                <a href="/medis/periksa_obat/berobat='.$berobat->id.'&pasien='.$berobat->pasien_id.'" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Obat</a>';
+            }?>
         </form>
+        @endif
+        @If(Auth::user()->level =='apotek')
+            <form action="{{route('selesai',$berobat->id)}}" method="POST">
+                @csrf
+                {{-- <a href="/medis/surat_sakit/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
+                class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
+                <a href="/medis/surat_sehat/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
+                    class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a> --}}
+                <input type="hidden" name="status" value="4">
+                <?php if($berobat->status =='1'||$berobat->status =='3'){
+                    echo '<button class="btn btn-success" type="submit" name="simpan">Selesai</button>';
+                }?>
+        </form>
+        @endif
     </div>
     <hr>
     <div class="row g-2">
