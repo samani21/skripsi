@@ -65,11 +65,9 @@ class BerobatController extends Controller
 
     public function laporan(Request $request)
 	{   $tgl = $request->tgl;
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
         $berobat = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%")
-        ->where('tahun','like',"%".$tahun."%")
-        ->where('bulan','like',"%".$bulan."%")
+        ->orWhere('tahun','like',"%".$tgl."%")
+        ->orWhere('bulan','like',"%".$tgl."%")
 		->paginate(7);
  
         return view('laporan/medis', ['berobat' => $berobat,'title' => 'Laporan Berobat'] );
@@ -77,11 +75,9 @@ class BerobatController extends Controller
 
     public function cetak_medis(Request $request)
     {   $tgl = $request->tgl;
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
         $medis = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%")
-        ->where('tahun','like',"%".$tahun."%")
-        ->where('bulan','like',"%".$bulan."%")
+        ->orWhere('tahun','like',"%".$tgl."%")
+        ->orWhere('bulan','like',"%".$tgl."%")
 		->paginate();
         $pdf = PDF::loadView('medis/cetak_medis',compact('medis'));
         $pdf->setPaper('A4','potrait');

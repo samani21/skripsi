@@ -42,14 +42,10 @@
     </div>
     <div>
         <form action="{{route('laporan/pasien')}}" method="get" class="row g-12">
-           
-            <label for="">Cari data</label>
             <div class="col-10">
-                <br>
                 <input class="form-control" type="text" name="cari" placeholder="Cari berdasarkan nama" aria-label="default input example">
             </div>
             <div class="col-2">
-                <br>
             <button type="submit" class="btn btn-primary mb-3"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
             </div>
         </form>
