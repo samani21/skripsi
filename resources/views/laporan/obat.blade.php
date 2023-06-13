@@ -6,6 +6,7 @@
         <div class="col-md-10">
         <input class="form-control" type="text" name="cari" placeholder="cetak berdasarkan nama obat" aria-label="default input example">
         </div>
+        <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl" id="">
         <div class="col-auto">
             <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
         </div>

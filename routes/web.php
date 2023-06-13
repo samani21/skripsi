@@ -218,6 +218,7 @@ Route::get('laporan/obat', [ObatController::class, 'laporan'])->name('laporan/ob
 Route::get('laporan/obat_masuk', [ObatController::class, 'laporan_masuk'])->name('laporan/obat_masuk');//laporan data obat masuk
 Route::get('laporan/obat_keluar', [ObatController::class, 'laporan_keluar'])->name('laporan/obat_keluar');//laporan data obat keluar
 Route::get('laporan/petugas', [PetugasController::class, 'laporan'])->name('laporan/petugas');//laporan data petugas
+Route::get('laporan/kapus', [KpusController::class, 'laporan'])->name('laporan/kapus');//laporan data kapus
 
 //cetak
 Route::get('pegawai/cetak', [PegawaiController::class, 'cetak_pegawai'])->name('pegawai/cetak');//cetak pegawai
@@ -232,3 +233,4 @@ Route::get('medis/cetak_rm/pasien={id}&rekammedis={pasien_id}',[MedisController:
 Route::get('medis/cetak_sakit/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sakit'])->name('medis/cetak_sakit');//cetak surat sakit
 Route::get('medis/cetak_sehat/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sehat'])->name('medis/cetak_sehat');//cetak surat sakit
 Route::get('pasien/detail/cetak_kartu/{id}', [PasienController::class, 'cetak_kartu'])->name('pasien/cetak_kartu');//cetak kartu berobat
+Route::get('kapuskes/cetak', [KpusController::class, 'cetak_kapus'])->name('kapuskes/cetak');//cetak kartu berobat

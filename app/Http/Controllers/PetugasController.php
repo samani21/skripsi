@@ -100,7 +100,9 @@ class PetugasController extends Controller
         $petugas = DB::table('tb_petugas')->where('nama','like',"%".$cari."%")->orWhere('nip','like',"%".$cari."%")
         ->orWhere('kelompok','like',"%".$cari."%")
         ->orWhere('poli','like',"%".$cari."%")->get();
-        $pdf = PDF::loadView('petugas/cetak',compact('petugas'));
+        $tgl = $request->tgl;
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
+        $pdf = PDF::loadView('petugas/cetak',compact('petugas','kapus','tgl'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('Cetak_petugas.pdf');
     }

@@ -28,28 +28,40 @@
         </thead>
     </table>
     <hr>
-    <h3 align="center">LAPORAN DATA PEGAWAI</h3>
+    <h3 align="center">LAPORAN DATA KAPUS</h3>
         <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
             <thead>
             <tr align="center">
                 <th width='auto'>No</th>
                 <th width='100'>NIP</th>
                 <th width='100'>Nama</th>
-                <th width='80'>Alamat</th>
-                <th width='200'>Kelompok</th>
+                <th width='80'>Tanggal mulai</th>
+                <th width='80'>Tanggal selesai</th>
+                <th width='100'>status</th>
             </tr>
             </thead>
             <tbody>
                 @php 
                 $no=1;
             @endphp
-            @foreach($pegawai as $peg)
+            @foreach($kapus as $kap)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{$peg->nip}}</td>
-                    <td style="text-transform: uppercase">{{$peg->nama}}</td>
-                    <td>{{$peg->alamat}}</td>
-                    <td>{{$peg->kelompok}}</td>
+                    <td>{{$kap->nip}}</td>
+                    <td style="text-transform: uppercase">{{$kap->nama}}</td>
+                    <td>{{$kap->tgl_mulai}}</td>
+                    <td>{{$kap->tgl_selesai}}</td>
+                    <td><?php
+                        if ($kap->status == 0) {
+                            echo "Selesai Menjabat";
+                        }
+                        if ($kap->status == 1) {
+                            echo "Menjabat";
+                        }
+                        if ($kap->status == 2) {
+                            echo "--Pilih--";
+                        }
+                    ?></td>
                     
                 </tr>
             @endforeach
@@ -63,7 +75,7 @@
 
 
                             
-                            @foreach ($kapus as $k )
+                            @foreach ($kapu as $k )
                             {{$k->nama}}
                                                         {{$k->nip}}
                             @endforeach

@@ -116,9 +116,10 @@ class PasienController extends Controller
         $tahun = $request->tahun;
         $bulan = $request->bulan;
         $cari = $request->cari;
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $pasien = DB::table('tb_pasien')->where('tahun_pasien','like',"%".$tahun."%")
         ->where('bulan_pasien','like',"%".$bulan."%")->get();
-        $pdf = PDF::loadView('pasien/cetak_pasien',compact('pasien'));
+        $pdf = PDF::loadView('pasien/cetak_pasien',compact('pasien','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_pasien.pdf');
     }

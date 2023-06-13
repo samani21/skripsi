@@ -53,5 +53,21 @@
         </tbody>
         </thead>
     </table>
+    <div>
+        <pre align="right">
+                                            Banjarmasin,{{$tgl}}
+
+
+
+
+                        
+                        @foreach ($kapus as $k )
+                            {{$k->nama}}
+                                                    {{$k->nip}}
+                        @endforeach
+
+                                               
+        </pre>
+    </div>
 </body>
 </html>

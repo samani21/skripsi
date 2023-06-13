@@ -8,6 +8,7 @@
                 <label for="">Cetak data</label>
             <input class="form-control" type="number" name="tahun" value="{{date('Y')}}" aria-label="default input example">
             </div>
+            <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl" id="">
             {{-- <div class="col-md-2">
                 <label for=""></label>
                 <input type="text" name="tgl" class="form-control"  value="{{date('d-m-Y')}}" id="">

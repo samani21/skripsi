@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kpuskesmas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use PDF;
 class KpusController extends Controller
 {
     public function index(){
@@ -75,5 +75,23 @@ class KpusController extends Controller
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
         return redirect('kapuskes/kapuskes');
+    }
+
+    public function cetak_kapus(Request $request)
+    {   $tgl = $request->tgl;
+        $cari = $request->cari;
+        $kapus = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")->get();
+        $kapu = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")->where('status','=','1')->get();
+        $pdf = PDF::loadView('kapuskes/cetak',compact('tgl','kapus','kapu'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('cetak_pegawai.pdf');
+    }
+
+    public function laporan(Request $request)
+	{   $cari = $request->cari;
+        $kapus = DB::table('tb_kapus')->where('nama','like',"%".$cari."%",'')
+		->paginate(7);
+ 
+        return view('laporan/kapus', ['kapus' => $kapus,'title' => 'Laporan Kapus'] );
     }
 }

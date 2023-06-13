@@ -3,7 +3,7 @@
 @section('content')
 
 <div>
-    <form action="{{route('pegawai/cetak')}}" method="get" class="row g-12">
+    <form action="{{route('kapuskes/cetak')}}" method="get" class="row g-12">
         <div class="col-md-10">
             <input class="form-control" type="text" name="cari" placeholder="Cari nama pegawai"
                 aria-label="default input example">
@@ -13,7 +13,7 @@
             <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
         </div>
     </form>
-    <form action="{{route('laporan/pegawai')}}" method="get" class="row g-12">
+    <form action="{{route('laporan/kapus')}}" method="get" class="row g-12">
         <div class="col-md-10">
             <input class="form-control" type="text" name="cari" placeholder="Cari nama pegawai"
                 aria-label="default input example">
@@ -31,31 +31,38 @@
                 <th scope="col">No</th>
                 <th scope="col">NIP</th>
                 <th scope="col">Nama</th>
-                <th scope="col">Tanggal lahir</th>
-                <th scope="col">tempat</th>
-                <th scope="col">Alamat</th>
-                <th scope="col">jenis kelamin</th>
-                <th scope="col">Kelompok</th>
+                <th scope="col">Tgl mulai</th>
+                <th scope="col">Tgl selesai</th>
+                <th scope="col">Status</th>
+
             </tr>
         </thead>
         <tbody>
             @php
             $no=1;
             @endphp
-            @foreach($pegawai as $peg)
+            @foreach($kapus as $kap)
             <tr align="center">
                 <td data-title="No">{{ $no++ }}</td>
-                <td data-title="Nip">{{$peg->nip}}</td>
-                <td data-title="nama" style="text-transform: uppercase">{{$peg->nama}}</td>
-                <td data-title="Tanggal lahir">{{$peg->tanggal}}</td>
-                <td data-title="Tempat lahir">{{$peg->tempat}}</td>
-                <td data-title="Alamat">{{$peg->alamat}}</td>
-                <td data-title="Jenis kelamin">{{$peg->jns_kelamin}}</td>
-                <td data-title="Kelompok">{{$peg->kelompok}}</td>
+                <td data-title="Nip">{{$kap->nip}}</td>
+                <td data-title="Nama" style="text-transform: uppercase">{{$kap->nama}}</td>
+                <td data-title="Tanggal Mulai">{{$kap->tgl_mulai}}</td>
+                <td data-title="Tanggal Selesai">{{$kap->tgl_selesai}}</td>
+                <td data-title="Status"><?php
+                    if ($kap->status == 0) {
+                        echo "Selesai Menjabat";
+                    }
+                    if ($kap->status == 1) {
+                        echo "Menjabat";
+                    }
+                    if ($kap->status == 2) {
+                        echo "--Pilih--";
+                    }
+                ?></td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    {{ $pegawai->links() }}
+    {{ $kapus->links() }}
 </div>
 @endsection

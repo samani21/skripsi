@@ -78,8 +78,10 @@ class ObatController extends Controller
 
     public function cetak_obat(Request $request)
 	{   $cari = $request->cari;
+        $tgl = $request->tgl;
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $obat = DB::table('tb_obat')->where('nm_obat','like',"%".$cari."%",'')->get();
-        $pdf = PDF::loadView('obat/cetak_obat',compact('obat'));
+        $pdf = PDF::loadView('obat/cetak_obat',compact('obat','kapus','tgl'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obat.pdf');;
     }
@@ -120,11 +122,12 @@ class ObatController extends Controller
     {   $tgl = $request->tgl;
         $tahun = $request->tahun;
         $bulan = $request->bulan;
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $masuk = DB::table('tb_obatmasuk')->where('tgl','like',"%".$tgl."%")
         ->where('tahun','like',"%".$tahun."%")
         ->where('bulan','like',"%".$bulan."%")
 		->paginate();
-        $pdf = PDF::loadView('obat/cetak_obatmasuk',compact('masuk'));
+        $pdf = PDF::loadView('obat/cetak_obatmasuk',compact('masuk','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatmasuk.pdf');
     }
@@ -133,11 +136,12 @@ class ObatController extends Controller
     {   $tgl = $request->tgl;
         $tahun = $request->tahun;
         $bulan = $request->bulan;
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$tgl."%")
         ->where('tahun','like',"%".$tahun."%")
         ->where('bulan','like',"%".$bulan."%")
 		->paginate();
-        $pdf = PDF::loadView('obat/cetak_obatkeluar',compact('keluar'));
+        $pdf = PDF::loadView('obat/cetak_obatkeluar',compact('keluar','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatkeluar.pdf');
     }

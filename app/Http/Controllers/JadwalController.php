@@ -68,9 +68,10 @@ class JadwalController extends Controller
 
     public function cetak_jadwal(Request $request){
         $tgl = $request->tgl;
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('tgl','=',''.$tgl.'')->get();
-        $pdf = PDF::loadView('petugas/cetak_jadwal',compact('jadwal'));
+        $pdf = PDF::loadView('petugas/cetak_jadwal',compact('jadwal','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('Cetak_jadwal_petugas.pdf');
     }

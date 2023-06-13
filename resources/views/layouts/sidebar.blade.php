@@ -123,6 +123,8 @@
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <div class="dropdown-container" style="display: none">
+                            <a href="{{url('laporan/kapus')}}"
+                                class="{{ request()->is('laporan/kapus')?'active' :'' }}">Kapus</a>
                             <a href="{{url('laporan/pegawai')}}"
                                 class="{{ request()->is('laporan/pegawai')?'active' :'' }}">Pegawai</a>
                             <a href="{{url('laporan/petugas')}}"
@@ -133,6 +135,12 @@
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
                             <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
+                            <a href="{{url('laporan/obat')}}"
+                                class="{{ request()->is('laporan/obat')?'active' :'' }}">Obat</a>
+                            <a href="{{url('laporan/obat_masuk?tgl='.date('d-m-Y').'')}}"
+                                class="{{ request()->is('laporan/obat_masuk')?'active' :'' }}">Obat masuk</a>
+                            <a href="{{url('laporan/obat_keluar?tgl='.date('d-m-Y').'')}}"
+                                class="{{ request()->is('laporan/obat_keluar')?'active' :'' }}">Obat Keluar</a>
                         </div>
                     </li>
                     @endif

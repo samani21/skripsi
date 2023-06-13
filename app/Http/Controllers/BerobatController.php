@@ -79,7 +79,8 @@ class BerobatController extends Controller
         ->orWhere('tahun','like',"%".$tgl."%")
         ->orWhere('bulan','like',"%".$tgl."%")
 		->paginate();
-        $pdf = PDF::loadView('medis/cetak_medis',compact('medis'));
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
+        $pdf = PDF::loadView('medis/cetak_medis',compact('medis','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_medis.pdf');
     }
