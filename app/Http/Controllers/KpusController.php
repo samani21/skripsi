@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Kpuskesmas;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class KpusController extends Controller
+{
+    public function index(){
+        $kapus = DB::table('tb_kapus')->paginate(10);
+        return view('kapuskes/kapuskes',['kapus' => $kapus,'title' => 'Kepala Puskesmas']);
+    }
+
+    public function create(){
+        $data['title'] = "Tambah Kapus";
+        return view('kapuskes/tambah_kapus',$data);
+    }
+
+    public function store(Request $request){
+        $kapus = new Kpuskesmas([
+            'nip' => $request->nip,
+            'nama' => $request->nama,
+            'tgl_mulai' => $request->tgl_mulai,
+            'tgl_selesai' => $request->tgl_selesai,
+            'status' => $request->status,
+        ]);
+        $kapus->save();
+        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
+        return redirect()->route('kapuskes/kapuskes');
+    }
+
+    public function editkapus($id){
+        $kapus = Kpuskesmas::find($id);
+        $data['title'] = 'Edit Kapus';
+        return view('kapuskes.edit_kapus',compact(['kapus']),$data);
+    }
+
+    public function updatekapus(Request $request, $id){
+        $ubah = Kpuskesmas::findorfail($id);
+        $dt =[
+            'nip' => $request['nip'],
+            'nama' => $request['nama'],
+            'tgl_mulai' => $request['tgl_mulai'],
+            'tgl_selesai' => $request['tgl_selesai'],
+            'status' => $request['status'],
+        ];
+        $ubah->update($dt);
+        alert('Sukses','Simpan Data Berhasil', 'success');
+        return redirect('kapuskes/kapuskes');
+    }
+    
+    public function destroy($id){
+        $kapus = Kpuskesmas::find($id);
+        $kapus->delete();
+        toast('Yeay Berhasil menghapus data','success');
+        return redirect('kapuskes/kapuskes');
+    }
+    public function selesai(Request $request, $id){
+        $kapus = Kpuskesmas::find($id);
+        $data['title'] = 'Selesai Jabatan Kapus';
+        return view('kapuskes.selesai_kapus',compact(['kapus']),$data);
+    }
+
+    public function updateselesai(Request $request, $id){
+        $ubah = Kpuskesmas::findorfail($id);
+        $dt =[
+            'nip' => $request['nip'],
+            'nama' => $request['nama'],
+            'tgl_mulai' => $request['tgl_mulai'],
+            'tgl_selesai' => $request['tgl_selesai'],
+            'status' => $request['status'],
+        ];
+        $ubah->update($dt);
+        alert('Sukses','Simpan Data Berhasil', 'success');
+        return redirect('kapuskes/kapuskes');
+    }
+}

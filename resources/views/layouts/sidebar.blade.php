@@ -50,6 +50,13 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ url('kapuskes/kapuskes') }}"
+                            class="{{ request()->is('kapuskes/kapuskes*','kapuskes/*')?'active' :'' }}">
+                            <span class="las la-user-friends"></span>
+                            <span>Kapus</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ url('pegawai/pegawai') }}"
                             class="{{ request()->is('pegawai/pegawai*','pegawai/*')?'active' :'' }}">
                             <span class="las la-user-friends"></span>

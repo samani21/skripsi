@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <td><h5><b>Tempat tanggal lahir</b></h5></td>
-                        <td><h5>{{$pasien->tempat}} ,{{$pasien->tanggal}}</h5></td>
+                        <td><h5>{{$pasien->tempat}} ,{{date('d-m-Y', strtotime($pasien->tanggal))}}</h5></td>
                     </tr>
                     <tr>
                         <td><h5><b>Jenis Kelamin</b></h5></td>

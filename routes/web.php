@@ -7,6 +7,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KapusController;
 use App\Http\Controllers\KartuController;
+use App\Http\Controllers\KpusController;
 use App\Http\Controllers\MedisController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\ObatkeluarController;
@@ -191,13 +192,15 @@ Route::post('updatestok/{id}', [ObatmasukController::class, 'updatestok'])->name
 //obat keluar
 Route::get('obat/obatkeluar', [ObatController::class, 'keluar'])->name('obat/obatkeluar');//data obat keluar
 
-//kartu berobat
-// Route::get('kartu/kartu', [KartuController::class, 'index'])->name('kartu/kartu');//data kartu berobat
-// Route::get('kartu/tambah_kartu', [KartuController::class, 'create'])->name('kartu/tambah_kartu');//tambah data kartu berobat
-// Route::post('kartu/tambah_kartu', [KartuController::class, 'store'])->name('kartu.store');//proses tambah kartu berobat
-// Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('kartu/edit_kartu');//edit kartu berobat
-// Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');//update kartu berobat
-// Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');//hapus kartu berobat
+//kapuskesmas
+Route::get('kapuskes/kapuskes',[KpusController::class, 'index'])->name('kapuskes/kapuskes');
+Route::get('kapuskes/tambah_kapus',[KpusController::class, 'create'])->name('kapuskes/tambah_kapus');
+Route::post('kapuskes/tambah_kapus',[KpusController::class, 'store'])->name('kapus.store');
+Route::get('kapuskes/edit_kapus/{id}',[KpusController::class,'editkapus'])->name('kapus/edit_kapus');//edit data kapus
+Route::post('updatekapus/{id}',[KpusController::class,'updatekapus'])->name('updatekapus');//update data kapus
+Route::get('kapuskes/hapus_kapus/{id}', [KpusController::class,'destroy'])->name('hapus_kapus');//hapus data kapus
+Route::get('kapuskes/selesai_kapus/{id}', [KpusController::class,'selesai'])->name('selesai');//hapus data kapus
+Route::post('updateselesai/{id}',[KpusController::class,'updateselesai'])->name('updateselesai');//update data kapus
 
 //cek riwayat berobat
 Route::get('riwayat/riwayat', [RiwayatController::class,'index'])->name('riwayat/riwayat');//data pegawai

@@ -38,7 +38,7 @@
                     <td data-title="No">{{ $index + $pegawai->firstItem() }}</td>
                     <td data-title="Nip">{{$peg->nip}}</td>
                     <td data-title="nama" style="text-transform: uppercase"align="left">{{$peg->nama}}</td>
-                    <td data-title="Tanggal lahir">{{$peg->tanggal}}</td>
+                    <td data-title="Tanggal lahir">{{date('d-m-Y',strtotime($peg->tanggal))}}</td>
                     <td data-title="Tempat lahir" align="left">{{$peg->tempat}}</td>
                     <td data-title="Alamat" >{{$peg->alamat}}</td>
                     <td data-title="No Hp">{{$peg->jns_kelamin}}</td>
