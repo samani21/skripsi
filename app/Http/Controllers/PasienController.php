@@ -28,8 +28,17 @@ class PasienController extends Controller
 
     public function create()
     {
+        $cek = Pasien::count();
+        if($cek == 0 ){
+            $urut = 2;
+            $nomor = $urut;
+        }else{
+            $ambil = Pasien::all()->last();
+            $urut = (int)substr($ambil->id_pasien, -1)+1;
+            $nomor = $urut; 
+        }
         $data['title'] = 'Tambah Pasien';
-        return view('pasien/tambah_pasien', $data);
+        return view('pasien/tambah_pasien',compact(['nomor']),$data);
     }
 
     public function store(Request $request)
@@ -122,4 +131,11 @@ class PasienController extends Controller
         return view('laporan/pasien', ['pasien' => $pasien,'title' => 'Laporan pasien'] );
     }
 
+    public function cetak_kartu($id)
+    {   
+        $kartu = Pasien::find($id);
+        $pdf = PDF::loadView('pasien/cetak_kartu',compact('kartu'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('cetak_kartu.pdf');
+    }
 }

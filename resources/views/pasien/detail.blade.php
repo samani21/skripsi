@@ -3,8 +3,9 @@
 @section('content')
  <div class="container">
     <a href="/pasien/pasien" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i> Kembali</a>
+    <a href="cetak_kartu/{{$pasien->id_pasien}}" class="btn btn-success"><i class="fa-solid fa-print"></i> Kartu</a>
     <div class="float-end">
-        @if(Auth::user()->level =='admin')
+        @if(Auth::user()->level =='admin' || Auth::user()->level =='operator')
             <a href="/pasien/daftar/{{$pasien->id_pasien}}" class="btn btn-primary"><i class="fa-solid fa-syringe"></i></i> Daftar Pasien berobat</a>
         @endif
     </div>
@@ -93,7 +94,7 @@
                              echo '<span class="badge bg-primary">Selesai</span>';
                           }?></td>
                        <td>
-                        @if(Auth::user()->level =='admin')
+                        @if(Auth::user()->level =='admin' || Auth::user()->level =='operator')
                         <?php if($pas->status =='2' || $pas->status =='4'){
                             echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i>Lihat</a>';
                          }if($pas->status =='1'){
@@ -102,7 +103,7 @@
                              echo '';
                           }?>
                           @endif
-                          @if(Auth::user()->level =='rekam_medis')
+                          @if(Auth::user()->level =='rekam_medis' || Auth::user()->level =='operator')
                           <?php if($pas->status =='0'){
                             echo '<a href="/medis/periksa_fisik/'.$pas->id.'?tgl='.date('d-m-Y').'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';
                          }if($pas->status =='1'||$pas->status =='3'){

@@ -8,11 +8,11 @@
         <div class="col-6">
             <div>
                 <label for="">No berobat</label>
-                <input class="form-control" type="text" id="no_berobat" name="no_berobat" placeholder="Masukkan no berobat" aria-label="default input example" maxlength="6" autofocus required>
+                <input class="form-control" type="text" id="no_berobat" value="{{$nomor}}" name="no_berobat" placeholder="Masukkan no berobat" aria-label="default input example" maxlength="6" readonly>
             </div>
             <div>
                 <label for="">NIK</label>
-                <input class="form-control" type="text" id="nik" name="nik" placeholder="Masukkan nik" aria-label="default input example" maxlength="16" required>
+                <input class="form-control" type="text" id="nik" name="nik" placeholder="Masukkan nik" aria-label="default input example" maxlength="16" required autofocus>
             </div>
             <div>
                 <label>Jenis berobat</label>
@@ -49,8 +49,7 @@
         </div>
         <div class="col-6">
             <div>
-                <label for="">Tanggal</label>
-                <input class="form-control" type="text" id="tgl" name="tgl_pasien" value="{{date('d-m-Y')}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
+                <input class="form-control" type="hidden" id="tgl" name="tgl_pasien" value="{{date('d-m-Y')}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
                 <input class="form-control" type="hidden" id="bulan" name="bulan_pasien" value="{{date('m')}}" placeholder="Masukkan NIP" aria-label="default input example">
                 <input class="form-control" type="hidden" id="tahun" name="tahun_pasien" value="{{date('Y')}}" placeholder="Masukkan NIP" aria-label="default input example">
             </div>

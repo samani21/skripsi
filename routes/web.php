@@ -11,6 +11,7 @@ use App\Http\Controllers\MedisController;
 use App\Http\Controllers\ObatController;
 use App\Http\Controllers\ObatkeluarController;
 use App\Http\Controllers\ObatmasukController;
+use App\Http\Controllers\OperatroController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PetugasController;
@@ -87,10 +88,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('dashboard/dashboard', [ApotekController::class,'dashboard'])->name('apotek/dashboard/dashboard');
     });
     Route::group(['middleware' => ['cek_login:kapus']], function () {
-        Route::resource('kapus', 'App\Http\Controllers\ApotekController');
+        Route::resource('kapus', 'App\Http\Controllers\KapusController');
         Route::get('/email/verify/need-verification',[KapusController::class,'index'])->middleware('auth')->name('verification.notice');
         //menu sidebar
         Route::get('dashboard/dashboard', [KapusController::class,'dashboard'])->name('kapus/dashboard/dashboard');
+    });
+    Route::group(['middleware' => ['cek_login:operator']], function () {
+        Route::resource('operator', 'App\Http\Controllers\OperatroController');
+        Route::get('/email/verify/need-verification',[OperatroController::class,'index'])->middleware('auth')->name('verification.notice');
+        //menu sidebar
+        Route::get('dashboard/dashboard', [OperatroController::class,'dashboard'])->name('operator/dashboard/dashboard');
     });
 });
 
@@ -185,12 +192,12 @@ Route::post('updatestok/{id}', [ObatmasukController::class, 'updatestok'])->name
 Route::get('obat/obatkeluar', [ObatController::class, 'keluar'])->name('obat/obatkeluar');//data obat keluar
 
 //kartu berobat
-Route::get('kartu/kartu', [KartuController::class, 'index'])->name('kartu/kartu');//data kartu berobat
-Route::get('kartu/tambah_kartu', [KartuController::class, 'create'])->name('kartu/tambah_kartu');//tambah data kartu berobat
-Route::post('kartu/tambah_kartu', [KartuController::class, 'store'])->name('kartu.store');//proses tambah kartu berobat
-Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('kartu/edit_kartu');//edit kartu berobat
-Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');//update kartu berobat
-Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');//hapus kartu berobat
+// Route::get('kartu/kartu', [KartuController::class, 'index'])->name('kartu/kartu');//data kartu berobat
+// Route::get('kartu/tambah_kartu', [KartuController::class, 'create'])->name('kartu/tambah_kartu');//tambah data kartu berobat
+// Route::post('kartu/tambah_kartu', [KartuController::class, 'store'])->name('kartu.store');//proses tambah kartu berobat
+// Route::get('kartu/edit_kartu/{id}',[KartuController::class,'editkartu'])->name('kartu/edit_kartu');//edit kartu berobat
+// Route::post('updatekartu/{id}',[KartuController::class,'updatekartu'])->name('updatekartu');//update kartu berobat
+// Route::get('kartu/hapus_kartu/{id}', [KartuController::class,'destroy'])->name('hapus_kartu');//hapus kartu berobat
 
 //cek riwayat berobat
 Route::get('riwayat/riwayat', [RiwayatController::class,'index'])->name('riwayat/riwayat');//data pegawai
@@ -221,4 +228,4 @@ Route::get('obat/cetak_obatkeluar', [ObatController::class, 'cetak_obatkeluar'])
 Route::get('medis/cetak_rm/pasien={id}&rekammedis={pasien_id}',[MedisController::class,'cetak_rm'])->name('medis/cetak_rm');//cetal rekam medis pasien
 Route::get('medis/cetak_sakit/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sakit'])->name('medis/cetak_sakit');//cetak surat sakit
 Route::get('medis/cetak_sehat/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sehat'])->name('medis/cetak_sehat');//cetak surat sakit
-Route::get('kartu/cetak_kartu/{id}', [KartuController::class, 'cetak_kartu'])->name('kartu/cetak_kartu');//cetak kartu berobat
+Route::get('pasien/detail/cetak_kartu/{id}', [PasienController::class, 'cetak_kartu'])->name('pasien/cetak_kartu');//cetak kartu berobat

@@ -40,7 +40,15 @@
             @foreach($pasien as $index=>$pas)
                 <tr align="center">
                     <td data-title="No">{{ $index + $pasien->firstItem() }}</td>
-                    <td data-title="No berobat">{{$pas->no_berobat}}</td>
+                    <td data-title="No berobat"><?php if($pas->no_berobat <= '9'){ 
+                        echo '000',$pas->no_berobat;}else
+                        if($pas->no_berobat <= '99'){ 
+                        echo '00',$pas->no_berobat;}else
+                        if($pas->no_berobat <= '999'){ 
+                        echo '0',$pas->no_berobat;}else
+                        if($pas->no_berobat <= '9999'){ 
+                        echo $pas->no_berobat;}
+                        ?></td>
                     <td data-title="NIK" align="left">{{$pas->nik}}</td>
                     <td data-title="Jenis berobat">{{$pas->jenis_berobat}}</td>
                     <td data-title="Nama" style="text-transform: uppercase">{{$pas->nama}}</td>
@@ -53,7 +61,7 @@
                         @if(Auth::user()->level =='rekam_medis')
                             <a href="detail/id={{$pas->id_pasien}}&pasien_id={{$pas->id_pasien}}" class="btn btn-success"><i class="fa-solid fa-book-medical"></i></i></a>
                         @endif
-                        @if(Auth::user()->level =='admin')
+                        @if(Auth::user()->level =='admin' || Auth::user()->level =='operator')
                             <a href="detail/id={{$pas->id_pasien}}&pasien_id={{$pas->id_pasien}}" class="btn btn-success"><i class="fa-solid fa-book-medical"></i></i></a>
                             <a href="edit_pasien/{{$pas->id_pasien}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href="hapus_pasien/{{$pas->id_pasien}}" class="btn btn-danger" onclick="javascript: return confirm('Konfirmasi data akan dihapus');"><i class="fa-solid fa-trash"></i></a>

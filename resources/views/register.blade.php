@@ -101,6 +101,7 @@
                                                 <option value="rekam_medis">Rekam medis</option>
                                                 <option value="apotek">Apotek</option>
                                                 <option value="kapus">Kapus</option>
+                                                <option value="operator">Operator</option>
                                             </select>
                                         </div>
                                     </div>
