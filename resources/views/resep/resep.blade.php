@@ -3,24 +3,21 @@
 @section('content')
 
 <div>
-    <form action="{{route('medis/medis')}}" method="get" class="row">
+    <form action="{{route('resep/resep')}}" method="get" class="row">
         <div class="col-md-2">
             <label for=""><b>Cari rekam medis pasien</b></label>
         </div>
         <div class="col-md-4">
-            <input class="form-control" type="text" name="cari" placeholder="Cari pasien"
+            <input class="form-control" type="text" name="cari" list="poli" autocomplete="off" placeholder="Cari pasien / poli"
                 aria-label="default input example">
-        </div>
-        <div class="col-md-4">
-            <select name="poli" class="form-control">
-                <option value="">--Pilih Poli--</option>
+                <datalist id="poli">
                 <option value="Umum">Umum</option>
                 <option value="Anak">Anak</option>
                 <option value="Gigi">Gigi</option>
                 <option value="KB">KB</option>
                 <option value="Gizi">Gizi</option>
                 <option value="kandungan">kandungan</option>
-            </select>
+                </datalist>
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3"><i

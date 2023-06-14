@@ -5,11 +5,8 @@
     <div>
         <form action="{{route('obat/obat_masuk')}}" method="get" class="row g-12">
             <div class="col-md-4">
-            <input class="form-control" type="text" name="cari" placeholder="Cari nama obat" aria-label="default input example">
+            <input class="form-control" type="text" name="cari" value="<?php echo date('d-m-Y') ?>" placeholder="Cari nama obat" aria-label="default input example">
             </div>
-            <div class="col-md-4">
-                <input class="form-control" type="text" name="tgl" value="<?php echo date('d-m-Y') ?>">
-                </div>
             <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
             </div>
@@ -39,7 +36,7 @@
                 <tr align="center">
                     <td data-title="No">{{ $index + $obat->firstItem() }}</td>
                     <td data-title="kode">{{$o->kode}}</td>
-                    <td data-title="nama obat">{{$o->nama_obat}}</td>
+                    <td data-title="nama obat">{{$o->nm_obat}}</td>
                     <td data-title="Jumlah obat">{{$o->jumlah}}</td>
                     <td data-title="Tanggal masuk">{{$o->tgl}}</td>
                     <td data-title="Aksi">

@@ -18,8 +18,7 @@ class ObatController extends Controller
 
     public function obat_masuk(Request $request)
 	{   $cari = $request->cari;
-        $tgl = $request->tgl;
-        $obat = DB::table('tb_obatmasuk')->where('nama_obat','like',"%".$cari."%")->where('tgl','like',"%".$tgl."%")
+        $obat = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('nm_obat','like',"%".$cari."%")->orWhere('tgl','like',"%".$cari."%")
         ->paginate(10);
         $obat->withPath('masuk?tgl=14-01-2023&');
         return view('obat/masuk', ['obat' => $obat,'title' => 'Obat Masuk'] );
