@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berobat;
+use App\Models\Biaya;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,13 @@ class BerobatController extends Controller
             'bulan' => $request->bulan,
             'tahun' => $request->tahun,
         ]);
+        $biaya = new Biaya([
+            'pasien_id' => $request->pasien_id,
+            'poli' => $request->poli,
+            'j_berobat' => $request->jenis_berobat,
+            'biaya' => $request->umum,
+        ]);
+        $biaya->save();
         $berobat->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
         return redirect()->route('pasien/pasien');
