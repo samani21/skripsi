@@ -44,7 +44,7 @@
                     @if(Auth::user()->level =='operator')
                     <li>
                         <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
-                            class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam')?'active' :'' }}">
+                            class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam',)?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>
                         </a>
@@ -85,21 +85,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('kartu/kartu') }}"
-                            class="{{ request()->is('kartu/kartu','kartu/*')?'active' :'' }}">
-                            <span class="fa-regular fa-address-card"></span>
-                            <span> Kartu Berobat</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ url('resep/resep?tgl='.date('d-m-Y').'') }}"
-                            class="{{ request()->is('medis/*')?'active' :'' }}">
+                            class="{{ request()->is('resep/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Resep</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('obat/obat')}}" class="{{ request()->is('obat/obat')?'active' :'' }}">
+                        <a href="{{url('obat/obat')}}" class="{{ request()->is('obat/*')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat</span>
                         </a>

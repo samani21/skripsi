@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('tb_obatmasuk', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kode','10');
-            $table->string('nama_obat','50');
+            $table->string('no_surat','50');
             $table->string('jumlah','10');
+            $table->string('penerima','50');
             $table->string('tgl','12');
             $table->string('bulan','3');
             $table->string('tahun','6');

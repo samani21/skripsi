@@ -182,8 +182,8 @@ Route::get('obat/hapus_obat/{id}', [ObatController::class,'destroy'])->name('hap
 
 //obat masuk
 Route::get('obat/masuk', [ObatController::class, 'obat_masuk'])->name('obat/obat_masuk');//data obat masuk
-Route::get('obat/tambah_stok/{kode}', [ObatmasukController::class, 'create'])->name('obat/tambah_stok');//tambah stok obat masuk
-Route::post('obat/tambah_stok/{kode}', [ObatmasukController::class, 'stok_store'])->name('stok.store');//proses tambah stok obat masuk
+Route::get('obat/tambah_stok', [ObatmasukController::class, 'create'])->name('obat/tambah_stok');//tambah stok obat masuk
+Route::post('obat/tambah_stok', [ObatmasukController::class, 'stok_store'])->name('stok.store');//proses tambah stok obat masuk
 Route::get('obat/edit_stok/{id}',[ObatmasukController::class,'editstok'])->name('obat/edit_stok');//edit obat masuk
 Route::get('obat/hapus_masuk/{id}', [ObatmasukController::class,'destroy'])->name('hapus_masuk');//hapus obat masuk
 Route::post('updatestok/{id}', [ObatmasukController::class, 'updatestok'])->name('updatestok');//update obat masuik

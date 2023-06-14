@@ -8,25 +8,28 @@ use Illuminate\Http\Request;
 
 class ObatmasukController extends Controller
 {
-    public function create($kode){
-        $obat = Obat::find($kode);
+    public function create(){
+        $obat = Obat::all();
         $data['title'] = 'Tambah Stok Obat';
         return view('obat.tambah_stok',compact(['obat']),$data);
     }
 
     public function stok_store(Request $request)
     {
+        foreach ($request->addMoreInputFields as $key => $value) {
+            Obatmasuk::create($value);
+        }
+        // $tobat = new Obatmasuk([
+        //     'kode' => $request->kode,
+        //     'nama_obat' => $request->nama_obat,
+        //     'jumlah' => $request->jumlah,
+        //     'tgl' => $request->tgl,
+        //     'bulan' => $request->bulan,
+        //     'tahun' => $request->tahun,
 
-        $tobat = new Obatmasuk([
-            'kode' => $request->kode,
-            'nama_obat' => $request->nama_obat,
-            'jumlah' => $request->jumlah,
-            'tgl' => $request->tgl,
-            'bulan' => $request->bulan,
-            'tahun' => $request->tahun,
-
-        ]);
-        $tobat->save();
+        // ]);
+        // $tobat->save();
+        
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
         return redirect()->route('obat/obat');
     }

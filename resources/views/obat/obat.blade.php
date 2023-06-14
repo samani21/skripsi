@@ -13,7 +13,9 @@
             <div class="col-auto">
                 <a href="{{url('obat/tambah_obat')}}" class="btn btn-success"><i class="fa-solid fa-plus"></i> Tambah</a>
                 {{-- <a href="{{url('obat/cetak_obat')}}" class="btn btn-success"><i class="fa-solid fa-print"></i> Cetak</a> --}}
+                <a href="tambah_stok" class="btn btn-primary"><i class="fa-solid fa-plus"></i>Stok</a>
             </div>
+            
         </form>
     </div>
     <div class="table-responsive bg-white" id="no-more-tables">
@@ -36,7 +38,7 @@
                     <td data-title="nama">{{$o->nm_obat}}</td>
                     <td data-title="Tanggal lahir">{{$o->stok}}</td>
                     <td data-title="Aksi">
-                        <a href="tambah_stok/{{$o->kode}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Stok</a>
+                        
                         <a href="edit_obat/{{$o->kode}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                         <a href="hapus_obat/{{$o->kode}}" class="btn btn-danger" onclick="javascript: return confirm('Konfirmasi data akan dihapus');"><i class="fa-solid fa-trash"></i> hapus</a>
                     </td>
