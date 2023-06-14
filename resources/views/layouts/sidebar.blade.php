@@ -89,7 +89,7 @@
                             <span>Resep</span>
                         </a>
                     
-                        <a href="{{url('obat/obat')}}" class="{{ request()->is('obat/*')?'active' :'' }}">
+                        <a href="{{url('obat/obat')}}" class="{{ request()->is('obat/obat')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat</span>
                         </a>
@@ -123,7 +123,7 @@
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
                             <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
-                            <a href="{{url('laporan/biaya')}}"
+                            <a href="{{url('laporan/biaya?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/biaya')?'active' :'' }}">Biaya</a>
                             <a href="{{url('laporan/obat')}}"
                                 class="{{ request()->is('laporan/obat')?'active' :'' }}">Obat</a>

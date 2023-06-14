@@ -11,8 +11,8 @@ $tgl_lusa    =date('d-m-Y', strtotime("+3 day", $tgl_sekarang));
 <form action="{{ route('surat.sakit',$berobat->id) }}" method="POST">
     @csrf
         <div>
-            <input type="text" name="poli" value="{{$berobat->poli}}">
-            <input type="text" name="j_berobat" value="{{$berobat->jenis_berobat}}">
+            <input type="hidden" name="poli" value="{{$berobat->poli}}">
+            <input type="hidden" name="j_berobat" value="{{$berobat->jenis_berobat}}">
             <label for="">Nama</label>
             <input class="form-control" type="text" value="{{$pasien->nama}}" placeholder="Masukkan nama" maxlength="50" style="text-transform: uppercase" aria-label="default input example" readonly>
         </div>
@@ -53,6 +53,8 @@ $tgl_lusa    =date('d-m-Y', strtotime("+3 day", $tgl_sekarang));
         <input type="hidden" value="2" name="status">
         <input type="hidden" value="3" name="status1">
         <input type="hidden" value="{{$berobat->id}}" name="berobat_id">
+        <input type="hidden" value="Surat Sehat" name="sb">
+        <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl_b">
         <hr>
         <div>
             <button type="submit" class="btn btn-success" name="simpan">Simpan</button>

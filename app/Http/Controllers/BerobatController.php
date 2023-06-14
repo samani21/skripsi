@@ -64,6 +64,8 @@ class BerobatController extends Controller
             'poli' => $request->poli,
             'j_berobat' => $request->jenis_berobat,
             'biaya' => $request->umum,
+            'status' => $request->sb,
+            'tgl' => $request->tgl_b,
         ]);
         $biaya->save();
         $berobat->save();

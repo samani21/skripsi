@@ -106,6 +106,8 @@
                     <option value="kandungan">kandungan</option>
                 </select>
             </div>
+            <input type="hidden" value="Pendaftaran" name="sb">
+            <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl_b">
             <div>
                 <br>
                 <a href="#" onclick="goBack()" class="btn btn-warning float-end">Batal</a>

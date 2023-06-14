@@ -34,6 +34,7 @@
                 <th scope="col">Jenis berobat</th>
                 <th scope="col">Poli</th>
                 <th scope="col">Biaya</th>
+                <th scope="col">Status</th>
                 <th scope="col">Tanggal</th>
 
 
@@ -60,6 +61,7 @@
                 <td data-title="Jenis Berobat">{{$b->j_berobat}}</td>
                 <td data-title="Poli">{{$b->poli}}</td>
                 <td data-title="Biaya">{{$b->biaya}}</td>
+                <td data-title="Status">{{$b->status}}</td>
                 <td data-title="Tanggal">{{$b->tgl}}</td>
             </tr>
             @endforeach

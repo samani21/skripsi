@@ -42,6 +42,8 @@ class SuratController extends Controller
             'poli' => $request->poli,
             'j_berobat' => $request->j_berobat,
             'biaya' => $request->biaya,
+            'status' => $request->sb,
+            'tgl' => $request->tgl_b,
         ]);
         $ubah = Berobat::findorfail($berobat);
         $dt =[
@@ -92,6 +94,8 @@ class SuratController extends Controller
             'poli' => $request->poli,
             'j_berobat' => $request->j_berobat,
             'biaya' => $request->biaya,
+            'status' => $request->sb,
+            'tgl' => $request->tgl_b,
         ]);
         $ubah = Berobat::findorfail($berobat);
         $dt =[
