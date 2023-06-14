@@ -345,6 +345,13 @@ main{
     background: linear-gradient(45deg,#FF5370,#ff869a);
 }
 
+.bg-c-biaya1 {
+    background: linear-gradient(45deg,#656b7c,#79737c);
+}
+
+.bg-c-biaya {
+    background: linear-gradient(45deg,#2f3649,#4d4457);
+}
 
 .card {
     border-radius: 5px;

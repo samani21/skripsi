@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('poli','50');
             $table->string('j_berobat','12');
             $table->string('biaya','50');
+            $table->string('status','20');
+            $table->string('tgl','20');
             $table->timestamps();
         });
     }

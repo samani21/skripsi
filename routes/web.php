@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BerobatController;
+use App\Http\Controllers\BiayaController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\KapusController;
@@ -219,6 +220,7 @@ Route::get('laporan/obat_masuk', [ObatController::class, 'laporan_masuk'])->name
 Route::get('laporan/obat_keluar', [ObatController::class, 'laporan_keluar'])->name('laporan/obat_keluar');//laporan data obat keluar
 Route::get('laporan/petugas', [PetugasController::class, 'laporan'])->name('laporan/petugas');//laporan data petugas
 Route::get('laporan/kapus', [KpusController::class, 'laporan'])->name('laporan/kapus');//laporan data kapus
+Route::get('laporan/biaya', [BiayaController::class, 'laporan'])->name('laporan/biaya');//laporan data biaya
 
 //cetak
 Route::get('pegawai/cetak', [PegawaiController::class, 'cetak_pegawai'])->name('pegawai/cetak');//cetak pegawai
