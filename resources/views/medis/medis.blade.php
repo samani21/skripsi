@@ -67,7 +67,7 @@
                   }if($medis->status =='4'){
                     echo '<span class="badge bg-primary">Selesai</span>';
                  }?></td>
-                 @If(Auth::user()->level =='admin')
+                 @If(Auth::user()->level =='admin' || Auth::user()->level =='operator')
                  <td data-title="Aksi">
                     <?php
                           if($medis->status =='2' || $medis->status =='4'){
@@ -77,7 +77,7 @@
                           }?>
                       </td>
                  @endif
-                @if(Auth::user()->level =='rekam_medis')
+                @if(Auth::user()->level =='rekam_medis' || Auth::user()->level =='operator')
             <td data-title="Aksi">
                 <?php if($medis->status =='0'){
                         echo '<a href="periksa_fisik/'.$medis->id.'?tgl='.date('d-m-Y').'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';

@@ -7,8 +7,8 @@
     @csrf
     <div class="tab">
 
-        <input type="text" name="berobat" value="{{$fisik->id}}">
-        <input type="text" name="rekammedis" value="{{$berobat->pasien_id}}">
+        <input type="hidden" name="berobat" value="{{$fisik->id}}">
+        <input type="hidden" name="rekammedis" value="{{$berobat->pasien_id}}">
          <p>Nama Pasien: <b style="text-transform: uppercase">{{$berobat->nama_berobat}}</b> <h3>Pemeriksa</h3></p>
         <div>
             <input type="hidden" id="berobat_id" name="berobat_id" value="{{$berobat->id}}">

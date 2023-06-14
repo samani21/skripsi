@@ -28,7 +28,7 @@
     <a href="/medis/cetak_rm/pasien={{$berobat->id}}&rekammedis={{$pasien->id_pasien}}" class="btn btn-primary"><i
             class="fa-solid fa-print"></i> Cetak rekam medis</a>
     <div class="float-end">
-        @If(Auth::user()->level =='rekam_medis')
+        @If(Auth::user()->level =='rekam_medis' || Auth::user()->level =='operator')
             <form action="{{route('selesai',$berobat->id)}}" method="POST">
                 @csrf
                 {{-- <a href="/medis/surat_sakit/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"

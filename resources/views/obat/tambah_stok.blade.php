@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input class="form-control" maxlength="100" disabled name="addMoreInputFields[0][no_surat]" id="s1" autocomplete="off" placeholder="Otomatis terisi" readonly>
+                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][no_surat]" id="s1" autocomplete="off" placeholder="Otomatis terisi" readonly>
                     </td>
                     <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kode]" list="diagnosa"  placeholder="Masukkan obat" id="exampleDataList" autocomplete="off">
                         <datalist id="diagnosa">
@@ -33,7 +33,7 @@
                         <input class="form-control" maxlength="100" name="addMoreInputFields[0][jumlah]" placeholder="Masukkan jumlah" autocomplete="off">
                     </td>
                     <td>
-                        <input class="form-control" disabled maxlength="100" name="addMoreInputFields[0][penerima]" id="p1" autocomplete="off" placeholder="Otomatis terisi" readonly>
+                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][penerima]" id="p1" autocomplete="off" placeholder="Otomatis terisi" readonly>
                     </td>
                     <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary">Add Subject</button></td>
                 </tr>
@@ -58,11 +58,11 @@
         ++i;
         $("#dynamicAddRemove").append('<tr><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
             '][no_surat]" id="s' + i +
-            '" placeholder="Otomatis terisi" disabled readonly placeholder="Enter subject" class="form-control" /></td><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
+            '" placeholder="Otomatis terisi" readonly placeholder="Enter subject" class="form-control" /></td><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
             '][kode]" placeholder="Masukkan obat" class="form-control" /></td><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
             '][jumlah]" placeholder="Masukkan jumlah" class="form-control" /></td><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
             '][penerima]"id="p' + i +
-            '" readonly disabled placeholder="Enter subject" class="form-control" /></td><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
+            '" readonly placeholder="Enter subject" class="form-control" /></td><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" />><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'

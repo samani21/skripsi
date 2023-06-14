@@ -90,7 +90,7 @@
             <label for="">Keluhan</label>
             <textarea id="keluhan" name="keluhan" class="form-control" maxlength="255" style="height: 100px">-</textarea>
         </div>
-        <div>
+        {{-- <div>
             <label for="">Nama Diagnosa</label>
             <input class="form-control" maxlength="100" name="diagnosa" list="diagnosa" id="exampleDataList" autocomplete="off"
                 oninput="this.className = ''">
@@ -99,7 +99,7 @@
                 <option value="({{$diagnosa->code}}).{{$diagnosa->name_id}}">
                     @endforeach
             </datalist>
-        </div>
+        </div> --}}
         <div>
             <label>Tindakan berobat</label>
             <select name="tindakan" class="form-control" oninput="this.className = ''">
@@ -126,6 +126,25 @@
             @endphp
         </div>
     </div>
+    <div class="tab">
+        <table class="table table-bordered" id="dynamicAddRemove">
+            <tr>
+                <th>Diagnosa</th>
+            </tr>
+            <tr>
+                <td>
+                    <input class="form-control" type="hidden" value="{{$berobat->id}}" maxlength="100" name="addMoreInputFields[0][berobat_id]" autocomplete="off" placeholder="Nama diagnosa">
+                    <input class="form-control" maxlength="100" list="diagnosa" name="addMoreInputFields[0][diagnosa]" autocomplete="off" placeholder="Nama diagnosa">
+                    <datalist id="diagnosa">
+                        @foreach($icd as $diagnosa)
+                        <option value="({{$diagnosa->code}}).{{$diagnosa->name_id}}">
+                            @endforeach
+                    </datalist>
+                </td>
+                <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary">Add Subject</button></td>
+            </tr>
+        </table>
+    </div>
     <div style="overflow:auto;">
         <div style="float:right;">
             <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
@@ -134,6 +153,7 @@
     </div>
     <!-- Circles which indicates the steps of the form: -->
     <div style="text-align:center;margin-top:10px;">
+        <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
@@ -214,5 +234,21 @@
         x[n].className += " active";
     }
 </script>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    var i = 0;
+    $("#dynamic-ar").click(function () {
+        if(i <= 15){
+        ++i;
+        $("#dynamicAddRemove").append('<tr><input type="hidden" value="{{$berobat->id}}" list="diagnosa" name="addMoreInputFields[' + i +
+            '][berobat_id]" placeholder="Otomatis terisi" placeholder="Enter subject" class="form-control" /><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
+            '][diagnosa]" placeholder="Nama Diagnosa" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+            );
+        }
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+</script>
 @endsection

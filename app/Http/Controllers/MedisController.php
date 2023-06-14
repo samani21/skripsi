@@ -54,11 +54,9 @@ class MedisController extends Controller
         $dt =[
             'status' => $request['status'],
         ];
-        $diagnosa = new Diagnosa([
-            'berobat_id' => $request->berobat_id,
-            'diagnosa' => $request->diagnosa,
-        ]);
-        $diagnosa->save();
+        foreach ($request->addMoreInputFields as $key => $value) {
+            Diagnosa::create($value);
+        }
         $ubah->update($dt);
         Alert()->success('SuccessAlert','Tambah data berhasil');
         return redirect('medis/medis?tgl='.date('d-m-Y').'');
