@@ -3,16 +3,6 @@
 @section('content')
 
 <div>
-    <form action="{{route('kapuskes/cetak')}}" method="get" class="row g-12">
-        <div class="col-md-10">
-            <input class="form-control" type="text" name="cari" placeholder="Cari nama pegawai"
-                aria-label="default input example">
-        </div>
-        <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl" id="">
-        <div class="col-auto">
-            <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
-        </div>
-    </form>
     <form action="{{route('laporan/kapus')}}" method="get" class="row g-12">
         <div class="col-md-10">
             <input class="form-control" type="text" name="cari" placeholder="Cari nama pegawai"
@@ -21,6 +11,9 @@
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3"><i
                     class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="col-auto">
+            <a href="/biaya/cetak?tgl=<?php echo date('d-m-Y') ?>" class="btn btn-success"><i class="fa-solid fa-print"></i> Cetak</a>
         </div>
     </form>
 </div>

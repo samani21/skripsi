@@ -236,3 +236,4 @@ Route::get('medis/cetak_sakit/pasien={id}&rekammedis={medis}',[SuratController::
 Route::get('medis/cetak_sehat/pasien={id}&rekammedis={medis}',[SuratController::class,'cetak_sehat'])->name('medis/cetak_sehat');//cetak surat sakit
 Route::get('pasien/detail/cetak_kartu/{id}', [PasienController::class, 'cetak_kartu'])->name('pasien/cetak_kartu');//cetak kartu berobat
 Route::get('kapuskes/cetak', [KpusController::class, 'cetak_kapus'])->name('kapuskes/cetak');//cetak kartu berobat
+Route::get('biaya/cetak', [BiayaController::class, 'cetak_biaya'])->name('biaya/cetak');//cetak kartu berobat
