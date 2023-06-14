@@ -155,17 +155,9 @@ class MedisController extends Controller
     {
         $a = $request->berobat;
         $b = $request->pasien;
-        $obat = new Resep([
-            'berobat_id' => $request->berobat_id,
-            'kd_obat' => $request->kd_obat,
-            'jumlah' => $request->jumlah,
-            'dosis' => $request->dosis,
-            'pakai' => $request->pakai,
-            'tgl' => $request->tgl,
-            'bulan' => $request->bulan,
-            'tahun' => $request->tahun,
-        ]);
-        $obat->save();
+        foreach ($request->addMoreInputFields as $key => $value) {
+            Resep::create($value);
+        }
 
         // $ubah = Berobat::findorfail($id);
         // $dt =[

@@ -14,10 +14,10 @@ class BerobatController extends Controller
     public function index(Request $request)
 	{   
         $cari = $request->cari;
-        $poli = $request->poli;
+        $tgl = $request->tgl;
         if($cari == ""){
             $berobat = DB::table('tb_berobat')->join('tb_pasien','tb_pasien.id_pasien','=','tb_berobat.pasien_id')
-            ->where('poli','like',"%".$poli."%")
+            ->where('tgl','like',"%".$tgl."%")
             ->paginate(7);
         }else if($cari == $cari){
             $berobat = DB::table('tb_berobat')->join('tb_pasien','tb_pasien.id_pasien','=','tb_berobat.pasien_id')
@@ -25,7 +25,7 @@ class BerobatController extends Controller
             ->orWhere('nama','like',"%".$cari."%")
             ->orWhere('tb_berobat.no_berobat','=',"".$cari."")
             ->orWhere('tb_berobat.nik','=',"".$cari."")
-            // ->where('poli','like',"%".$poli."%")
+            ->orWhere('poli','=',"".$cari."")
             ->paginate(7);
         }
 
