@@ -109,7 +109,7 @@
                                  echo '<span class="badge bg-primary">Selesai</span>';
                               }?></td>
                            <td>
-                            <?php if($pas->status =='2' || $pas->status =='4'){
+                            <?php if($pas->status =='4'){
                                 echo '<a href="rekam_medis/berobat='.$pas->id.'&rekammedis='.$pas->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i>Lihat</a>';
                              }if($pas->status =='1'){
                                 echo '';

@@ -150,10 +150,10 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('petugas/petugas?tgl='.date('d-m-Y').'') }}"
-                            class="{{ request()->is('petugas/petugas*','petugas/*')?'active' :'' }}">
-                            <span class="fa-solid fa-user-doctor"></span>
-                            <span>Petugas</span>
+                        <a href="{{ url('kapuskes/kapuskes') }}"
+                            class="{{ request()->is('kapuskes/kapuskes*','kapuskes/*')?'active' :'' }}">
+                            <span class="las la-user-friends"></span>
+                            <span>Kapus</span>
                         </a>
                     </li>
                     <li>
@@ -171,17 +171,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('kartu/kartu') }}"
-                            class="{{ request()->is('kartu/kartu','kartu/*')?'active' :'' }}">
-                            <span class="fa-regular fa-address-card"></span>
-                            <span> Kartu Berobat</span>
-                        </a>
-                    </li>
-                    <li>
                         <a class="dropdown-btn">Laporan
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <div class="dropdown-container" style="display: none">
+                            <a href="{{url('laporan/kapus')}}"
+                                class="{{ request()->is('laporan/kapus')?'active' :'' }}">Kapus</a>
                             <a href="{{url('laporan/pegawai')}}"
                                 class="{{ request()->is('laporan/pegawai')?'active' :'' }}">Pegawai</a>
                             <a href="{{url('laporan/petugas')}}"
@@ -192,6 +187,8 @@
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
                             <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
+                            <a href="{{url('laporan/biaya?tgl='.date('d-m-Y').'')}}"
+                                class="{{ request()->is('laporan/biaya')?'active' :'' }}">Biaya</a>
                         </div>
                     </li>
                     {{-- <li>
@@ -219,8 +216,15 @@
                         <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
                             class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
-                            <span>dashboard</span>
+                               <span>dashboard</span>
                         </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('laporan/kapus') }}"
+                            class="{{ request()->is('laporan/kapus*','kapuskes/*')?'active' :'' }}">
+                            <span class="las la-user-friends"></span>
+                            <span>Kapus</span>
+                        </a>    
                     </li>
                     <li>
                         <a href="{{ url('laporan/pegawai') }}"
@@ -245,9 +249,16 @@
                     </li>
                     <li>
                         <a href="{{ url('laporan/medis?tgl='.date('d-m-Y').'') }}"
-                            class="{{ request()->is('laporan/*')?'active' :'' }}">
+                            class="{{ request()->is('laporan/medis*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Rekam Medis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('laporan/biaya?tgl='.date('d-m-Y').'') }}"
+                            class="{{ request()->is('laporan/biaya*')?'active' :'' }}">
+                            <span class="fa-solid fa-dollar-sign"></span>
+                            <span>Biaya</span>
                         </a>
                     </li>
                     <li>

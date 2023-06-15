@@ -21,7 +21,7 @@
             <th>Pemakaian</th>
         </tr>
         <tr>
-            <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kd_obat]" list="obat"  placeholder="Masukkan obat" id="exampleDataList" autocomplete="off">
+            <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kd_obat]" list="obat"  placeholder="Masukkan obat" id="exampleDataList" required autocomplete="off">
                 <datalist id="obat">
                     @foreach($obat as $ob)
                     <option value="{{$ob->kode}}">{{$ob->nm_obat}}
@@ -29,13 +29,13 @@
                 </datalist>
             </td>
             <td>
-                <input class="form-control" maxlength="100" name="addMoreInputFields[0][jumlah]" placeholder="Masukkan jumlah" autocomplete="off">
+                <input class="form-control" maxlength="100" name="addMoreInputFields[0][jumlah]" placeholder="Masukkan jumlah" autocomplete="off" required>
             </td>
             <td>
-                <input class="form-control" maxlength="100" name="addMoreInputFields[0][dosis]" autocomplete="off" placeholder="Masukkan Dosis">
+                <input class="form-control" maxlength="100" name="addMoreInputFields[0][dosis]" autocomplete="off" placeholder="Masukkan Dosis" required>
             </td>
             <td>
-                <input class="form-control" maxlength="100" name="addMoreInputFields[0][pakai]" autocomplete="off" placeholder="Masukkan Pemakaian">
+                <input class="form-control" maxlength="100" name="addMoreInputFields[0][pakai]" autocomplete="off" placeholder="Masukkan Pemakaian" required>
             </td>
             <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary">Add Subject</button></td>
         </tr>
@@ -58,11 +58,11 @@
         ++i;
         $("#dynamicAddRemove").append('<tr><td><input type="text" list="obat" name="addMoreInputFields[' + i +
             '][kd_obat]" id="s' + i +
-            '" placeholder="Masukkan obat" placeholder="Enter subject" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
-            '][jumlah]" placeholder="Masukkan obat" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
-            '][dosis]" placeholder="Masukkan jumlah" class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
+            '" placeholder="Masukkan obat" required placeholder="Enter subject" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
+            '][jumlah]" required placeholder="Masukkan obat" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
+            '][dosis]" required placeholder="Masukkan jumlah" class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][pakai]"id="p' + i +
-            '" placeholder="Masukkan Pemakaian" class="form-control" /></td><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
+            '" placeholder="Masukkan Pemakaian" required class="form-control" /></td><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +

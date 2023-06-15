@@ -172,6 +172,17 @@ class MedisController extends Controller
     }
 
     public function selesai(Request $request , $id){
+        $ubah = Berobat::findorfail($id);
+        $dt =[
+            'status' => $request['status'],
+        ];
+        $ubah->update($dt);
+        // $resep = Resep       
+        // dd($obat);
+        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
+        return Redirect::back();
+    }
+    public function selesai_resep(Request $request , $id){
         $status1 = $request->status1;
         $status0 = $request->status0;
         $ubah = Berobat::findorfail($id);

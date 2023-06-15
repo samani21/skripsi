@@ -10,10 +10,12 @@
             <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
             </div>
+            @if(Auth::user()->level =='admin' || Auth::user()->level =='operator')
             <div class="col-auto">
                 <a href="{{url('pasien/tambah_pasien')}}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah</a>
                 {{-- <a href="{{url('pegawai/cetak')}}" class="btn btn-success"><i class="fa-solid fa-print"></i> Cetak</a> --}}
             </div>
+            @endif
         </form>
     </div>
     <div class="table-responsive bg-white" id="no-more-tables">

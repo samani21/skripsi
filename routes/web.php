@@ -151,7 +151,7 @@ Route::get('medis/medis', [BerobatController::class, 'index'])->name('medis/medi
 Route::get('medis/rekam_medis/berobat={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
 Route::post('selesai/{id}',[MedisController::class,'selesai'])->name('selesai_rm');//selesai pemeriksaan
 Route::get('medis/rekam_medis/hapus_resep/{id}', [MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus resep
-
+Route::post('selesai_resep/{id}',[MedisController::class,'selesai_resep'])->name('selesai_resep');//selesai pemeriksaan
 
 Route::get('medis/periksa_fisik/{id}',[MedisController::class,'periksa'])->name('medis/periksa_fisik');//pemeriksaan fisik
 Route::post('medis/periksa_fisik/{id}',[MedisController::class,'store'])->name('fisik.store');//proses pemeriksaan fisik
