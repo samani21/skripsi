@@ -5,7 +5,7 @@
 <div>
     <form action="{{route('kapuskes/cetak')}}" method="get" class="row g-12">
         <div class="col-md-10">
-            <input class="form-control" type="text" name="cari" placeholder="Cari nama pegawai"
+            <input class="form-control" type="text" name="cari" placeholder="Cari nama kapus"
                 aria-label="default input example">
         </div>
         <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl" id="">

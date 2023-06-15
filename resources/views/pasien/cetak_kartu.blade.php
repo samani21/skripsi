@@ -19,6 +19,7 @@
 
     <b>     Alamat</b>        : {{$kartu->alamat}}
     <b>     Jenis Kelamin</b> : {{$kartu->jk}}
+    <b>     Password</b>      : {{$kartu->password}}
     </pre>
 </body>
 </html>

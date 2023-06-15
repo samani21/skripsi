@@ -18,12 +18,15 @@ class MedisController extends Controller
 {
     public function periksa(Request $request,$id)
     {   
+        $poli = $request->poli;
         $tgl = $request->tgl;
         $berobat = Berobat::find($id);
         $dokter = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
-        ->where('status','=','1')->where('kelompok','=','dokter')->where('tgl','=',"".$tgl."")->paginate(100);
+        ->where('status','=','1')->where('kelompok','=','dokter')->where('tgl','=',"".$tgl."")
+        ->where('poli','=','Poli '.$poli.'')->paginate(100);
         $perawat = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
-        ->where('status','=','1')->where('kelompok','=','perawat')->where('tgl','=',"".$tgl."")->paginate(100);
+        ->where('status','=','1')->where('kelompok','=','perawat')->where('tgl','=',"".$tgl."")
+        ->where('poli','=','Poli '.$poli.'')->paginate(100);
         $icd = Icd::all();
         $data['title'] = 'Periksa pasien';
         return view('medis/periksa_fisik',compact(['berobat','dokter','perawat','icd']), $data);
@@ -169,11 +172,20 @@ class MedisController extends Controller
     }
 
     public function selesai(Request $request , $id){
+        $status1 = $request->status1;
+        $status0 = $request->status0;
         $ubah = Berobat::findorfail($id);
         $dt =[
             'status' => $request['status'],
         ];
         $ubah->update($dt);
+        // $resep = Resep
+        $obat = Resep::where('berobat_id','=',''.$id.'');
+        $dt_obat =[
+            'status' => $request['status1'],
+        ];
+        $obat->update($dt_obat);
+        // dd($obat);
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
         return Redirect::back();
     }

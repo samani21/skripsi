@@ -21,6 +21,7 @@ class PetugasController extends Controller
     public function data_dokter(Request $request){
         $nama = $request->nama;
         $petugas = DB::table('tb_petugas')->where('kelompok','=',"Dokter")->where('nama','like',"%".$nama."%")
+        // ->orWhere('nip','like',"%".$nama."%")
 		->paginate(6);
  
         return view('petugas/dokter', ['petugas' => $petugas,'title' => 'Dokter'] );
@@ -58,7 +59,7 @@ class PetugasController extends Controller
         ]);
         $petugas->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return redirect()->route('petugas/petugas');
+        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
     }
 
     public function editdokter($id){
@@ -84,14 +85,14 @@ class PetugasController extends Controller
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
-        return redirect('petugas/petugas');
+        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
     }
     
     public function destroy($id){
         $petugas = Petugas::find($id);
         $petugas->delete();
         toast('Yeay Berhasil menghapus data','success');
-        return redirect('petugas/petugas');
+        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
     }
 
     public function cetak_petugas(Request $request)

@@ -27,10 +27,18 @@ class ObatController extends Controller
     public function keluar(Request $request)
 	{   $tgl = $request->tgl;
         $cari = $request->cari;
-        $obat = DB::table('tb_resep')->where('tgl','LIKE',"%".$tgl."%")
-                                    ->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')
-                                    ->where('nm_obat','LIKE',"%".$cari."%")->get();
- 
+        if($cari == ""){
+            $obat = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')
+            ->select('nm_obat','kd_obat',DB::raw('sum(jumlah) as jum'),'tgl')
+            ->where('tgl','like',"%".$tgl."%")
+            ->groupBy('nm_obat','kd_obat','tgl')->get();
+        }else if($cari == $cari){
+        $obat = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')
+        ->select('nm_obat','kd_obat',DB::raw('sum(jumlah) as jum'),'tgl')
+        ->where('nm_obat','LIKE',"%".$cari."%")
+        ->orWhere('tgl','LIKE',"%".$cari."%")
+        ->groupBy('nm_obat','kd_obat','tgl')->get();
+        }
         return view('obat/obatkeluar', ['obat' => $obat,'title' => 'Obat'] );
     }
 
@@ -95,37 +103,46 @@ class ObatController extends Controller
 
     public function laporan_masuk(Request $request)
 	{   $tgl = $request->tgl;
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
-        $masuk = DB::table('tb_obatmasuk')->where('tgl','like',"%".$tgl."%")
-        ->where('tahun','like',"%".$tahun."%")
-        ->where('bulan','like',"%".$bulan."%")
-		->paginate(10);
+        $cari = $request->cari;
+        if($cari == ""){
+            $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$tgl."%")
+            ->paginate();
+        }else if($cari == $cari){
+            $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$cari."%")
+            ->orWhere('nm_obat','like',"%".$cari."%")
+            ->paginate();
+        }
         $masuk->withPath('obat_masuk?tgl=14-01-2023&');
         return view('laporan/obat_masuk', ['masuk' => $masuk,'title' => 'Laporan obat masuk'] );
     }
 
     public function laporan_keluar(Request $request)
 	{   $tgl = $request->tgl;
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
-        $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$tgl."%")
-        ->where('tahun','like',"%".$tahun."%")
-        ->where('bulan','like',"%".$bulan."%")
-		->paginate(10);
+        $cari = $request->cari;
+        if($cari == ""){
+            $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$tgl."%")
+            ->paginate();
+        }else if($cari == $cari){
+            $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$cari."%")
+            ->orWhere('nm_obat','like',"%".$cari."%")
+            ->paginate(10);
+        }
         $keluar->withPath('obat_keluar?tgl=14-01-2023&');
         return view('laporan/obat_keluar', ['keluar' => $keluar,'title' => 'Laporan obat keluar'] );
     }
 
     public function cetak_obatmasuk(Request $request)
     {   $tgl = $request->tgl;
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
+        $cari = $request->cari;
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $masuk = DB::table('tb_obatmasuk')->where('tgl','like',"%".$tgl."%")
-        ->where('tahun','like',"%".$tahun."%")
-        ->where('bulan','like',"%".$bulan."%")
-		->paginate();
+        if($cari == ""){
+            $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$tgl."%")
+            ->paginate();
+        }else if($cari == $cari){
+            $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$cari."%")
+            ->orWhere('nm_obat','like',"%".$cari."%")
+            ->paginate();
+        }
         $pdf = PDF::loadView('obat/cetak_obatmasuk',compact('masuk','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatmasuk.pdf');
@@ -133,13 +150,16 @@ class ObatController extends Controller
 
     public function cetak_obatkeluar(Request $request)
     {   $tgl = $request->tgl;
-        $tahun = $request->tahun;
-        $bulan = $request->bulan;
+        $cari = $request->cari; 
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$tgl."%")
-        ->where('tahun','like',"%".$tahun."%")
-        ->where('bulan','like',"%".$bulan."%")
-		->paginate();
+        if($cari == ""){
+            $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$tgl."%")
+            ->paginate();
+        }else if($cari == $cari){
+            $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$cari."%")
+            ->orWhere('nm_obat','like',"%".$cari."%")
+            ->paginate(10);
+        }
         $pdf = PDF::loadView('obat/cetak_obatkeluar',compact('keluar','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatkeluar.pdf');

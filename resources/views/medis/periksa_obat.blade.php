@@ -41,6 +41,7 @@
         </tr>
     </table>
     <input type="hidden" value="{{$berobat->id}}" name="berobat">
+    <input type="hidden" value="0" name="addMoreInputFields[0][status]">
     <input type="hidden" value="{{$berobat->pasien_id}}" name="pasien">
     <br>
     <button type="submit" class="btn btn-success">Simpan</button>
@@ -65,7 +66,8 @@
             '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
             '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
-            '][berobat_id]" value="{{$berobat->id}}"placeholder="Enter subject" class="form-control" /><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+            '][berobat_id]" value="{{$berobat->id}}"placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
+            '][status]" value="0"placeholder="Enter subject" class="form-control" /><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
             );
         }
     });

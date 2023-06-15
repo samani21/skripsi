@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 class KpusController extends Controller
 {
-    public function index(){
-        $kapus = DB::table('tb_kapus')->paginate(10);
+    public function index(Request $request){
+        $cari = $request->cari;
+        $kapus = DB::table('tb_kapus')->where('nama','like',"%".$cari."%")
+        ->orWhere('nip','like',"%".$cari."%")
+        ->orderBy('status','desc')->paginate(10);
         return view('kapuskes/kapuskes',['kapus' => $kapus,'title' => 'Kepala Puskesmas']);
     }
 
@@ -81,7 +84,7 @@ class KpusController extends Controller
     {   $tgl = $request->tgl;
         $cari = $request->cari;
         $kapus = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")->get();
-        $kapu = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")->where('status','=','1')->get();
+        $kapu = DB::table('tb_kapus')->where('status','=','1')->get();
         $pdf = PDF::loadView('kapuskes/cetak',compact('tgl','kapus','kapu'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_pegawai.pdf');

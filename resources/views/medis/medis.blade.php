@@ -63,21 +63,20 @@
                      echo '<span class="badge bg-danger">Belum diperiksa</span>';
                   }if($medis->status =='4'){
                     echo '<span class="badge bg-primary">Selesai</span>';
-                 }?></td>
-                 @If(Auth::user()->level =='admin' || Auth::user()->level =='operator')
-                 <td data-title="Aksi">
+                 }?></td>                
+            <td data-title="Aksi">
+                @If(Auth::user()->level =='admin' || Auth::user()->level =='operator')
+    
                     <?php
                           if($medis->status =='2' || $medis->status =='4'){
                             echo '<a href="rekam_medis/berobat='.$medis->id.'&rekammedis='.$medis->pasien_id.'" class="btn btn-success"><i class="fa-solid fa-laptop-medical"></i></a>';
                          }if($medis->status =='0'){
                              echo '';
                           }?>
-                      </td>
                  @endif
                 @if(Auth::user()->level =='rekam_medis' || Auth::user()->level =='operator')
-            <td data-title="Aksi">
                 <?php if($medis->status =='0'){
-                        echo '<a href="periksa_fisik/'.$medis->id.'?tgl='.date('d-m-Y').'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';
+                        echo '<a href="periksa_fisik/'.$medis->id.'?tgl='.date('d-m-Y').'&poli='.$medis->poli.'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';
                      }if($medis->status =='1'||$medis->status =='3'){
                          echo '';
                       }?>

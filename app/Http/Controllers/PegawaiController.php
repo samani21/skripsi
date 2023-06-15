@@ -11,7 +11,8 @@ class PegawaiController extends Controller
 {
     public function index(Request $request){
         $cari = $request->cari;
-        $pegawai = DB::table('tb_pegawai')->where('nama','like',"%".$cari."%",'')
+        $pegawai = DB::table('tb_pegawai')->where('nama','like',"%".$cari."%")
+        ->orWhere('nip','like',"%".$cari."%")
 		->paginate(6);
  
         return view('pegawai/pegawai', ['pegawai' => $pegawai,'title' => 'Pegawai'] );

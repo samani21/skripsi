@@ -4,29 +4,9 @@
 
     <div>
         <form action="{{route('obat/cetak_obatkeluar')}}" method="get" class="row g-12">
-            <div class="col-md-2">
-                <input class="form-control" type="number" name="tahun" value="{{date('Y')}}" aria-label="default input example">
-                </div>
-                <div class="col-md-2">
-                    <input type="text" name="tgl" class="form-control"  value="{{date('d-m-Y')}}" id="">
-                </div>
-                <div class="col-md-2">
-                    <select name="bulan" class="form-control" >
-                        <option value="">--Pilih Bulan--</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="04">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                    </select>
-                </div>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="cari" placeholder="cari" value="<?php echo date('d-m-Y') ?>"  autocomplete="off" aria-label="default input example">
+            </div>
                 <div class="col-auto">
                 <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
                 </div>
@@ -34,28 +14,8 @@
     </div>
     <div>
         <form action="{{route('laporan/obat_keluar')}}" method="get" class="row g-12">
-            <div class="col-md-2">
-                <input class="form-control" type="number" name="tahun" value="{{date('Y')}}" aria-label="default input example">
-                </div>
-                <div class="col-md-2">
-                    <input type="text" name="tgl" class="form-control"  value="{{date('d-m-Y')}}" id="">
-                </div>
-                <div class="col-md-2">
-                    <select name="bulan" class="form-control" >
-                        <option value="">--Pilih Bulan--</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="04">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
-                    </select>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="cari" placeholder="cari" autocomplete="off" aria-label="default input example">
                 </div>
                 <div class="col-auto">
                 <button type="submit" class="btn btn-primary mb-3"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>

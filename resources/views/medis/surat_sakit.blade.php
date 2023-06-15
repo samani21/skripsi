@@ -36,10 +36,23 @@ $tgl_lusa        =date('d-m-Y', strtotime("+3 day", $tgl_sekarang));
             <label for="">Sampai Tanggal</label>
             <input class="form-control" type="text" id="tgl2" name="tgl2" value="{{$tgl_lusa}}" maxlength="100" placeholder="Masukkan alamat" aria-label="default input example" readonly>
         </div>
-        <div>
-            <label for="">Biaya</label>
-            <input class="form-control" type="text" name="biaya" maxlength="100" placeholder="Masukkan alamat" aria-label="default input example">
-        </div>
+        <?php
+            if ($berobat->jenis_berobat == 'BPJS') {
+                ?>
+                    <div>
+                        <label for="">Biaya</label>
+                        <input class="form-control" type="text" name="biaya" maxlength="100" value="10000" placeholder="Masukkan alamat" aria-label="default input example">
+                    </div>
+                <?php
+            }if ($berobat->jenis_berobat == 'Umum') {
+                ?>
+                    <div>
+                        <label for="">Biaya</label>
+                        <input class="form-control" type="text" name="biaya" maxlength="100" value="5000" placeholder="Masukkan alamat" aria-label="default input example">
+                    </div>
+                <?php
+            }
+        ?>
         <div>
             <input class="form-control" type="hidden" value="-" id="riwayat" name="riwayat" maxlength="50" placeholder="Riwayat penyakit" maxlength="100" aria-label="default input example" autofocus required>
         </div>

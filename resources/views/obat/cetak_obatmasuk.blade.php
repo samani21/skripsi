@@ -45,7 +45,7 @@
             @foreach($masuk as $o)
                 <tr >
                     <td align="center">{{ $no++ }}</td>
-                    <td>{{$o->nama_obat}}</td>
+                    <td>{{$o->nm_obat}}</td>
                     <td align="center">{{$o->jumlah}}</td>
                     <td align="center">{{$o->tgl}}</td>
                 </tr>

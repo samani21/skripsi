@@ -36,8 +36,8 @@
                     <td data-title="No">{{ $index + $kapus->firstItem() }}</td>
                     <td data-title="Nip">{{$kap->nip}}</td>
                     <td data-title="nama" style="text-transform: uppercase"align="left">{{$kap->nama}}</td>
-                    <td data-title="Tanggal Mulai">{{$kap->tgl_mulai}}</td>
-                    <td data-title="Tanggal Selesai">{{$kap->tgl_selesai}}</td>
+                    <td data-title="Tanggal Mulai">{{date('d-m-Y', strtotime($kap->tgl_mulai))}}</td>
+                    <td data-title="Tanggal Selesai">{{date('d-m-Y', strtotime($kap->tgl_selesai))}}</td>
                     <td data-title="Status"><?php
                         if ($kap->status == 0) {
                             echo "Selesai Menjabat";

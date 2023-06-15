@@ -40,6 +40,7 @@
                 <a href="/medis/surat_sehat/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
                     class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a> --}}
                 <input type="hidden" name="status" value="2">
+                <input type="hidden" name="status1" value="0">
                 <?php if($berobat->status =='1'||$berobat->status =='3'){
                 echo '<button class="btn btn-success" type="submit" name="simpan">Selesai</button>
                 <a href="/medis/surat_sakit/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'" class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
@@ -59,6 +60,9 @@
                 <a href="/medis/surat_sehat/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
                     class="btn btn-secondary"><i class="fa-solid fa-pen-to-square"></i> Surat Sehat</a> --}}
                 <input type="hidden" name="status" value="4">
+                <input type="hidden" name="status1" value="1">
+                <input type="hidden" name="status0" value="0">
+
                 <?php if($berobat->status =='2'){
                     echo '<button class="btn btn-success" type="submit" name="simpan">Selesai</button>';
                 }?>

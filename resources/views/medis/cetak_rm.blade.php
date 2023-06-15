@@ -94,6 +94,7 @@
             <th width="200">Nama Obat</th>
             <th width="100">Jumlah</th>
             <th width="100">Dosis</th>
+            <th width="100">Pemakaian</th>
         </thead>
         <tbody>
             @php
@@ -105,6 +106,7 @@
                 <td>{{ $a->nm_obat }}</td>
                 <td align="center">{{ $a->jumlah }}</td>
                 <td align="center">{{ $a->dosis }}</td>
+                <td align="center">{{ $a->pakai }}</td>
             </tr>
             @endforeach
         </tbody>

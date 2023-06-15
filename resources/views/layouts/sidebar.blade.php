@@ -48,7 +48,7 @@
                     <div class="dropdown-container" style="display: inline">
                        
                         <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
-                            class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam',)?'active' :'' }}">
+                            class="{{ request()->is('dashboard/*','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>
                         </a>

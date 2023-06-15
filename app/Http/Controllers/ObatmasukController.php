@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Obat;
 use App\Models\Obatmasuk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ObatmasukController extends Controller
 {
@@ -35,7 +36,8 @@ class ObatmasukController extends Controller
     }
 
     public function editstok($id){
-        $obat = Obatmasuk::find($id);
+        $obat = DB::table('tb_obatmasuk')->where('id','=',''.$id.'')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->get();
+        // dd($obat);
         $data['title'] = 'Edit Obat';
         return view('obat.edit_stok',compact(['obat']),$data);
     }
@@ -43,7 +45,7 @@ class ObatmasukController extends Controller
         $ubah = Obatmasuk::findorfail($id);
         $dt =[
             'kode' => $request['kode'],
-            'nama_obat' => $request['nama_obat'],
+            'no_surat' => $request['no_surat'],
             'jumlah' => $request['jumlah'],
             'tgl' => $request['tgl'],
             'bulan' => $request['bulan'],
