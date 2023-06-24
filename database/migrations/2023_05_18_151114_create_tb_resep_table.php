@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tb_resep', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('berobat_id');
-            $table->integer('kd_obat');
+            $table->string('kd_obat','10');
             $table->string('jumlah','10');
             $table->string('dosis','100');
             $table->string('pakai','50');

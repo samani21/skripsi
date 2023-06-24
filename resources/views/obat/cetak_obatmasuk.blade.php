@@ -53,6 +53,30 @@
         </tbody>
         </thead>
     </table>
+    
+    <h3>Total stok obat</h3>
+    <table align="center" style="border-collapse:collapse;border-spacing:1;" border="1">
+        <thead>
+            <tr align="center">
+                <th width="40">No</th>
+                <th width="200">Nama obat</th>
+                <th width="100">stok</th>
+            </tr>
+            </thead>
+            <tbody>
+                @php 
+                $no=1;
+            @endphp
+            @foreach($total as $to)
+                <tr >
+                    <td align="center">{{ $no++ }}</td>
+                    <td>{{$to->nm_obat}}</td>
+                    <td align="center">{{$to->stok}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+        </thead>
+    </table>
     <div>
         <pre align="right">
                                             Banjarmasin,{{$tgl}}

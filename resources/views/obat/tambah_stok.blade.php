@@ -20,20 +20,20 @@
                 </tr>
                 <tr>
                     <td>
-                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][no_surat]" id="s1" autocomplete="off" placeholder="Otomatis terisi" readonly>
+                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][no_surat]" id="s1" autocomplete="off" placeholder="Otomatis terisi" style="background-color: #dddddd" readonly>
                     </td>
-                    <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kode]" list="diagnosa"  placeholder="Masukkan obat" id="exampleDataList" autocomplete="off">
-                        <datalist id="diagnosa">
+                    <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kode]" list="obat"  placeholder="Masukkan obat" id="exampleDataList" autocomplete="off" required>
+                        <datalist id="obat">
                             @foreach($obat as $ob)
-                            <option value="{{$ob->kode}}">{{$ob->nm_obat}}
+                            <option value="{{$ob->kode}}.{{$ob->nm_obat}}">
                                 @endforeach
                         </datalist>
                     </td>
                     <td>
-                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][jumlah]" placeholder="Masukkan jumlah" autocomplete="off">
+                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][jumlah]" placeholder="Masukkan jumlah" autocomplete="off" required required>
                     </td>
                     <td>
-                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][penerima]" id="p1" autocomplete="off" placeholder="Otomatis terisi" readonly>
+                        <input class="form-control" maxlength="100" name="addMoreInputFields[0][penerima]" id="p1" autocomplete="off" style="background-color: #dddddd" placeholder="Otomatis terisi" readonly required>
                     </td>
                     <td><button type="button" name="add" id="dynamic-ar" class="btn btn-primary">Add Subject</button></td>
                 </tr>
@@ -56,15 +56,15 @@
     $("#dynamic-ar").click(function () {
         if(i <= 15){
         ++i;
-        $("#dynamicAddRemove").append('<tr><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
+        $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
             '][no_surat]" id="s' + i +
-            '" placeholder="Otomatis terisi" readonly placeholder="Enter subject" class="form-control" /></td><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
-            '][kode]" placeholder="Masukkan obat" class="form-control" /></td><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
-            '][jumlah]" placeholder="Masukkan jumlah" class="form-control" /></td><td><input type="text" list="diagnosa" name="addMoreInputFields[' + i +
+            '" style="background-color: #dddddd" placeholder="Otomatis terisi" required readonly placeholder="Enter subject" class="form-control" /></td><td><input type="text" list="obat" name="addMoreInputFields[' + i +
+            '][kode]" placeholder="Masukkan obat" required class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
+            '][jumlah]" placeholder="Masukkan jumlah" required class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][penerima]"id="p' + i +
-            '" readonly placeholder="Enter subject" class="form-control" /></td><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
-            '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
-            '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
+            '" readonly placeholder="Otomatis terisi" style="background-color: #dddddd" required class="form-control" /></td><input type="hidden" name="addMoreInputFields[' + i +
+            '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
+            '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
             '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" />><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
             );
         }

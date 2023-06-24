@@ -1,22 +1,15 @@
 <?php
+/**
+ * Export to PHP Array plugin for PHPMyAdmin
+ * @version 5.2.0
+ */
 
-namespace Database\Seeders;
+/**
+ * Database `db_skripsi`
+ */
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-class IcdnSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        
-        DB::table('icds')->insert(array(
-            
+/* `db_skripsi`.`icds` */
+$icds = array(
   array('code' => 'A00.0','name_en' => 'Cholera due to Vibrio cholerae 01, biovar cholerae','name_id' => 'Kolera disebabkan Vibrio cholerae 01, biovar cholerae '),
   array('code' => 'A00.1','name_en' => 'Cholera due to Vibrio cholerae 01, biovar eltor','name_id' => 'Kolera disebabkan Vibrio cholerae 01, biovar eltor '),
   array('code' => 'A00.9','name_en' => 'Cholera, unspecified','name_id' => 'Kolera, yang tidak spesifik'),
@@ -10486,6 +10479,4 @@ class IcdnSeeder extends Seeder
   array('code' => 'Z99.3','name_en' => 'Dependence on wheelchair','name_id' => 'Ketergantungan pada kursi roda'),
   array('code' => 'Z99.8','name_en' => 'Dependence on other enabling machines and devices','name_id' => 'Ketergantungan pada mesin yang memungkinkan lainnya dan perangkat'),
   array('code' => 'Z99.9','name_en' => 'Dependence on unspecified enabling machine and device','name_id' => 'Ketergantungan pada mesin dan perangkat yang memungkinkan yang tidak spesifik')
-        ));
-    }
-}
+);

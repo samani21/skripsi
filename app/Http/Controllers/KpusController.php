@@ -84,7 +84,7 @@ class KpusController extends Controller
     {   $tgl = $request->tgl;
         $cari = $request->cari;
         $kapus = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")->get();
-        $kapu = DB::table('tb_kapus')->where('status','=','1')->get();
+        $kapu = DB::table('tb_kapus')->where('status','=','1')->paginate(1);
         $pdf = PDF::loadView('kapuskes/cetak',compact('tgl','kapus','kapu'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_pegawai.pdf');

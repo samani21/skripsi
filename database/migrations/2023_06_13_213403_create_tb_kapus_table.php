@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nip','50');
             $table->string('nama','50');
             $table->date('tgl_mulai');
-            $table->date('tgl_selesai');
+            $table->string('tgl_selesai','20');
             $table->string('status','3');
             $table->timestamps();
         });

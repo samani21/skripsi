@@ -62,6 +62,14 @@
                 <option value="Staf Non Medis">Staf Non Medis</option>
               </select>
         </div>
+        <div>
+            <label for="">Tanggal mulai</label>
+            <input class="form-control" type="date" id="tgl_mulai" name="tgl_mulai" required>
+        </div>
+        <div>
+            <input class="form-control" type="hidden" value="-" id="tgl_selesai" name="tgl_selesai" required>
+        </div>
+        <input type="hidden" name="status" value="1">
         <hr>
         <div>
             <button type="submit" class="btn btn-success" name="simpan">Simpan</button>

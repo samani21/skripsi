@@ -39,12 +39,26 @@
                         <td><h5>{{$pasien->tempat}} ,{{date('d-m-Y', strtotime($pasien->tanggal))}}</h5></td>
                     </tr>
                     <tr>
+                        @php
+                        $tgl_lahir = $pasien->tanggal;
+                        $umur = new DateTime($tgl_lahir);
+                        $sekarang = new DateTime();
+                        $usia = $sekarang->diff($umur);
+                        @endphp
+                        <td><h5><b>Usia</b></h5></td>
+                        <td><h5>{{$usia->y." Tahun"." ". $usia->m ." Bulan"." ".$usia->d." hari"}}</h5></td>
+                    </tr>
+                    <tr>
                         <td><h5><b>Jenis Kelamin</b></h5></td>
                         <td><h5>{{$pasien->jk}}</h5></td>
                     </tr>
                     <tr>
                         <td><h5><b>Alamat</b></h5></td>
                         <td><h5>{{$pasien->alamat}}</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h5><b>Kota</b></h5></td>
+                        <td><h5>{{$pasien->kota}}</h5></td>
                     </tr>
                     <tr>
                         <td><h5><b>Gol darah</b></h5></td>

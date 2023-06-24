@@ -36,10 +36,9 @@
         <th width='40'>RM</th>
         <th width='80'>NIK</th>
         <th width='10'>Status</th>
-        <th width='70'>Nama</th>
-        <th width='50'>Tgl lahir</th>
-        <th width='50'>Tmpt lahir</th>
-        <th width='80'>Alamat</th>
+        <th width='100'>Nama</th>
+        <th width='120'>TTL</th>
+        <th width='90'>Kota</th>
         </tr>
         </thead>
         <tbody>
@@ -53,17 +52,22 @@
                 <td>{{$pas->nik}}</td>
                 <td>{{$pas->jenis_berobat}}</td>
                 <td style="text-transform: uppercase">{{$pas->nama}}</td>
-                <td align="center">{{$pas->tanggal}}</td>
-                <td>{{$pas->tempat}}</td>
-                <td>{{$pas->alamat}}</td>
+                <td>{{$pas->tempat}},{{$pas->tanggal}}</td>
+                <td>{{$pas->kota}}</td>
                 
             </tr>
         @endforeach
     </tbody>
     </table>
     <div>
+        <h4>
+            <pre>Jumlah Pasien BPJS : {{$p_bpjs->count()}} Orang
+Jumlah Pasien Umum : {{$p_umum->count()}} Orang</pre>
+        </h4>
+    </div>
+    <div>
         <pre align="right">
-                                            Banjarmasin,{{$tgl}}
+                                            Banjarmasin,<?php echo date('d-m-Y'); ?>
 
 
 

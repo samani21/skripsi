@@ -36,6 +36,9 @@
                 <th scope="col">Alamat</th>
                 <th scope="col">jenis kelamin</th>
                 <th scope="col">Kelompok</th>
+                <th scope="col">Mulai</th>
+                <th scope="col">Selesai</th>
+                <th scope="col">Lama</th>
             </tr>
         </thead>
         <tbody>
@@ -52,6 +55,31 @@
                 <td data-title="Alamat">{{$peg->alamat}}</td>
                 <td data-title="Jenis kelamin">{{$peg->jns_kelamin}}</td>
                 <td data-title="Kelompok">{{$peg->kelompok}}</td>
+                <td data-title="Tanggal Mulai">{{date('d-m-Y', strtotime($peg->tgl_mulai))}}</td>
+                    <td data-title="Tanggal Selesai">
+                    <?php
+                        if ($peg->tgl_selesai == '-') {
+                            echo '-';
+                        }else {
+                           echo date('d-m-Y', strtotime($peg->tgl_selesai));
+                        }
+                    ?></td>
+                    <td data-title="Lama menjabat"> <?php 
+                    if($peg->tgl_selesai == '-'){
+                        echo "-";
+                    }else {
+                        ?>
+                        @php
+                        $tgl_mulai = $peg->tgl_mulai;
+                        $jabat = new DateTime($tgl_mulai);
+                        $tgl_selesai = new DateTime($peg->tgl_selesai);
+                        $lama_jabat = $tgl_selesai->diff($jabat);
+                        @endphp
+                        {{$lama_jabat->y." Tahun"." ". $lama_jabat->m ." Bulan"." ".$lama_jabat->d." hari"}}
+                        <?php
+                    }
+                    ?>
+                    </td>
             </tr>
             @endforeach
         </tbody>

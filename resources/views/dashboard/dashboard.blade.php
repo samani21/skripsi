@@ -3,7 +3,12 @@
 @section('content')
     
 <h4>
-    Selamat datang {{ Auth::user()->name }}, Anda login sebagai user {{ Auth::user()->level }}
+    Selamat datang {{ Auth::user()->name }}, Anda login sebagai user <?php 
+        if ( Auth::user()->level == "operator") {
+            echo "Super Admin";
+        }else {
+            echo  Auth::user()->level;
+        } ?>
 </h4>
 <hr>
 

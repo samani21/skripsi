@@ -52,7 +52,7 @@
         @endif
 
         @If(Auth::user()->level =='apotek' || Auth::user()->level =='operator')
-            <form action="{{route('selesai_resep',$berobat->id)}}" method="POST">
+            <form action="{{route('selesai_resep',[$berobat->id,$pasien->id_pasien])}}" method="POST">
                 @csrf
                 {{-- <a href="/medis/surat_sakit/pasien={{$pasien->id_pasien}}&rekammedis={{$berobat->medis->id}}&berobat={{$berobat->id}}"
                 class="btn btn-danger"><i class="fa-solid fa-pen-to-square"></i> Surat Sakit</a>
@@ -61,7 +61,7 @@
                 <input type="hidden" name="status" value="4">
                 <input type="hidden" name="status1" value="1">
                 <input type="hidden" name="status0" value="0">
-
+                {{-- <input type="hidden" name="pasien" value="{{$pasien->id_pasien}}"> --}}
                 <?php if($berobat->status =='2'){
                     echo '<button class="btn btn-success" type="submit" name="simpan">Selesai</button>';
                 }?>

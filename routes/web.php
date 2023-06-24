@@ -131,6 +131,9 @@ Route::post('updatepetugas/{id}',[PetugasController::class,'updatepetugas'])->na
 Route::get('petugas/hapus_petugas/{id}', [PetugasController::class,'destroy'])->name('hapus_petugas');//hapus dokter dan perawat
 Route::post('petugas/tambah_petugas', [PetugasController::class, 'store'])->name('petugas.store');// tambah dokter dan perawat
 
+Route::get('pegawai/selesai_pegawai/{id}', [PegawaiController::class,'selesai'])->name('selesai');//hapus data kapus
+Route::post('selesai_pegawai/{id}',[PegawaiController::class,'updateselesai'])->name('selesai_pegawai');//update data kapus
+
 //pasien
 Route::get('pasien/pasien', [PasienController::class, 'index'])->name('pasien/pasien');//data pasien
 Route::get('pasien/tambah_pasien', [PasienController::class, 'create'])->name('pasien/tambah_pasien');//tambah pasien
@@ -151,7 +154,7 @@ Route::get('medis/medis', [BerobatController::class, 'index'])->name('medis/medi
 Route::get('medis/rekam_medis/berobat={id}&rekammedis={pasien_id}',[MedisController::class,'rekam'])->name('medis/rekam_medis');//data rekam medis pasien
 Route::post('selesai/{id}',[MedisController::class,'selesai'])->name('selesai_rm');//selesai pemeriksaan
 Route::get('medis/rekam_medis/hapus_resep/{id}', [MedisController::class,'hapus_resep'])->name('hapus_resep');//hapus resep
-Route::post('selesai_resep/{id}',[MedisController::class,'selesai_resep'])->name('selesai_resep');//selesai pemeriksaan
+Route::post('selesai_resep/berobat={id}&pasien={id_pasien}',[MedisController::class,'selesai_resep'])->name('selesai_resep');//selesai pemeriksaan
 
 Route::get('medis/periksa_fisik/{id}',[MedisController::class,'periksa'])->name('medis/periksa_fisik');//pemeriksaan fisik
 Route::post('medis/periksa_fisik/{id}',[MedisController::class,'store'])->name('fisik.store');//proses pemeriksaan fisik

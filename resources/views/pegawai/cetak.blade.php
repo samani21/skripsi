@@ -33,10 +33,12 @@
             <thead>
             <tr align="center">
                 <th width='auto'>No</th>
-                <th width='100'>NIP</th>
+                <th width='80'>NIP</th>
                 <th width='100'>Nama</th>
-                <th width='80'>Alamat</th>
-                <th width='200'>Kelompok</th>
+                <th width='100'>Kelompok</th>
+                <th width='70'>Mulai</th>
+                <th width='70'>Selesai</th>
+                <th width='70'>Lama</th>
             </tr>
             </thead>
             <tbody>
@@ -48,9 +50,32 @@
                     <td>{{ $no++ }}</td>
                     <td>{{$peg->nip}}</td>
                     <td style="text-transform: uppercase">{{$peg->nama}}</td>
-                    <td>{{$peg->alamat}}</td>
                     <td>{{$peg->kelompok}}</td>
-                    
+                    <td>{{date('d-m-Y', strtotime($peg->tgl_mulai))}}</td>
+                    <td>
+                    <?php
+                        if ($peg->tgl_selesai == '-') {
+                            echo '-';
+                        }else {
+                           echo date('d-m-Y', strtotime($peg->tgl_selesai));
+                        }
+                    ?></td>
+                    <td> <?php 
+                    if($peg->tgl_selesai == '-'){
+                        echo "-";
+                    }else {
+                        ?>
+                        @php
+                        $tgl_mulai = $peg->tgl_mulai;
+                        $jabat = new DateTime($tgl_mulai);
+                        $tgl_selesai = new DateTime($peg->tgl_selesai);
+                        $lama_jabat = $tgl_selesai->diff($jabat);
+                        @endphp
+                        {{$lama_jabat->y." Tahun"." ". $lama_jabat->m ." Bulan"." ".$lama_jabat->d." hari"}}
+                        <?php
+                    }
+                    ?>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -18,7 +18,18 @@ class ObatmasukController extends Controller
     public function stok_store(Request $request)
     {
         foreach ($request->addMoreInputFields as $key => $value) {
-            Obatmasuk::create($value);
+            $v = [
+                'tgl'=>$value['tgl'],
+                'bulan'=>$value['bulan'],
+                'tahun'=>$value['tahun'],
+                'no_surat'=>$value['no_surat'],
+                'kode'=>substr($value['kode'],0,6),
+                'jumlah'=>$value['jumlah'],
+                'penerima'=>$value['penerima'],
+
+            ];
+            Obatmasuk::create($v);
+            // dd($v);
         }
         // $tobat = new Obatmasuk([
         //     'kode' => $request->kode,
@@ -36,7 +47,8 @@ class ObatmasukController extends Controller
     }
 
     public function editstok($id){
-        $obat = DB::table('tb_obatmasuk')->where('id','=',''.$id.'')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->get();
+        $obat = DB::table('tb_obatmasuk')->where('tb_obatmasuk.id','=',''.$id.'')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')
+        ->select('tb_obatmasuk.kode','no_surat','tb_obatmasuk.id','jumlah','penerima','tgl','bulan','tahun','nm_obat')->get();
         // dd($obat);
         $data['title'] = 'Edit Obat';
         return view('obat.edit_stok',compact(['obat']),$data);

@@ -60,7 +60,9 @@ class SuratController extends Controller
        
         $surat = DB::table('tb_surat')->join('tb_pasien','tb_pasien.id_pasien','=','tb_surat.pasien_id')
         ->join('tb_medis','tb_medis.id','=','tb_surat.medis_id')
-        ->where('id_pasien','=',''.$id.'')->where('status','=','1')->get();
+        ->where('id_pasien','=',''.$id.'')
+        ->where('medis_id','=',''.$medis.'')
+        ->where('tb_surat.status','=','1')->get();
         $pdf = PDF::loadView('medis/cetak_sakit',compact('surat'));;
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_surat_sakit.pdf');

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('jk','15');
             $table->string('tempat','20');
             $table->string('alamat','100');
+            $table->string('kota','50');
             $table->string('gol_darah','5');
             $table->string('no_hp','15');
             $table->string('tgl_pasien','11');

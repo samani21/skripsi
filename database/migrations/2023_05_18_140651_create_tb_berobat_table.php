@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tb_berobat', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('pasien_id');
-            $table->string('no_berobat','6');
+            $table->string('no_berobat','10');
             $table->string('nik','17');
             $table->string('jenis_berobat','10');
             $table->string('bpjs','17');

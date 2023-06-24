@@ -52,8 +52,7 @@
         </div>
         <div class="col-6">
             <div>
-                <label for="">Tanggal</label>
-                <input class="form-control" type="text" id="tgl" name="tgl_pasien" value="{{$pasien->tgl_pasien}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
+                <input class="form-control" type="hidden" id="tgl" name="tgl_pasien" value="{{$pasien->tgl_pasien}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
                 <input class="form-control" type="hidden" id="bulan" name="bulan_pasien" value="{{$pasien->bulan_pasien}}" placeholder="Masukkan NIP" aria-label="default input example">
                 <input class="form-control" type="hidden" id="tahun" name="tahun_pasien" value="{{$pasien->tahun_pasien}}" placeholder="Masukkan NIP" aria-label="default input example">
             </div>
@@ -66,6 +65,10 @@
                 <label for="">Alamat</label>
                 <input class="form-control"  maxlength="100" type="text" id="alamat" name="alamat" value="{{$pasien->alamat}}"
                     placeholder="Masukkan alamat" aria-label="default input example">
+            </div>
+            <div>
+                <label for="">Koa</label>
+                <input class="form-control" type="text" maxlength="100" id="kota" name="kota" value="{{$pasien->kota}}" placeholder="Masukkan alamat" aria-label="default input example" required>
             </div>
             <div>
                 <label>Golongan darah</label>

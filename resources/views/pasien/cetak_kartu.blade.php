@@ -10,9 +10,7 @@
     
     <pre>
     <h2>          Kartu Berobat</h2>
-    <b>     No Kartu</b>      : <?php if($kartu->no_berobat <= '9'){ 
-        echo '000',$kartu->no_berobat;} ?>
-
+    <b>     No Kartu</b>      : {{$kartu->no_berobat}}
     <b>     NIK</b>           : {{$kartu->nik}}
     <b>     Nama</b>          : {{$kartu->nama}}
     <b>     TTL</b>           : {{$kartu->tempat}},<?php echo date('d-m-Y', strtotime($kartu->tgl));?>

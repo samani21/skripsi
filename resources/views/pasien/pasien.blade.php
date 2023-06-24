@@ -42,15 +42,7 @@
             @foreach($pasien as $index=>$pas)
                 <tr align="center">
                     <td data-title="No">{{ $index + $pasien->firstItem() }}</td>
-                    <td data-title="No berobat"><?php if($pas->no_berobat <= '9'){ 
-                        echo '000',$pas->no_berobat;}else
-                        if($pas->no_berobat <= '99'){ 
-                        echo '00',$pas->no_berobat;}else
-                        if($pas->no_berobat <= '999'){ 
-                        echo '0',$pas->no_berobat;}else
-                        if($pas->no_berobat <= '9999'){ 
-                        echo $pas->no_berobat;}
-                        ?></td>
+                    <td data-title="No berobat">{{$pas->no_berobat}}</td>
                     <td data-title="NIK" align="left">{{$pas->nik}}</td>
                     <td data-title="Jenis berobat">{{$pas->jenis_berobat}}</td>
                     <td data-title="Nama" style="text-transform: uppercase">{{$pas->nama}}</td>
@@ -74,5 +66,13 @@
         </tbody>
         </table>
         {{ $pasien->links() }}
+    </div>
+    <div>
+        <div>
+            <h4>
+                <pre>Jumlah Pasien BPJS : {{$p_bpjs->count()}} Orang
+Jumlah Pasien Umum : {{$p_umum->count()}} Orang</pre>
+            </h4>
+        </div>
     </div>
 @endsection

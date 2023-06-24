@@ -145,6 +145,10 @@ header label span{
     padding-right: 1rem;
 }
 
+header h1 label{
+    display: none;
+}
+
 main{
     margin-top: 40px;
     padding: rem 1.5rem;

@@ -8,7 +8,21 @@
         <div class="col-6">
             <div>
                 <label for="">No berobat</label>
-                <input class="form-control" type="text" id="no_berobat" value="{{$nomor}}" name="no_berobat" placeholder="Masukkan no berobat" aria-label="default input example" maxlength="6" readonly>
+                <input class="form-control" type="text" id="no_berobat"value="<?php if ($nomor <= '9') {
+                    echo "P000".$nomor;
+                }else
+                if ($nomor <= '99') {
+                    echo "P00".$nomor;
+                }
+                else
+                if ($nomor <= '999') {
+                    echo "P0".$nomor;
+                }else
+                if ($nomor <= '9999') {
+                    echo "P".$nomor;
+                }else {
+                    echo $nomor;
+                } ?>" name="no_berobat" placeholder="Masukkan no berobat" aria-label="default input example" maxlength="6" readonly>
             </div>
             <div>
                 <label for="">NIK</label>
@@ -60,6 +74,10 @@
             <div>
                 <label for="">Alamat</label>
                 <input class="form-control" type="text" maxlength="100" id="alamat" name="alamat" placeholder="Masukkan alamat" aria-label="default input example" required>
+            </div>
+            <div>
+                <label for="">Kota</label>
+                <input class="form-control" type="text" maxlength="100" id="kota" name="kota" placeholder="Masukkan alamat" aria-label="default input example" required>
             </div>
             <div>
                 <label>Golongan darah</label>

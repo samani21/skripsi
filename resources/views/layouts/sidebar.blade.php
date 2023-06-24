@@ -83,7 +83,7 @@
                             <span>Rekam Medis</span>
                         </a>
                     
-                        <a href="{{ url('resep/resep?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('resep/resep?cari='.date('d-m-Y').'') }}"
                             class="{{ request()->is('resep/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Resep</span>
@@ -100,7 +100,7 @@
                             <span>Obat Keluar</span>
                         </a>
                     
-                        <a href="{{url('obat/masuk?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{url('obat/masuk?cari='.date('d-m-Y').'') }}"
                             class="{{ request()->is('obat/masuk')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Masuk</span>
@@ -119,7 +119,7 @@
                                 class="{{ request()->is('laporan/petugas')?'active' :'' }}">Petugas</a>
                             <a href="{{url('laporan/jadwal?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/jadwal')?'active' :'' }}">Jadwal</a>
-                            <a href="{{url('laporan/pasien?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/pasien')}}"
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
                             <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
@@ -336,7 +336,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('resep/resep?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('resep/resep?cari='.date('d-m-Y').'') }}"
                             class="{{ request()->is('medis/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Resep</span>
@@ -356,7 +356,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('obat/masuk?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{url('obat/masuk?cari='.date('d-m-Y').'') }}"
                             class="{{ request()->is('obat/masuk')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Masuk</span>
@@ -401,7 +401,7 @@
         <div class="main-content">
             <header>
                 <h1>
-                    <label for="nav-toggle">
+                    <label for="nav-toggle" >
                         <span class="las la-bars" style="color: black"></span>
                     </label>
                     {{

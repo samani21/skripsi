@@ -8,7 +8,7 @@
         <input class="form-control" type="hidden" id="pasien_id" name="pasien_id" value="{{$pasien->id_pasien}}"  placeholder="Masukkan no berobat" aria-label="default input example" readonly>
             <div>
                 <label for="">No berobat</label>
-                <input class="form-control" type="number" id="no_berobat" name="no_berobat" value="{{$pasien->no_berobat}}"  placeholder="Masukkan no berobat" aria-label="default input example" readonly>
+                <input class="form-control" type="text" id="no_berobat" name="no_berobat" value="{{$pasien->no_berobat}}"  placeholder="Masukkan no berobat" aria-label="default input example" readonly>
             </div>
             <div>
                 <label for="">NIK</label>

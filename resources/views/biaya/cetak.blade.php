@@ -28,7 +28,7 @@
         </thead>
     </table>
     <hr>
-    <h3 align="center">LAPORAN DATA OBAT MASUK</h3>
+    <h3 align="center">LAPORAN PEMASUKKAN</h3>
     <table align="center" style="border-collapse:collapse;border-spacing:1;" border="1">
         <thead>
             <tr align="center">

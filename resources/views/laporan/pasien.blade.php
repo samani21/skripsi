@@ -4,38 +4,11 @@
 
     <div>
         <form action="{{route('pasien/cetak_pasien')}}" method="get" class="row g-12">
-            <div class="col-md-2">
+            <div class="col-md-8">
                 <label for="">Cetak data</label>
-            <input class="form-control" type="number" name="tahun" value="{{date('Y')}}" aria-label="default input example">
+            <input class="form-control" type="text" name="cari" aria-label="default input example">
             </div>
-            <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl" id="">
-            {{-- <div class="col-md-2">
-                <label for=""></label>
-                <input type="text" name="tgl" class="form-control"  value="{{date('d-m-Y')}}" id="">
-            </div> --}}
-            <div class="col-md-2">
-                <label for=""></label>
-                <select name="bulan" class="form-control" >
-                    <option value="">--Pilih--</option>
-                    <option value="01">Januari</option>
-                    <option value="02">Februari</option>
-                    <option value="03">Maret</option>
-                    <option value="04">April</option>
-                    <option value="05">Mei</option>
-                    <option value="06">Juni</option>
-                    <option value="07">Juli</option>
-                    <option value="08">Agustus</option>
-                    <option value="09">September</option>
-                    <option value="10">Oktober</option>
-                    <option value="11">November</option>
-                    <option value="12">Desember</option>
-                </select>
-            </div>
-            {{-- <div class="col-auto">
-                <br>
-                <input class="form-control" type="text" name="cari" placeholder="Cari berdasarkan nama" aria-label="default input example">
-            </div> --}}
-            <div class="col-auto">
+            <div class="col-md-4">
                 <br>
             <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
             </div>
@@ -88,6 +61,11 @@
         </tbody>
         </table>
         {{ $pasien->links() }}
-
+    </div>
+    <div>
+        <h4>
+            <pre>Jumlah Pasien BPJS : {{$p_bpjs->count()}} Orang
+Jumlah Pasien Umum : {{$p_umum->count()}} Orang</pre>
+        </h4>
     </div>
 @endsection

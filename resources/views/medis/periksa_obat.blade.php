@@ -24,7 +24,7 @@
             <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kd_obat]" list="obat"  placeholder="Masukkan obat" id="exampleDataList" required autocomplete="off">
                 <datalist id="obat">
                     @foreach($obat as $ob)
-                    <option value="{{$ob->kode}}">{{$ob->nm_obat}}
+                    <option value="{{$ob->kode}}.{{$ob->nm_obat}}">
                         @endforeach
                 </datalist>
             </td>
@@ -62,11 +62,11 @@
             '][jumlah]" required placeholder="Masukkan obat" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
             '][dosis]" required placeholder="Masukkan jumlah" class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][pakai]"id="p' + i +
-            '" placeholder="Masukkan Pemakaian" required class="form-control" /></td><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
-            '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
-            '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
-            '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
-            '][berobat_id]" value="{{$berobat->id}}"placeholder="Enter subject" class="form-control" /><input type="hidden" list="diagnosa" name="addMoreInputFields[' + i +
+            '" placeholder="Masukkan Pemakaian" required class="form-control" /></td><input type="hidden" name="addMoreInputFields[' + i +
+            '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
+            '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
+            '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
+            '][berobat_id]" value="{{$berobat->id}}"placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
             '][status]" value="0"placeholder="Enter subject" class="form-control" /><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
             );
         }

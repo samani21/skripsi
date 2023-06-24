@@ -21,6 +21,7 @@
             <thead>
             <tr align="center">
                 <th scope="col">No</th>
+                <th scope="col">NO Surat</th>
                 <th scope="col">Kode obat</th>
                 <th scope="col">Nama obat</th>
                 <th scope="col">stok</th>
@@ -35,6 +36,7 @@
             @foreach($obat as $index=> $o)
                 <tr align="center">
                     <td data-title="No">{{ $index + $obat->firstItem() }}</td>
+                    <td data-title="No Surat">{{$o->no_surat}}</td>
                     <td data-title="kode">{{$o->kode}}</td>
                     <td data-title="nama obat">{{$o->nm_obat}}</td>
                     <td data-title="Jumlah obat">{{$o->jumlah}}</td>

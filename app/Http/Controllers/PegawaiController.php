@@ -36,6 +36,9 @@ class PegawaiController extends Controller
             'jns_kelamin' => $request->jns_kelamin,
             'kelompok' => $request->kelompok,
             'spesialis' => $request->spesialis,
+            'tgl_mulai' => $request->tgl_mulai,
+            'status' => $request->status,
+            'tgl_selesai' => $request->tgl_selesai,
         ]);
         $pegawai->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
@@ -59,6 +62,7 @@ class PegawaiController extends Controller
             'jns_kelamin' => $request['jns_kelamin'],
             'kelompok' => $request['kelompok'],
             'spesialis' => $request['spesialis'],
+            'status' => $request['status'],
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
@@ -69,6 +73,26 @@ class PegawaiController extends Controller
         $pegawai = Pegawai::find($id);
         $pegawai->delete();
         toast('Yeay Berhasil menghapus data','success');
+        return redirect('pegawai/pegawai');
+    }
+
+    public function selesai(Request $request, $id){
+        $pegawai = Pegawai::find($id);
+        $data['title'] = 'Selesai Jabatan Pegawai';
+        return view('pegawai.selesai_pegawai',compact(['pegawai']),$data);
+    }
+
+    public function updateselesai(Request $request, $id){
+        $ubah = Pegawai::findorfail($id);
+        $dt =[
+            'nip' => $request['nip'],
+            'nama' => $request['nama'],
+            'tgl_mulai' => $request['tgl_mulai'],
+            'tgl_selesai' => $request['tgl_selesai'],
+            'status' => $request['status'],
+        ];
+        $ubah->update($dt);
+        alert('Sukses','Simpan Data Berhasil', 'success');
         return redirect('pegawai/pegawai');
     }
 

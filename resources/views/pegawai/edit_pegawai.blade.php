@@ -62,6 +62,35 @@
                 <option value="Staf Non Medis">Staf Non Medis</option>
               </select>
         </div>
+        <?php
+            if ($pegawai->status == 0) {
+                ?>
+                <div>
+                    <label for="">Status</label>
+                    <select class="form-select" name="status" aria-label="Default select example" required>
+                        <option selected value="{{$pegawai->status}}"><?php
+                            if ($pegawai->status == 0) {
+                                echo "Selesai Menjabat";
+                            }
+                            if ($pegawai->status == 1) {
+                                echo "Menjabat";
+                            }
+                        ?></option>
+                        <option value="1">Sedang Menjabat</option>
+                        <option value="0">Selesai Menjabat</option>
+                      </select>
+                </div>
+
+                <?php
+            }
+            if ($pegawai->status == 1) {
+                ?>
+                <input type="hidden" name="status" value="1" id="">
+
+                <?php
+            }
+
+        ?>
         <hr>
         <div>
             <button type="submit" class="btn btn-success" name="simpan">Simpan</button>

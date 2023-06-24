@@ -33,11 +33,12 @@
             <thead>
             <tr align="center">
                 <th width='auto'>No</th>
-                <th width='100'>NIP</th>
-                <th width='100'>Nama</th>
-                <th width='80'>Tanggal mulai</th>
-                <th width='80'>Tanggal selesai</th>
-                <th width='100'>status</th>
+                <th width='80'>NIP</th>
+                <th width='80'>Nama</th>
+                <th width='70'>Mulai</th>
+                <th width='70'>Selesai</th>
+                <th width='70'>Lama menjabat</th>
+                <th width='100'>Status</th>
             </tr>
             </thead>
             <tbody>
@@ -51,7 +52,23 @@
                     <td style="text-transform: uppercase">{{$kap->nama}}</td>
                     <td>{{$kap->tgl_mulai}}</td>
                     <td>{{$kap->tgl_selesai}}</td>
-                    <td><?php
+                    <td> <?php 
+                    if($kap->tgl_selesai == '-'){
+                        echo "-";
+                    }else {
+                        ?>
+                        @php
+                        $tgl_mulai = $kap->tgl_mulai;
+                        $jabat = new DateTime($tgl_mulai);
+                        $tgl_selesai = new DateTime($kap->tgl_selesai);
+                        $lama_jabat = $tgl_selesai->diff($jabat);
+                        @endphp
+                        {{$lama_jabat->y." Tahun"." ". $lama_jabat->m ." Bulan"." ".$lama_jabat->d." hari"}}
+                        <?php
+                    }
+                    ?>
+                    </td>
+                    <td data-title="Status"><?php
                         if ($kap->status == 0) {
                             echo "Selesai Menjabat";
                         }

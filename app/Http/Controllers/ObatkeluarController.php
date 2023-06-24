@@ -17,6 +17,7 @@ class ObatkeluarController extends Controller
         ->orderBy('tb_berobat.tgl','asc')
         ->where('tb_pasien.nama','like',"%".$cari."%")
         ->orWhere('tb_berobat.poli','like',"%".$cari."%")
+        ->orWhere('tb_berobat.tgl','like',"%".$cari."%")
         ->paginate(10);
        
         return view('resep/resep', ['resep' => $resep,'title' => 'Resep Pasien'] );

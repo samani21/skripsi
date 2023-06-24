@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('jns_kelamin','15');
             $table->string('kelompok','50');
             $table->string('spesialis','50');
+            $table->date('tgl_mulai');
+            $table->string('tgl_selesai','20');
+            $table->string('status','3');
             $table->timestamps();
         });
     }

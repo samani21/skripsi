@@ -159,9 +159,20 @@ class MedisController extends Controller
         $a = $request->berobat;
         $b = $request->pasien;
         foreach ($request->addMoreInputFields as $key => $value) {
-            Resep::create($value);
-        }
+            $v = [
+                'tgl'=>$value['tgl'],
+                'bulan'=>$value['bulan'],
+                'tahun'=>$value['tahun'],
+                'berobat_id'=>$value['berobat_id'],
+                'kd_obat'=>substr($value['kd_obat'],0,6),
+                'jumlah'=>$value['jumlah'],
+                'dosis'=>$value['dosis'],
+                'pakai'=>$value['pakai'],
 
+            ];
+            Resep::create($v);
+            // dd($v);
+        }
         // $ubah = Berobat::findorfail($id);
         // $dt =[
         //     'status' => $request['status'],
@@ -182,9 +193,8 @@ class MedisController extends Controller
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
         return Redirect::back();
     }
-    public function selesai_resep(Request $request , $id){
-        $status1 = $request->status1;
-        $status0 = $request->status0;
+    public function selesai_resep(Request $request , $id,$id_pasien){
+       
         $ubah = Berobat::findorfail($id);
         $dt =[
             'status' => $request['status'],
@@ -197,8 +207,12 @@ class MedisController extends Controller
         ];
         $obat->update($dt_obat);
         // dd($obat);
-        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return Redirect::back();
+        $berobat = Berobat::find($id);
+        $pasien = Pasien::find($id_pasien);
+        $resep = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('berobat_id','=',''.$id.'')->get();
+        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','berobat','resep'));
+        $pdf->setPaper('A4','potrait');
+        return $pdf->stream('cetak_rekam_medis.pdf');
     }
 
     public function hapus_resep($id){

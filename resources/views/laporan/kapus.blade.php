@@ -33,6 +33,7 @@
                 <th scope="col">Nama</th>
                 <th scope="col">Tgl mulai</th>
                 <th scope="col">Tgl selesai</th>
+                <th scope="col">Lama</th>
                 <th scope="col">Status</th>
 
             </tr>
@@ -48,6 +49,22 @@
                 <td data-title="Nama" style="text-transform: uppercase">{{$kap->nama}}</td>
                 <td data-title="Tanggal Mulai">{{$kap->tgl_mulai}}</td>
                 <td data-title="Tanggal Selesai">{{$kap->tgl_selesai}}</td>
+                <td data-title="Lama menjabat"> <?php 
+                    if($kap->tgl_selesai == '-'){
+                        echo "-";
+                    }else {
+                        ?>
+                        @php
+                        $tgl_mulai = $kap->tgl_mulai;
+                        $jabat = new DateTime($tgl_mulai);
+                        $tgl_selesai = new DateTime($kap->tgl_selesai);
+                        $lama_jabat = $tgl_selesai->diff($jabat);
+                        @endphp
+                        {{$lama_jabat->y." Tahun"." ". $lama_jabat->m ." Bulan"." ".$lama_jabat->d." hari"}}
+                        <?php
+                    }
+                    ?>
+                    </td>
                 <td data-title="Status"><?php
                     if ($kap->status == 0) {
                         echo "Selesai Menjabat";
