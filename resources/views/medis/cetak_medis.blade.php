@@ -33,10 +33,11 @@
         <thead>
         <tr align="center">
             <th width="10">No</th>
-            <th width="80">No berobat</th>
+            <th width="60">No berobat</th>
             <th width="100">NIK</th>
             <th width="100">Nama</th>
             <th width="100">Jenis berobat</th>
+            <th width="40">Poli</th>
             <th width="100">Tanggal berobat</th>
         </tr>
         </thead>
@@ -51,11 +52,18 @@
                 <td>{{$medis->nik}}</td>
                 <td>{{$medis->nama_berobat}}</td>
                 <td align="center">{{$medis->jenis_berobat}}</td>
+                <td>{{$medis->poli}}</td>
                 <td align="center"><?php echo $medis->tgl;?></td>
             </tr>
         @endforeach
     </tbody>
     </table>
+    <div>
+        <h4>
+            <pre>Jumlah Pasien BPJS : {{$p_bpjs->count()}} Orang
+Jumlah Pasien Umum : {{$p_umum->count()}} Orang</pre>
+        </h4>
+    </div>
     <div>
         <pre align="right">
                                             Banjarmasin,{{$tgl}}
@@ -65,8 +73,8 @@
 
                         
                         @foreach ($kapus as $k )
-                            {{$k->nama}}
-                                                    {{$k->nip}}
+                    {{$k->nama}}
+                                            {{$k->nip}}
                         @endforeach
 
                                                

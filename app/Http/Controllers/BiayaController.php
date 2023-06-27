@@ -24,6 +24,7 @@ class BiayaController extends Controller
         $b_umum = DB::table('tb_biaya')->select(DB::raw('sum(biaya) as total'))
         ->where('tgl','=',''.$tgl.'')->where('j_berobat','=','UMUM')->get();
         $data['title'] = 'Laporan Pemasukkan';
+        $biaya->withPath('biaya?tgl='.date('d-m-Y').'&');
         return view('laporan/biaya',compact('biaya','total','p_bpjs','p_umum','b_bpjs','b_umum'),$data);
     }
 
@@ -32,7 +33,7 @@ class BiayaController extends Controller
         $tgl = $request->tgl;
         $biaya = DB::table('tb_biaya')->join('tb_pasien','tb_pasien.id_pasien','=','tb_biaya.pasien_id')
         ->where('tgl','=',''.$tgl.'')
-        ->select('pasien_id','no_berobat','nama','j_berobat','poli','biaya','tgl','status')->paginate(5);
+        ->select('pasien_id','no_berobat','nama','j_berobat','poli','biaya','tgl','status')->paginate();
         $p_bpjs = DB::table('tb_biaya')->where('j_berobat','=','BPJS')
         ->where('tgl','=',''.$tgl.'')->get();
         $p_umum = DB::table('tb_biaya')->where('j_berobat','=','UMUM')

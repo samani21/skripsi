@@ -51,16 +51,7 @@
             @foreach($biaya as $index=>$b)
             <tr align="center">
                 <td>{{ $index + $biaya->firstItem() }}</td>
-                <td><?php if($b->no_berobat <= '9'){ 
-                    echo '000',$b->no_berobat;}else
-                    if($b->no_berobat <= '99'){ 
-                    echo '00',$b->no_berobat;}else
-                    if($b->no_berobat <= '999'){ 
-                    echo '0',$b->no_berobat;}else
-                    if($b->no_berobat <= '9999'){ 
-                    echo $b->no_berobat;}
-                    ?>
-                </td>
+                <td>{{$b->no_berobat}}</td>
                 <td align="left">{{$b->nama}}</td>
                 <td>{{$b->j_berobat}}</td>
                 <td>{{$b->poli}}</td>
@@ -93,8 +84,8 @@ Total Biaya Hari tanggl = Rp.@foreach ($total as $bi){{$bi->total}}@endforeach
 
                         
                         @foreach ($kapus as $k )
-                            {{$k->nama}}
-                                                    {{$k->nip}}
+                    {{$k->nama}}
+                                            {{$k->nip}}
                         @endforeach
 
                                                

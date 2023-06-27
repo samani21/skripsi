@@ -35,7 +35,7 @@ class PasienController extends Controller
             $nomor = 'P000'.$urut;
         }else{
             $ambil = Pasien::all()->last();
-            $urut = (int)substr($ambil->id_pasien, -1)+1;
+            $urut = (int)substr($ambil->id_pasien, 0)+1;
             $nomor = $urut; 
         }
         $data['title'] = 'Tambah Pasien';

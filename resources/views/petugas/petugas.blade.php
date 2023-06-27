@@ -63,6 +63,6 @@
 
     </tbody>
     </table>
-    {{ $jadwal->links() }}
+    {{$jadwal->links()}}
 </div>
 @endsection

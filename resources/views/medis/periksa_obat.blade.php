@@ -24,7 +24,21 @@
             <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kd_obat]" list="obat"  placeholder="Masukkan obat" id="exampleDataList" required autocomplete="off">
                 <datalist id="obat">
                     @foreach($obat as $ob)
-                    <option value="{{$ob->kode}}.{{$ob->nm_obat}}">
+                    <option value="<?php if ($ob->kode <= '9') {
+                        echo "KA000".$ob->kode;
+                    }else
+                    if ($ob->kode <= '99') {
+                        echo "KA00".$ob->kode;
+                    }
+                    else
+                    if ($ob->kode <= '999') {
+                        echo "KA0".$ob->kode;
+                    }else
+                    if ($ob->kode <= '9999') {
+                        echo "KA".$ob->kode;
+                    }else {
+                        echo $ob->kode;
+                    } ?> : {{$ob->nm_obat}}">
                         @endforeach
                 </datalist>
             </td>
@@ -58,7 +72,7 @@
         ++i;
         $("#dynamicAddRemove").append('<tr><td><input type="text" list="obat" name="addMoreInputFields[' + i +
             '][kd_obat]" id="s' + i +
-            '" placeholder="Masukkan obat" required placeholder="Enter subject" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
+            '" placeholder="Masukkan obat" autocomplete="off" required placeholder="Enter subject" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
             '][jumlah]" required placeholder="Masukkan obat" class="form-control" /></td><td><input type="text"  name="addMoreInputFields[' + i +
             '][dosis]" required placeholder="Masukkan jumlah" class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][pakai]"id="p' + i +

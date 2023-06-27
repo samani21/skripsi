@@ -20,9 +20,11 @@ class ObatController extends Controller
 	{   
         $cari = $request->cari;
         $obat = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')
-        ->select('tb_obatmasuk.id as id','no_surat','tb_obatmasuk.kode','nm_obat','jumlah','tgl')
+        ->select('tb_obatmasuk.id as id','no_surat','tb_obatmasuk.kode','nm_obat','jumlah','tgl','penerima')
         ->where('nm_obat','like',"%".$cari."%")
         ->orWhere('tgl','like',"%".$cari."%")
+        ->orWhere('no_surat','like',"%".$cari."%")
+        ->orWhere('penerima','like',"%".$cari."%")
         ->paginate(10);
         $obat->withPath('masuk?tgl=14-01-2023&');
         return view('obat/masuk', ['obat' => $obat,'title' => 'Obat Masuk'] );
@@ -48,17 +50,17 @@ class ObatController extends Controller
 
     public function create()
     {
-        $cek = Obat::count();
-        if($cek == 0 ){
-            $urut = 1;
-            $nomor = $urut;
-        }else{
-            $ambil = Obat::all()->last();
-            $urut = (int)substr($ambil->kode, 2)+1;
-            $nomor = $urut; 
-        }
+        // $cek = Obat::count();
+        // if($cek == 0 ){
+        //     $urut = 1;
+        //     $nomor = $urut;
+        // }else{
+        //     $ambil = Obat::all()->last();
+        //     $urut = (int)substr($ambil->id, 0)+1;
+        //     $nomor = $urut; 
+        // }
         $data['title'] = 'Tambah Obat';
-        return view('obat/tambah_obat',['nomor'=>$nomor], $data);
+        return view('obat/tambah_obat', $data);
     }
 
     public function store(Request $request)
@@ -68,9 +70,10 @@ class ObatController extends Controller
             'kode' => $request->kode,
             'nm_obat' => $request->nm_obat,
             'stok' => $request->stok,
+            'satuan' => $request->satuan,
         ]);
         $obat->save();
-        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
+        Alert()->success('SuccessAlert','Tambah data obat berhasil');
         return redirect()->route('obat/obat');
     }
 
@@ -85,6 +88,7 @@ class ObatController extends Controller
         $dt =[
             'nm_obat' => $request['nm_obat'],
             'stok' => $request['stok'],
+            'satuan' => $request['satuan'],
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
@@ -120,13 +124,13 @@ class ObatController extends Controller
         $cari = $request->cari;
         if($cari == ""){
             $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$tgl."%")
-            ->paginate();
+            ->paginate(7);
         }else if($cari == $cari){
             $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$cari."%")
             ->orWhere('nm_obat','like',"%".$cari."%")
-            ->paginate();
+            ->paginate(7);
         }
-        $masuk->withPath('obat_masuk?tgl=14-01-2023&');
+        $masuk->withPath('obat_masuk?tgl='.date('d-m-Y').'&');
         return view('laporan/obat_masuk', ['masuk' => $masuk,'title' => 'Laporan obat masuk'] );
     }
 
@@ -135,13 +139,13 @@ class ObatController extends Controller
         $cari = $request->cari;
         if($cari == ""){
             $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$tgl."%")
-            ->paginate();
+            ->paginate(7);
         }else if($cari == $cari){
             $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$cari."%")
             ->orWhere('nm_obat','like',"%".$cari."%")
-            ->paginate(10);
+            ->paginate(7);
         }
-        $keluar->withPath('obat_keluar?tgl=14-01-2023&');
+        $keluar->withPath('obat_keluar?tgl='.date('d-m-Y').'&');
         return view('laporan/obat_keluar', ['keluar' => $keluar,'title' => 'Laporan obat keluar'] );
     }
 

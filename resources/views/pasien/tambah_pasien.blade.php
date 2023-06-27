@@ -8,7 +8,7 @@
         <div class="col-6">
             <div>
                 <label for="">No berobat</label>
-                <input class="form-control" type="text" id="no_berobat"value="<?php if ($nomor <= '9') {
+                <input class="form-control" style="background-color: #dddddd"  type="text" id="no_berobat"value="<?php if ($nomor <= '9') {
                     echo "P000".$nomor;
                 }else
                 if ($nomor <= '99') {

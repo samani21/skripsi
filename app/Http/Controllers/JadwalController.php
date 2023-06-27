@@ -16,6 +16,7 @@ class JadwalController extends Controller
         $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('tgl','=',''.$tgl.'')
         ->paginate(6);
+        $jadwal->withPath('petugas?tgl='.date('d-m-Y').'');
         return view('petugas/petugas', ['jadwal'=>$jadwal,'title' => 'Petugas'] );
     }
 
@@ -63,6 +64,7 @@ class JadwalController extends Controller
         $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('tgl','=',''.$tgl.'')
         ->paginate(6);
+        $jadwal->withPath('jadwal?tgl='.date('d-m-Y').'');
         return view('laporan/jadwal', ['jadwal'=>$jadwal,'title' => 'Jadwal Petugas'] );
     }
 

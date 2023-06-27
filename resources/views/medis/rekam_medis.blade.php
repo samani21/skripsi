@@ -27,10 +27,15 @@
     }
     @endphp
     @endforeach
-        <a href="/medis/cetak_rm/pasien={{$berobat->id}}&rekammedis={{$pasien->id_pasien}}" class="btn btn-primary"><i
-            class="fa-solid fa-print"></i> rekam medis
-        </a>
-
+    <?php
+        if ( $berobat->status == 2 ||  $berobat->status == 4) {
+            ?>
+            <a href="/medis/cetak_rm/pasien={{$berobat->id}}&rekammedis={{$pasien->id_pasien}}" class="btn btn-primary"><i
+                class="fa-solid fa-print"></i> rekam medis
+            </a>
+            <?php
+        }
+    ?>
     <div class="float-end">
         @If(Auth::user()->level =='rekam_medis' || Auth::user()->level =='operator')
             <form action="{{route('selesai_rm',$berobat->id)}}" method="POST">

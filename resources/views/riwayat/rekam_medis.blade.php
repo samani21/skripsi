@@ -24,6 +24,29 @@
     <hr>
 <div class="container-fluid">
     <button onclick="history.back()" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</button>
+    @foreach($surat as $s)
+@php
+    if ($s->status == '1') {
+    echo '<a
+        href="/medis/cetak_sakit/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'"
+        class="btn btn-danger"><i class="fa-solid fa-print"></i> Surat Sakit</a>';
+    }
+    if ($s->status == '2') {
+    echo '<a
+        href="/medis/cetak_sehat/pasien='.$pasien->id_pasien.'&rekammedis='.$berobat->medis->id.'&berobat='.$berobat->id.'"
+        class="btn btn-success"><i class="fa-solid fa-print"></i> Surat Sehat</a>';
+    }
+    @endphp
+    @endforeach
+    <?php
+        if ( $berobat->status == 2 ||  $berobat->status == 4) {
+            ?>
+            <a href="/medis/cetak_rm/pasien={{$berobat->id}}&rekammedis={{$pasien->id_pasien}}" class="btn btn-primary"><i
+                class="fa-solid fa-print"></i> rekam medis
+            </a>
+            <?php
+        }
+    ?>
 </div>
     <br>
     <div class="container-fluid">

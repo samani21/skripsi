@@ -67,15 +67,15 @@ Jumlah Pasien Umum : {{$p_umum->count()}} Orang</pre>
     </div>
     <div>
         <pre align="right">
-                                            Banjarmasin,<?php echo date('d-m-Y'); ?>
+                                              Banjarmasin,{{date('d-m-Y')}}
 
 
 
 
                         
                         @foreach ($kapus as $k )
-                            {{$k->nama}}
-                                                    {{$k->nip}}
+                    {{$k->nama}}
+                                            {{$k->nip}}
                         @endforeach
 
                                                

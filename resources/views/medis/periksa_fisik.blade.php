@@ -29,7 +29,7 @@
             <input class="form-control" name="dokter" maxlength="50" style="text-transform: uppercase" list="dokter" id="exampleDataList" autocomplete="off" autofocus>
             <datalist id="dokter">
                 @foreach($dokter as $dok)
-                <option value="{{$dok->nama}}({{$dok->spesialis}})">{{$dok->nama}}({{$dok->spesialis}})</option>
+                <option value="{{$dok->nama}}">{{$dok->spesialis}}</option>
                 @endforeach
             </datalist>
         </div>
@@ -38,7 +38,7 @@
             <input class="form-control" name="perawat" maxlength="50" style="text-transform: uppercase" list="perawat" id="exampleDataList" autocomplete="off">
             <datalist id="perawat">
                 @foreach($perawat as $per)
-                <option value="{{$per->nama}}({{$per->spesialis}})">{{$per->nama}}({{$per->spesialis}})</option>
+                <option value="{{$per->nama}}">({{$per->spesialis}})</option>
                 @endforeach
             </datalist>
         </div>

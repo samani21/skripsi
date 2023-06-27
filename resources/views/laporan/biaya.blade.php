@@ -40,15 +40,7 @@
             @foreach($biaya as $index=>$b)
             <tr align="center">
                 <td data-title="No">{{ $index + $biaya->firstItem() }}</td>
-                <td data-title="No Berobat"><?php if($b->no_berobat <= '9'){ 
-                    echo '000',$b->no_berobat;}else
-                    if($b->no_berobat <= '99'){ 
-                    echo '00',$b->no_berobat;}else
-                    if($b->no_berobat <= '999'){ 
-                    echo '0',$b->no_berobat;}else
-                    if($b->no_berobat <= '9999'){ 
-                    echo $b->no_berobat;}
-                    ?>
+                <td data-title="No Berobat">{{$b->no_berobat}}
                 </td>
                 <td data-title="Nama">{{$b->nama}}</td>
                 <td data-title="Jenis Berobat">{{$b->j_berobat}}</td>

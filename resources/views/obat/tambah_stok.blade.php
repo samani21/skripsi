@@ -25,7 +25,21 @@
                     <td> <input class="form-control" maxlength="100" name="addMoreInputFields[0][kode]" list="obat"  placeholder="Masukkan obat" id="exampleDataList" autocomplete="off" required>
                         <datalist id="obat">
                             @foreach($obat as $ob)
-                            <option value="{{$ob->kode}}.{{$ob->nm_obat}}">
+                            <option value="<?php if ($ob->kode <= '9') {
+                                echo "KA000".$ob->kode;
+                            }else
+                            if ($ob->kode <= '99') {
+                                echo "KA00".$ob->kode;
+                            }
+                            else
+                            if ($ob->kode <= '999') {
+                                echo "KA0".$ob->kode;
+                            }else
+                            if ($ob->kode <= '9999') {
+                                echo "KA".$ob->kode;
+                            }else {
+                                echo $ob->kode;
+                            } ?> : {{$ob->nm_obat}}">
                                 @endforeach
                         </datalist>
                     </td>
@@ -59,7 +73,7 @@
         $("#dynamicAddRemove").append('<tr><td><input type="text" name="addMoreInputFields[' + i +
             '][no_surat]" id="s' + i +
             '" style="background-color: #dddddd" placeholder="Otomatis terisi" required readonly placeholder="Enter subject" class="form-control" /></td><td><input type="text" list="obat" name="addMoreInputFields[' + i +
-            '][kode]" placeholder="Masukkan obat" required class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
+            '][kode]" placeholder="Masukkan obat" required class="form-control" autocomplete="off" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][jumlah]" placeholder="Masukkan jumlah" required class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][penerima]"id="p' + i +
             '" readonly placeholder="Otomatis terisi" style="background-color: #dddddd" required class="form-control" /></td><input type="hidden" name="addMoreInputFields[' + i +

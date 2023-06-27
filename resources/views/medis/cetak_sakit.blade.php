@@ -51,7 +51,7 @@
 
 
 
-                                                {{$sur->dokter}}
+                                            {{$sur->dokter}}
             </pre>
           
             @endforeach

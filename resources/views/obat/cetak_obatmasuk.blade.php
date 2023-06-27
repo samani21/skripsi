@@ -32,10 +32,12 @@
     <table align="center" style="border-collapse:collapse;border-spacing:1;" border="1">
         <thead>
             <tr align="center">
-                <th width="40">No</th>
+                <th width="20">No</th>
+                <th>No surat</th>
                 <th width="200">Nama obat</th>
-                <th width="100">stok</th>
-                <th width="100">Tanggal masuk</th>
+                <th width="30">stok</th>
+                <th width="70">Tanggal masuk</th>
+                <th width="100">Penarima</th>
             </tr>
             </thead>
             <tbody>
@@ -45,9 +47,11 @@
             @foreach($masuk as $o)
                 <tr >
                     <td align="center">{{ $no++ }}</td>
+                    <td>{{$o->no_surat}}</td>
                     <td>{{$o->nm_obat}}</td>
                     <td align="center">{{$o->jumlah}}</td>
                     <td align="center">{{$o->tgl}}</td>
+                    <td>{{$o->penerima}}</td>
                 </tr>
             @endforeach
         </tbody>
@@ -79,15 +83,15 @@
     </table>
     <div>
         <pre align="right">
-                                            Banjarmasin,{{$tgl}}
+                                              Banjarmasin,{{date('d-m-Y')}}
 
 
 
 
                         
                         @foreach ($kapus as $k )
-                            {{$k->nama}}
-                                                    {{$k->nip}}
+                    {{$k->nama}}
+                                            {{$k->nip}}
                         @endforeach
 
                                                

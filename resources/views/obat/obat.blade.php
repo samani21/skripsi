@@ -35,8 +35,8 @@
             @foreach($obat as $index=> $o)
                 <tr align="center">
                     <td data-title="No">{{ $index + $obat->firstItem() }}</td>
-                    <td data-title="nama">{{$o->nm_obat}}</td>
-                    <td data-title="Tanggal lahir">{{$o->stok}}</td>
+                    <td data-title="nama"  align="left">{{$o->nm_obat}}</td>
+                    <td data-title="stok">{{$o->stok}} {{$o->satuan}}</td>
                     <td data-title="Aksi">
                         
                         <a href="edit_obat/{{$o->kode}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>

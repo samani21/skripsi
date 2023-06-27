@@ -105,12 +105,28 @@
                 <td>{{ $no++ }}</td>
                 <td>{{ $a->nm_obat }}</td>
                 <td align="center">{{ $a->jumlah }}</td>
-                <td align="center">{{ $a->dosis }}</td>
+                <td align="center">{{ $a->dosis }}/hari</td>
                 <td align="center">{{ $a->pakai }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
+     <div>
+        <pre align="right">
+                                            Banjarmasin,{{$berobat->tgl}}
+
+
+
+
+                        
+                        @foreach ($kapus as $k )
+                    {{$k->nama}}
+                                            {{$k->nip}}
+                        @endforeach
+
+                                               
+        </pre>
+    </div>
 </body>
 
 </html>

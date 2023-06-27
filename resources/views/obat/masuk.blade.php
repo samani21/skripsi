@@ -26,6 +26,7 @@
                 <th scope="col">Nama obat</th>
                 <th scope="col">stok</th>
                 <th scope="col">Tanggal</th>
+                <th scope="col">Penerima</th>
                 <th scope="col">Aksi</th>
             </tr>
             </thead>
@@ -37,10 +38,25 @@
                 <tr align="center">
                     <td data-title="No">{{ $index + $obat->firstItem() }}</td>
                     <td data-title="No Surat">{{$o->no_surat}}</td>
-                    <td data-title="kode">{{$o->kode}}</td>
+                    <td data-title="kode"><?php if ($o->kode <= '9') {
+                        echo "KA000".$o->kode;
+                    }else
+                    if ($o->kode <= '99') {
+                        echo "KA00".$o->kode;
+                    }
+                    else
+                    if ($o->kode <= '999') {
+                        echo "KA0".$o->kode;
+                    }else
+                    if ($o->kode <= '9999') {
+                        echo "KA".$o->kode;
+                    }else {
+                        echo $o->kode;
+                    } ?></td>
                     <td data-title="nama obat">{{$o->nm_obat}}</td>
                     <td data-title="Jumlah obat">{{$o->jumlah}}</td>
                     <td data-title="Tanggal masuk">{{$o->tgl}}</td>
+                    <td data-title="Penerima">{{$o->penerima}}</td>
                     <td data-title="Aksi">
                         <a href="edit_stok/{{$o->id}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                         <a href="hapus_masuk/{{$o->id}}" class="btn btn-danger" onclick="javascript: return confirm('Konfirmasi data akan dihapus');"><i class="fa-solid fa-trash"></i> hapus</a>

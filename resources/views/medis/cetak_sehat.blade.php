@@ -49,6 +49,7 @@
     Tekanan Darah    : {{$sur->sistolik}}/{{$sur->diastolik}}
     Golongan Darah   : {{$sur->gol_darah}}
     Riwayat Penyakit : {{$sur->riwayat}}
+    Keperluan        : {{$sur->keperluan}}
 
     Surat keterangan sehat ini digunakan sebagai pembutan Simp
     demikian surat keterangan ini dibuat untuk dapat dipergunakan
@@ -60,7 +61,7 @@
 
 
 
-                                                 {{$sur->dokter}}
+                                            {{$sur->dokter}}
             </pre>
           
             @endforeach

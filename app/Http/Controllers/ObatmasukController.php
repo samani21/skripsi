@@ -23,11 +23,12 @@ class ObatmasukController extends Controller
                 'bulan'=>$value['bulan'],
                 'tahun'=>$value['tahun'],
                 'no_surat'=>$value['no_surat'],
-                'kode'=>substr($value['kode'],0,6),
+                'kode'=>substr($value['kode'],2,4),
                 'jumlah'=>$value['jumlah'],
                 'penerima'=>$value['penerima'],
 
             ];
+            // dd($v);
             Obatmasuk::create($v);
             // dd($v);
         }
@@ -56,7 +57,7 @@ class ObatmasukController extends Controller
     public function updatestok(Request $request, $id){
         $ubah = Obatmasuk::findorfail($id);
         $dt =[
-            'kode' => $request['kode'],
+            'kode' => substr($request['kode'],2,4),
             'no_surat' => $request['no_surat'],
             'jumlah' => $request['jumlah'],
             'tgl' => $request['tgl'],

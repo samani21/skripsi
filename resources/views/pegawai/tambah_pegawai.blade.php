@@ -6,27 +6,27 @@
     @csrf
         <div>
             <label for="">NIP</label>
-            <input class="form-control" type="text" id="nip" name="nip" placeholder="Masukkan NIP" aria-label="default input example" maxlength="30" autofocus>
+            <input class="form-control" type="text" id="nip" name="nip" placeholder="Masukkan NIP" aria-label="default input example" maxlength="30" autofocus required>
         </div>
         <div>
             <label for="">Nama</label>
-            <input class="form-control" type="text" id="nama" name="nama" placeholder="Masukkan nama" maxlength="50" style="text-transform: uppercase" aria-label="default input example">
+            <input class="form-control" type="text" id="nama" name="nama" placeholder="Masukkan nama" maxlength="50" style="text-transform: uppercase" aria-label="default input example" required>
         </div>
         <div>
             <label for="">Tanggal lahir</label>
-            <input class="form-control" type="date" id="tanggal" name="tanggal"  aria-label="default input example">
+            <input class="form-control" type="date" id="tanggal" name="tanggal"  aria-label="default input example" required>
         </div>
         <div>
             <label for="">Tempat lahir</label>
-            <input class="form-control" type="text" id="tempat" name="tempat" maxlength="50" placeholder="Tempat lahir" aria-label="default input example">
+            <input class="form-control" type="text" id="tempat" name="tempat" maxlength="50" placeholder="Tempat lahir" aria-label="default input example" required> 
         </div>
         <div>
             <label for="">Alamat</label>
-            <input class="form-control" type="text" id="alamat" name="alamat" maxlength="100" placeholder="Masukkan alamat" aria-label="default input example">
+            <input class="form-control" type="text" id="alamat" name="alamat" maxlength="100" placeholder="Masukkan alamat" aria-label="default input example" required>
         </div>
         <div>
             <label for="">Jenis Kelamin</label>
-            <select class="form-select" name="jns_kelamin" aria-label="Default select example">
+            <select class="form-select" name="jns_kelamin" aria-label="Default select example" required>
                 <option selected>--pilih--</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perumpuan">Perumpuan</option>
@@ -34,7 +34,7 @@
         </div>
         <div>
             <label for="">Kelompok pegawai</label>
-            <select class="form-select" name="kelompok" aria-label="Default select example">
+            <select class="form-select" name="kelompok" aria-label="Default select example" required>
                 <option selected>--pilih--</option>
                 <option value="TENAGA MEDIS">TENAGA MEDIS</option>
                 <option value="TENAGA KEPERAWATAN">TENAGA KEPERAWATAN</option>
@@ -47,7 +47,7 @@
         </div>
         <div>
             <label for="">Spesialis</label>
-            <select class="form-select" name="spesialis" aria-label="Default select example">
+            <select class="form-select" name="spesialis" aria-label="Default select example" required>
                 <option selected>--pilih--</option>
                 <option value="Dokter Umum">Dokter Umum</option>
                 <option value="Dokter Gigi">Dokter Gigi</option>

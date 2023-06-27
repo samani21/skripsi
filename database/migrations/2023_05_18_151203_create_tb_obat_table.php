@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_obat', function (Blueprint $table) {
-            $table->string('kode', 10)->primary();
+            $table->increments('kode');
             $table->string('nm_obat','50');
             $table->string('stok','10');
+            $table->string('satuan','20');
             $table->timestamps();
         });
     }

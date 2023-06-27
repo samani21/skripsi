@@ -23,7 +23,8 @@ class MedisController extends Controller
         $berobat = Berobat::find($id);
         $dokter = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('status','=','1')->where('kelompok','=','dokter')->where('tgl','=',"".$tgl."")
-        ->where('poli','=','Poli '.$poli.'')->paginate(100);
+        // ->where('poli','=','Poli '.$poli.'')
+        ->paginate(100);
         $perawat = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('status','=','1')->where('kelompok','=','perawat')->where('tgl','=',"".$tgl."")
         ->where('poli','=','Poli '.$poli.'')->paginate(100);
@@ -164,10 +165,11 @@ class MedisController extends Controller
                 'bulan'=>$value['bulan'],
                 'tahun'=>$value['tahun'],
                 'berobat_id'=>$value['berobat_id'],
-                'kd_obat'=>substr($value['kd_obat'],0,6),
+                'kd_obat'=>substr($value['kd_obat'],2,4),
                 'jumlah'=>$value['jumlah'],
                 'dosis'=>$value['dosis'],
                 'pakai'=>$value['pakai'],
+                'status'=>$value['status'],
 
             ];
             Resep::create($v);
@@ -209,8 +211,9 @@ class MedisController extends Controller
         // dd($obat);
         $berobat = Berobat::find($id);
         $pasien = Pasien::find($id_pasien);
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $resep = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('berobat_id','=',''.$id.'')->get();
-        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','berobat','resep'));
+        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','kapus','berobat','resep'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_rekam_medis.pdf');
     }
@@ -225,8 +228,9 @@ class MedisController extends Controller
     public function cetak_rm($id,$pasien_id){
         $berobat = Berobat::find($id);
         $pasien = Pasien::find($pasien_id);
+        $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $resep = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('berobat_id','=',''.$id.'')->get();
-        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','berobat','resep'));
+        $pdf = PDF::loadView('medis/cetak_rm',compact('pasien','berobat','kapus','resep'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_rekam_medis.pdf');
     }
