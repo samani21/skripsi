@@ -3,7 +3,19 @@
 @section('content')
 
 <div>
-    <form action="{{route('laporan/kapus')}}" method="get" class="row g-12">
+    <form action="{{route('biaya/cetak')}}" method="get" class="row g-12">
+        <div class="col-md-10">
+            <input class="form-control" type="text" name="cari" value="<?php echo date('d-m-Y') ?>" placeholder="Cari nama pegawai"
+                aria-label="default input example">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
+        </div>
+        {{-- <div class="col-auto">
+            <a href="/biaya/cetak?tgl=<?php echo date('d-m-Y') ?>" class="btn btn-success"><i class="fa-solid fa-print"></i> Cetak</a>
+        </div> --}}
+    </form>
+    <form action="{{route('laporan/biaya')}}" method="get" class="row g-12">
         <div class="col-md-10">
             <input class="form-control" type="text" name="cari" placeholder="Cari nama pegawai"
                 aria-label="default input example">

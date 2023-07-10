@@ -123,7 +123,7 @@
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
                             <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
-                            <a href="{{url('laporan/biaya?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/biaya?cari='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/biaya')?'active' :'' }}">Biaya</a>
                             <a href="{{url('laporan/obat')}}"
                                 class="{{ request()->is('laporan/obat')?'active' :'' }}">Obat</a>

@@ -9,7 +9,7 @@ class BiayaController extends Controller
 {
     public function laporan(Request $request)
     {
-        $tgl = $request->tgl;
+        $tgl = $request->cari;
         $biaya = DB::table('tb_biaya')->join('tb_pasien','tb_pasien.id_pasien','=','tb_biaya.pasien_id')
         ->where('tgl','=',''.$tgl.'')
         ->select('pasien_id','no_berobat','nama','j_berobat','poli','biaya','tgl','status')->paginate(5);
@@ -30,7 +30,7 @@ class BiayaController extends Controller
 
     public function cetak_biaya(Request $request){
         
-        $tgl = $request->tgl;
+        $tgl = $request->cari;
         $biaya = DB::table('tb_biaya')->join('tb_pasien','tb_pasien.id_pasien','=','tb_biaya.pasien_id')
         ->where('tgl','=',''.$tgl.'')
         ->select('pasien_id','no_berobat','nama','j_berobat','poli','biaya','tgl','status')->paginate();
