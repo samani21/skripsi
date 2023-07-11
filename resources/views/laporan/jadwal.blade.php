@@ -14,7 +14,7 @@
         <br>
         </div>
         <div class="col-md-4">
-            <input class="form-control" type="text" name="cari"
+            <input class="form-control" type="text" name="cari" placeholder="Cari"
                 aria-label="default input example">
         </div>
         <div class="col-auto">

@@ -13,14 +13,16 @@
             <input class="form-control" type="text" maxlength="50" id="nama" name="nama" style="text-transform: uppercase" value="{{$dokter->nama}}" placeholder="Masukkan nama" aria-label="default input example">
         </div>
         <div>
-            <input class="form-control" type="hidden" id="kelompok" name="kelompok" value="{{$dokter->kelompok}}"  placeholder="TENAGA KEPERAWATAN-Perawat" aria-label="default input example">
-        </div>
-        <div>
             <label for="">Spesialis</label>
             <select class="form-select" name="spesialis" aria-label="Default select example">
                 <option value="{{$dokter->spesialis}}" selected>{{$dokter->spesialis}}</option>
                 <option value="Dokter Umum">Dokter Umum</option>
                 <option value="Dokter Gigi">Perawat Gigi</option>
+                <option value="Perawat">Perawat</option>
+                <option value="Perawat Anak">Perawat Anak</option>
+                <option value="Bidan">Bidan</option>
+                <option value="Perawat Gigi">Perawat Gigi</option>
+                <option value="Ahli Gizi">Ahli Gizi</option>
               </select>
         </div>
         <div>
@@ -34,6 +36,14 @@
                 <option value="Poli Gizi">Poli Gizi</option>
                 <option value="Poli Kandungan">Poli Kandungan</option>
             </select>
+        </div>
+        <div>
+            <label for="">Kelompok</label>
+            <select class="form-select" name="kelompok" aria-label="Default select example" required>
+                <option value="{{$dokter->kelompok}}" selected>{{$dokter->kelompok}}</option>
+                <option value="Dokter">Dokter</option>
+                <option value="Perawat">Perawat</option>
+              </select>
         </div>
         <hr>
         <div>

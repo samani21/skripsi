@@ -24,7 +24,7 @@ class BiayaController extends Controller
         $b_umum = DB::table('tb_biaya')->select(DB::raw('sum(biaya) as total'))
         ->where('tgl','=',''.$tgl.'')->where('j_berobat','=','UMUM')->get();
         $data['title'] = 'Laporan Pemasukkan';
-        $biaya->withPath('biaya?tgl='.date('d-m-Y').'&');
+        $biaya->withPath('biaya?tgl='.date('Y-m-d').'&');
         return view('laporan/biaya',compact('biaya','total','p_bpjs','p_umum','b_bpjs','b_umum'),$data);
     }
 

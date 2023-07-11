@@ -54,9 +54,9 @@
             @php
             $no=1;
             @endphp
-            @foreach($pegawai as $peg)
+            @foreach($pegawai as $index=>$peg)
             <tr align="center">
-                <td data-title="No">{{ $no++ }}</td>
+                <td data-title="No">{{ $index + $pegawai->firstItem()}}</td>
                 <td data-title="Nip">{{$peg->nip}}</td>
                 <td data-title="nama" style="text-transform: uppercase">{{$peg->nama}}</td>
                 <td data-title="Tanggal lahir">{{$peg->tanggal}}</td>

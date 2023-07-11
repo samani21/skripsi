@@ -47,7 +47,7 @@
                     </a>
                     <div class="dropdown-container" style="display: inline">
                        
-                        <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
+                        <a href="{{ url('dashboard/dashboard?tgl='.date('Y-m-d').'&tahun='.date('Y').'') }}"
                             class="{{ request()->is('dashboard/*','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>
@@ -136,8 +136,8 @@
                     @endif
                     @if(Auth::user()->level =='admin')
                     <li>
-                        <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
-                            class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam')?'active' :'' }}">
+                        <a href="{{ url('dashboard/dashboard?tgl='.date('Y-m-d').'&tahun='.date('Y').'') }}"
+                            class="{{ request()->is('dashboard/dashboard?tgl='.date('Y-m-d').'','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>
                         </a>
@@ -164,7 +164,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('medis/medis?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('medis/medis?tgl='.date('Y-m-d').'') }}"
                             class="{{ request()->is('medis/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Rekam Medis</span>
@@ -181,13 +181,13 @@
                                 class="{{ request()->is('laporan/pegawai')?'active' :'' }}">Pegawai</a>
                             <a href="{{url('laporan/petugas')}}"
                                 class="{{ request()->is('laporan/petugas')?'active' :'' }}">Petugas</a>
-                            <a href="{{url('laporan/jadwal?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/jadwal?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/jadwal')?'active' :'' }}">Jadwal</a>
-                            <a href="{{url('laporan/pasien?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/pasien?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
-                            <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/medis?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
-                            <a href="{{url('laporan/biaya?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/biaya?cari='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/biaya')?'active' :'' }}">Biaya</a>
                         </div>
                     </li>
@@ -213,8 +213,8 @@
                     @endif
                     @if(Auth::user()->level =='kapus')
                     <li>
-                        <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
-                            class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam')?'active' :'' }}">
+                        <a href="{{ url('dashboard/dashboard?tgl='.date('Y-m-d').'&tahun='.date('Y').'') }}"
+                            class="{{ request()->is('dashboard/dashboard?tgl='.date('Y-m-d').'','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                                <span>dashboard</span>
                         </a>
@@ -234,7 +234,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('laporan/petugas?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('laporan/petugas?tgl='.date('Y-m-d').'') }}"
                             class="{{ request()->is('laporan/petugas*','petugas/*')?'active' :'' }}">
                             <span class="fa-solid fa-user-doctor"></span>
                             <span>Petugas</span>
@@ -248,14 +248,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('laporan/medis?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('laporan/medis?tgl='.date('Y-m-d').'') }}"
                             class="{{ request()->is('laporan/medis*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Rekam Medis</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('laporan/biaya?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('laporan/biaya?cari='.date('Y-m-d').'') }}"
                             class="{{ request()->is('laporan/biaya*')?'active' :'' }}">
                             <span class="fa-solid fa-dollar-sign"></span>
                             <span>Biaya</span>
@@ -268,14 +268,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('laporan/obat_keluar?tgl='.date('d-m-Y').'')}}"
+                        <a href="{{url('laporan/obat_keluar?tgl='.date('Y-m-d').'')}}"
                             class="{{ request()->is('laporan/obat_keluar')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Keluar</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('laporan/obat_masuk?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{url('laporan/obat_masuk?tgl='.date('Y-m-d').'') }}"
                             class="{{ request()->is('laporan/obat_masuk')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Masuk</span>
@@ -284,19 +284,30 @@
                     @endif
                     @if(Auth::user()->level =='rekam_medis')
                     <li>
-                        <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
-                            class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam')?'active' :'' }}">
+                        <a href="{{ url('dashboard/dashboard?tgl='.date('Y-m-d').'&tahun='.date('Y').'') }}"
+                            class="{{ request()->is('dashboard/dashboard?tgl='.date('Y-m-d').'','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>
                         </a>
                     </li>
+                    @if (Auth::user()->status == 0)
                     <li>
-                        <a href="{{ url('petugas/petugas?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('petugas/tambah_dokter') }}"
                             class="{{ request()->is('petugas/petugas*','petugas/*')?'active' :'' }}">
                             <span class="fa-solid fa-user-doctor"></span>
                             <span>Petugas</span>
                         </a>
                     </li>
+                    @endif
+                    @if (Auth::user()->status == 1)
+                    <li>
+                        <a href="{{ url('petugas/petugas?tgl='.date('Y-m-d').'') }}"
+                            class="{{ request()->is('petugas/petugas*','petugas/*')?'active' :'' }}">
+                            <span class="fa-solid fa-user-doctor"></span>
+                            <span>Petugas</span>
+                        </a>
+                    </li>
+                    @endif
                     <li>
                         <a href="{{ url('pasien/pasien') }}"
                             class="{{ request()->is('pasien/pasien','pasien/*')?'active' :'' }}">
@@ -305,7 +316,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('medis/medis?cari='.date('d-m-Y').'') }}"
+                        <a href="{{ url('medis/medis?cari='.date('Y-m-d').'') }}"
                             class="{{ request()->is('medis/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Rekam Medis</span>
@@ -318,25 +329,25 @@
                         <div class="dropdown-container" style="display: none">
                             <a href="{{url('laporan/petugas')}}"
                                 class="{{ request()->is('laporan/petugas')?'active' :'' }}">Petugas</a>
-                            <a href="{{url('laporan/jadwal?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/jadwal?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/jadwal')?'active' :'' }}">Jadwal</a>
                             <a href="{{url('laporan/pasien?tgl='.date('d-m-Y').'')}}"
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
-                            <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/medis?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
                         </div>
                     </li>
                     @endif
                     @if(Auth::user()->level =='apotek')
                     <li>
-                        <a href="{{ url('dashboard/dashboard?tgl='.date('d-m-Y').'&tahun='.date('Y').'') }}"
-                            class="{{ request()->is('dashboard/dashboard?tgl='.date('d-m-Y').'','apotek','admin','rekam')?'active' :'' }}">
+                        <a href="{{ url('dashboard/dashboard?tgl='.date('Y-m-d').'&tahun='.date('Y').'') }}"
+                            class="{{ request()->is('dashboard/dashboard?tgl='.date('Y-m-d').'','apotek','admin','rekam')?'active' :'' }}">
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('resep/resep?cari='.date('d-m-Y').'') }}"
+                        <a href="{{ url('resep/resep?cari='.date('Y-m-d').'') }}"
                             class="{{ request()->is('medis/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Resep</span>
@@ -349,14 +360,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('obat/obatkeluar?tgl='.date('d-m-Y').'')}}"
+                        <a href="{{url('obat/obatkeluar?tgl='.date('Y-m-d').'')}}"
                             class="{{ request()->is('obat/obatkeluar')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Keluar</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('obat/masuk?cari='.date('d-m-Y').'') }}"
+                        <a href="{{url('obat/masuk?cari='.date('Y-m-d').'') }}"
                             class="{{ request()->is('obat/masuk')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Masuk</span>
@@ -369,9 +380,9 @@
                         <div class="dropdown-container" style="display: none">
                             <a href="{{url('laporan/obat')}}"
                                 class="{{ request()->is('laporan/obat')?'active' :'' }}">Obat</a>
-                            <a href="{{url('laporan/obat_masuk?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/obat_masuk?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/obat_masuk')?'active' :'' }}">Obat masuk</a>
-                            <a href="{{url('laporan/obat_keluar?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/obat_keluar?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/obat_keluar')?'active' :'' }}">Obat Keluar</a>
                         </div>
                     </li>

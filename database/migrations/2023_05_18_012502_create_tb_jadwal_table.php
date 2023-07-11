@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tb_jadwal', function (Blueprint $table) {
             $table->increments('id_jadwal');
             $table->integer('petugas_id');
+            $table->integer('id_user');
             $table->string('tgl','20');
             $table->string('mulai','20');
             $table->string('selesai','20');

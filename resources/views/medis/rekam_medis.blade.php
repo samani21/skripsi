@@ -4,7 +4,7 @@
 <div class="container">
 
     @If(Auth::user()->level =='apotek')
-        <a href="/resep/resep?tgl='<?php.date('d-m-Y').?>'" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
+        <a href="/resep/resep?cari=<?php echo date('Y-m-d')?>" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
     @endif
 
         <a @If(Auth::user()->level =='apotek')

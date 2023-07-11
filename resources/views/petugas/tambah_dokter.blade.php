@@ -13,14 +13,16 @@
             <input class="form-control" maxlength="50" style="text-transform: uppercase" type="text" id="nama" name="nama" placeholder="Masukkan nama" aria-label="default input example" required>
         </div>
         <div>
-            <input type="hidden" name="kelompok" value="Dokter" id="">
-        </div>
-        <div>
             <label for="">Spesialis</label>
             <select class="form-select" name="spesialis" aria-label="Default select example" required>
-                <option selected>--pilih--</option>
+                <option value="" selected>--pilih--</option>
                 <option value="Dokter Umum">Dokter Umum</option>
                 <option value="Dokter Gigi">Dokter Gigi</option>
+                <option value="Perawat">Perawat</option>
+                <option value="Perawat Anak">Perawat Anak</option>
+                <option value="Bidan">Bidan</option>
+                <option value="Perawat Gigi">Perawat Gigi</option>
+                <option value="Ahli Gizi">Ahli Gizi</option>
               </select>
         </div>
         <div>
@@ -34,6 +36,14 @@
                     <option value="Poli Gizi">Poli Gizi</option>
                     <option value="Poli Kandungan">Poli Kandungan</option>
                 </select>
+            </div>
+            <div>
+                <label for="">Kelompok</label>
+                <select class="form-select" name="kelompok" aria-label="Default select example" required>
+                    <option value="" selected>--pilih--</option>
+                    <option value="Dokter">Dokter</option>
+                    <option value="Perawat">Perawat</option>
+                  </select>
             </div>
         <hr>
         <div>

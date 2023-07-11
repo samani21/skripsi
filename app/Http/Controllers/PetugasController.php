@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Petugas;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDF;
 
@@ -49,17 +51,24 @@ class PetugasController extends Controller
 
     public function store(Request $request)
     {
-
+        
         $petugas = new Petugas([
             'nip' => $request->nip,
             'nama' => $request->nama,
             'kelompok' => $request->kelompok,
             'spesialis' => $request->spesialis,
             'poli' => $request->poli,
+            'id_user' => Auth::user()->id
         ]);
+        $id = Auth::user()->id;
         $petugas->save();
+        $edit = User::findorfail($id);
+        $dt =[
+            'status' => "1",
+        ];
+        $edit->update($dt);
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
+        return redirect('petugas/petugas?tgl='.date('Y-m-d').'');
     }
 
     public function editdokter($id){
@@ -85,7 +94,7 @@ class PetugasController extends Controller
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
-        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
+        return redirect('petugas/petugas?tgl='.date('Y-m-d').'');
     }
     
     public function destroy($id){

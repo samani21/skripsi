@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('kelompok','50');
             $table->string('spesialis','50');
             $table->string('poli','50');
+            $table->string('tgl_absen','20');
+            $table->integer('status');
             $table->timestamps();
         });
     }

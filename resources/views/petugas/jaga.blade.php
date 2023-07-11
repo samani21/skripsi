@@ -30,6 +30,9 @@
         <div>
             <input type="hidden" name="status" value="1" id="" readonly>
         </div>
+        <div>
+            <input type="hidden" name="id" value="{{$jadwal->id}}" id="" readonly>
+        </div>
         
         <hr>
         <div>
