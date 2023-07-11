@@ -110,12 +110,11 @@ class PetugasController extends Controller
 
     public function laporan(Request $request)
 	{   $cari = $request->cari;
-        $poli = $request->poli;
         $petugas = DB::table('tb_petugas')->where('nama','like',"%".$cari."%")->orWhere('nip','like',"%".$cari."%")
         ->orWhere('kelompok','like',"%".$cari."%")
         ->orWhere('poli','like',"%".$cari."%")
 		->paginate(7);
  
-        return view('laporan/petugas', ['petugas' => $petugas,'title' => 'Laporan Pegawai'] );
+        return view('laporan/petugas', ['petugas' => $petugas,'title' => 'Laporan Petugas'] );
     }
 }

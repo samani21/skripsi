@@ -83,7 +83,15 @@ class KpusController extends Controller
     public function cetak_kapus(Request $request)
     {   $tgl = $request->tgl;
         $cari = $request->cari;
-        $kapus = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")->get();
+        $dari = $request->dari;
+        $sampai = $request->sampai;
+        if($cari = $cari){
+            $kapus = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")
+            ->get();
+        }else{
+            $kapus = DB::table('tb_kapus')->where('nama','LIKE',"%".$cari."%")
+            ->whereBetween('tgl_mulai',[$dari,$sampai])->get();
+        }
         $kapu = DB::table('tb_kapus')->where('status','=','1')->paginate(1);
         $pdf = PDF::loadView('kapuskes/cetak',compact('tgl','kapus','kapu'));
         $pdf->setPaper('A4','potrait');

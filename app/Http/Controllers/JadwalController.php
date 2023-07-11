@@ -16,7 +16,7 @@ class JadwalController extends Controller
         $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('tgl','=',''.$tgl.'')
         ->paginate(6);
-        $jadwal->withPath('petugas?tgl='.date('d-m-Y').'');
+        $jadwal->withPath('petugas?tgl='.date('Y-m-d').'');
         return view('petugas/petugas', ['jadwal'=>$jadwal,'title' => 'Petugas'] );
     }
 
@@ -36,7 +36,7 @@ class JadwalController extends Controller
         ]);
         $jadwal->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
+        return redirect('petugas/petugas?tgl='.date('Y-m-d').'');
     }
 
     public function selesai($id_jadwal){
@@ -56,13 +56,15 @@ class JadwalController extends Controller
         ];
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
-        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
+        return redirect('petugas/petugas?tgl='.date('Y-m-d').'');
     }
     
     public function laporan_jadwal(Request $request){
         $tgl = $request->tgl;
         $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
-        ->where('tgl','=',''.$tgl.'')
+        ->where('tgl','like',''.$tgl.'')
+        ->orWhere('nama','like',''.$tgl.'')
+        ->orWhere('nip','like',''.$tgl.'')
         ->paginate(6);
         $jadwal->withPath('jadwal?tgl='.date('d-m-Y').'');
         return view('laporan/jadwal', ['jadwal'=>$jadwal,'title' => 'Jadwal Petugas'] );
@@ -70,9 +72,20 @@ class JadwalController extends Controller
 
     public function cetak_jadwal(Request $request){
         $tgl = $request->tgl;
+        $cari = $request->cari;
+        $dari = $request->dari;
+        $sampai = $request->sampai;
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
-        ->where('tgl','=',''.$tgl.'')->get();
+        if($cari = $cari){
+            $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
+        ->where('nama','like',"%".$cari."%")
+        ->orWhere('nip','like',"%".$cari."%")
+        ->get();
+        }else{
+            $jadwal = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
+        ->whereBetween('tgl',[$dari,$sampai])
+        ->get();
+        }
         $pdf = PDF::loadView('petugas/cetak_jadwal',compact('jadwal','tgl','kapus'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('Cetak_jadwal_petugas.pdf');

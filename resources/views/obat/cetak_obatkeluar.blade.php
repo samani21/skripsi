@@ -85,8 +85,8 @@
 
                         
                         @foreach ($kapus as $k )
-                            {{$k->nama}}
-                                                    {{$k->nip}}
+                    {{$k->nama}}
+                                            {{$k->nip}}
                         @endforeach
 
                                                

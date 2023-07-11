@@ -63,18 +63,24 @@
         </tbody>
         </thead>
     </table>
-    <div>
-        <pre>
-Jumlah Pasien BPJS : {{$p_bpjs->count()}} Orang
-Jumlah Pasien Umum : {{$p_umum->count()}} Orang
-
-Jumlah Biaya BPJS : Rp.@foreach ($b_bpjs as $umum){{$umum->total}}@endforeach
-
-Jumlah Biaya Umum : Rp.@foreach ($b_umum as $umum){{$umum->total}}@endforeach
-
-Total Biaya Hari tanggl = Rp.@foreach ($total as $bi){{$bi->total}}@endforeach
-        </pre>
-    </div>
+    <?php
+        if ($a == 0) {
+            ?>
+            <div>
+                <pre>
+    Jumlah Pasien BPJS : {{$p_bpjs->count()}} Orang
+    Jumlah Pasien Umum : {{$p_umum->count()}} Orang
+        
+    Jumlah Biaya BPJS : Rp.@foreach ($b_bpjs as $umum){{$umum->total}}@endforeach
+        
+    Jumlah Biaya Umum : Rp.@foreach ($b_umum as $umum){{$umum->total}}@endforeach
+        
+    Total Biaya Hari tanggl = Rp.@foreach ($total as $bi){{$bi->total}}@endforeach
+                </pre>
+            </div>
+            <?php
+        }
+    ?>
     <div>
         <pre align="right">
                                             Banjarmasin,{{$tgl}}

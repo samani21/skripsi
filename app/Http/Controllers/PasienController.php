@@ -117,10 +117,31 @@ class PasienController extends Controller
     {
         $tgl = $request->tgl;
         $cari = $request->cari;
+        $dari = $request->dari;
+        $sampai = $request->sampai;
+        if($cari = $cari){
+            $pasien = DB::table('tb_pasien')
+            ->where('nama','like',"%".$cari."%")
+            ->orWhere('nik','like',"%".$cari."%")
+            ->get();
+            $p_bpjs = DB::table('tb_pasien')
+            ->where('nama','like',"%".$cari."%")
+            ->orWhere('nik','like',"%".$cari."%")
+            ->where('jenis_berobat','=','BPJS');
+            $p_umum = DB::table('tb_pasien')
+            ->where('nama','like',"%".$cari."%")
+            ->orWhere('nik','like',"%".$cari."%")
+            ->where('jenis_berobat','=','Umum');
+        }else{
+            $pasien = DB::table('tb_pasien')
+            ->whereBetween('tgl_pasien',[$dari,$sampai])
+            ->get();
+            $p_bpjs = DB::table('tb_pasien')
+            ->whereBetween('tgl_pasien',[$dari,$sampai])->where('jenis_berobat','=','BPJS');
+            $p_umum = DB::table('tb_pasien')
+            ->whereBetween('tgl_pasien',[$dari,$sampai])->where('jenis_berobat','=','Umum');
+        }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $pasien = DB::table('tb_pasien')->where('nama','like',"%".$cari."%")->get();
-        $p_bpjs = DB::table('tb_pasien')->where('jenis_berobat','=','BPJS');
-        $p_umum = DB::table('tb_pasien')->where('jenis_berobat','=','Umum');
         $pdf = PDF::loadView('pasien/cetak_pasien',compact('pasien','tgl','kapus','p_bpjs','p_umum'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_pasien.pdf');

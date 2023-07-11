@@ -4,13 +4,19 @@
 
     <div>
         <form action="{{route('medis/cetak_medis')}}" method="get" class="row g-12">
-            
+            <div class="col-md-5">
+                <label for="">Dari</label>
+                <input class="form-control" type="date" name="dari" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+            </div>
+            <div class="col-md-5">
+                <label for="">Sampai</label>
+                <input class="form-control" type="date" name="sampai" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+            <br>
+            </div>
             <div class="col-md-6">
-                <label for="">Cetak Data</label>
-                <input type="text" name="tgl" class="form-control"  value="{{date('d-m-Y')}}" id="">
+                <input type="text" name="tgl" class="form-control"  >
             </div>
             <div class="col-auto">
-                <br>
             <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
         </form>
     </div>
@@ -18,7 +24,7 @@
         <form action="{{route('laporan/medis')}}" method="get" class="row g-12">
             <div class="col-md-6">
                 <label for="">Cari data</label>
-                <input type="text" name="tgl" class="form-control"  value="{{date('d-m-Y')}}" id="">
+                <input type="text" name="tgl" class="form-control" id="">
             </div>
             <div class="col-auto">
                 <br>

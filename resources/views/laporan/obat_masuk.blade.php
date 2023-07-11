@@ -4,8 +4,17 @@
 
     <div>
         <form action="{{route('obat/cetak_obatmasuk')}}" method="get" class="row g-12">
-            <div class="col">
-                <input class="form-control" type="text" name="cari" value="<?php echo date('d-m-Y') ?>" placeholder="cari" autocomplete="off" aria-label="default input example">
+            <div class="col-md-5">
+                <label for="">Dari</label>
+                <input class="form-control" type="date" name="dari" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+            </div>
+            <div class="col-md-5">
+                <label for="">Sampai</label>
+                <input class="form-control" type="date" name="sampai" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+            <br>
+            </div>
+            <div class="col-8">
+                <input class="form-control" type="text" name="cari"  placeholder="cari" autocomplete="off" aria-label="default input example">
             </div>
                 <div class="col-auto">
                     <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>

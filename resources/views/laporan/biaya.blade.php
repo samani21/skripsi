@@ -4,8 +4,17 @@
 
 <div>
     <form action="{{route('biaya/cetak')}}" method="get" class="row g-12">
+        <div class="col-md-5">
+            <label for="">Dari</label>
+            <input class="form-control" type="date" name="dari" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+        </div>
+        <div class="col-md-5">
+            <label for="">Sampai</label>
+            <input class="form-control" type="date" name="sampai" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+        <br>
+        </div>
         <div class="col-md-10">
-            <input class="form-control" type="text" name="cari" value="<?php echo date('d-m-Y') ?>" placeholder="Cari nama pegawai"
+            <input class="form-control" type="text" name="cari" placeholder="Cari"
                 aria-label="default input example">
         </div>
         <div class="col-auto">
@@ -23,9 +32,6 @@
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3"><i
                     class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <div class="col-auto">
-            <a href="/biaya/cetak?tgl=<?php echo date('d-m-Y') ?>" class="btn btn-success"><i class="fa-solid fa-print"></i> Cetak</a>
         </div>
     </form>
 </div>

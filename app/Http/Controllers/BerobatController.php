@@ -85,14 +85,35 @@ class BerobatController extends Controller
 
     public function cetak_medis(Request $request)
     {   $tgl = $request->tgl;
-        $medis = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%")
-        ->orWhere('tahun','like',"%".$tgl."%")
-        ->orWhere('bulan','like',"%".$tgl."%")
-		->paginate();
+        $dari = $request->dari;
+        $sampai = $request->sampai;
+        if($tgl = $tgl){
+            $medis = DB::table('tb_berobat')
+            ->where('nama_berobat','like',"%".$tgl."%")
+            ->orWhere('nik','like',"%".$tgl."%")
+            ->orWhere('poli','like',"%".$tgl."%")
+            ->get();
+            $p_bpjs = DB::table('tb_berobat')->where('jenis_berobat','=','BPJS')
+            ->where('nama_berobat','like',"%".$tgl."%")
+            ->orWhere('nik','like',"%".$tgl."%")
+            ->orWhere('poli','like',"%".$tgl."%")
+            ->get();
+            $p_umum = DB::table('tb_berobat')->where('jenis_berobat','=','Umum')
+            ->where('nama_berobat','like',"%".$tgl."%")
+            ->orWhere('nik','like',"%".$tgl."%")
+            ->orWhere('poli','like',"%".$tgl."%")
+            ->get();
+        }else{
+            $medis = DB::table('tb_berobat')->where('tgl','like',"%".$tgl."%")
+        ->whereBetween('tb_berobat.tgl',[$dari,$sampai])
+		->get();
         $p_bpjs = DB::table('tb_berobat')->where('jenis_berobat','=','BPJS')
-        ->where('tgl','like',"%".$tgl."%");
+        ->where('tgl','like',"%".$tgl."%")
+        ->whereBetween('tb_berobat.tgl',[$dari,$sampai]);
         $p_umum = DB::table('tb_berobat')->where('jenis_berobat','=','Umum')
-        ->where('tgl','like',"%".$tgl."%");
+        ->where('tgl','like',"%".$tgl."%")
+        ->whereBetween('tb_berobat.tgl',[$dari,$sampai]);
+        }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $pdf = PDF::loadView('medis/cetak_medis',compact('medis','tgl','p_bpjs','p_umum','kapus'));
         $pdf->setPaper('A4','potrait');

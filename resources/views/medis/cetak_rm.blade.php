@@ -105,7 +105,7 @@
                 <td>{{ $no++ }}</td>
                 <td>{{ $a->nm_obat }}</td>
                 <td align="center">{{ $a->jumlah }}</td>
-                <td align="center">{{ $a->dosis }}/hari</td>
+                <td align="center">{{ $a->dosis }}/ hari</td>
                 <td align="center">{{ $a->pakai }}</td>
             </tr>
             @endforeach

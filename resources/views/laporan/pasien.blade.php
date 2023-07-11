@@ -4,12 +4,19 @@
 
     <div>
         <form action="{{route('pasien/cetak_pasien')}}" method="get" class="row g-12">
+            <div class="col-md-5">
+                <label for="">Dari</label>
+                <input class="form-control" type="date" name="dari" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+            </div>
+            <div class="col-md-5">
+                <label for="">Sampai</label>
+                <input class="form-control" type="date" name="sampai" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+            <br>
+            </div>
             <div class="col-md-8">
-                <label for="">Cetak data</label>
-            <input class="form-control" type="text" name="cari" aria-label="default input example">
+            <input class="form-control" type="text" name="cari" placeholder="Cari data" aria-label="default input example">
             </div>
             <div class="col-md-4">
-                <br>
             <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>
             </div>
         </form>
@@ -24,6 +31,7 @@
             </div>
         </form>
     </div>
+    <hr>
     <div class="table-responsive bg-white" id="no-more-tables">
         <table class="table table-striped table-hover">
             <thead>
@@ -38,6 +46,7 @@
                 <th scope="col">Alamat</th>
                 <th scope="col">Gol darah</th>
                 <th scope="col">No hp</th>
+                <th scope="col">TGL dibuat</th>
             </tr>
             </thead>
             <tbody>
@@ -56,6 +65,7 @@
                     <td data-title="Alamat">{{$pas->alamat}}</td>
                     <td data-title="Gol darah">{{$pas->gol_darah}}</td>
                     <td data-title="No Hp">{{$pas->no_hp}}</td>
+                    <td data-title="No Hp">{{$pas->tgl_pasien}}</td>
                 </tr>
             @endforeach
         </tbody>

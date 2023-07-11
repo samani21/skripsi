@@ -6,7 +6,7 @@
     @csrf
     <div>
         <label for="">Tanggal</label>
-        <input class="form-control" type="text" id="tgl" name="addMoreInputFields[0][tgl]" value="{{date('d-m-Y')}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
+        <input class="form-control" type="text" id="tgl" name="addMoreInputFields[0][tgl]" value="{{date('Y-m-d')}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
         <input class="form-control" type="hidden" id="bulan" name="addMoreInputFields[0][bulan]" value="{{date('m')}}" placeholder="Masukkan NIP" aria-label="default input example">
         <input class="form-control" type="hidden" id="tahun" name="addMoreInputFields[0][tahun]" value="{{date('Y')}}" placeholder="Masukkan NIP" aria-label="default input example">
     </div>
@@ -77,7 +77,7 @@
             '][jumlah]" placeholder="Masukkan jumlah" required class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][penerima]"id="p' + i +
             '" readonly placeholder="Otomatis terisi" style="background-color: #dddddd" required class="form-control" /></td><input type="hidden" name="addMoreInputFields[' + i +
-            '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
+            '][tgl]" value="{{date('Y-m-d')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
             '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
             '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" />><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
             );

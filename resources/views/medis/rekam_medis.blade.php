@@ -9,7 +9,7 @@
 
         <a @If(Auth::user()->level =='apotek')
             style="display: none;"
-            @endif href="/medis/medis?tgl=<?php echo date('d-m-Y')?>" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
+            @endif href="/medis/medis?tgl=<?php echo date('Y-m-d')?>" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>Kembali</a>
     {{-- <a href="/medis/medis?tgl={{date('d-m-Y')}}" class="btn btn-warning"><i class="fa-solid fa-chevron-left"></i>
         Kembali
     </a> --}}

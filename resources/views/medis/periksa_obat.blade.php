@@ -8,7 +8,7 @@
             {{-- <input class="form-control" type="hidden" id="status" name="status" value="2"> --}}
     <div>
         <label for="">Tanggal</label>
-        <input class="form-control" type="text" id="tgl" name="addMoreInputFields[0][tgl]" value="{{date('d-m-Y')}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
+        <input class="form-control" type="text" id="tgl" name="addMoreInputFields[0][tgl]" value="{{date('Y-m-d')}}" placeholder="Masukkan NIP" aria-label="default input example" readonly>
         <input class="form-control" type="hidden" id="bulan" name="addMoreInputFields[0][bulan]" value="{{date('m')}}" placeholder="Masukkan NIP" aria-label="default input example">
         <input class="form-control" type="hidden" id="tahun" name="addMoreInputFields[0][tahun]" value="{{date('Y')}}" placeholder="Masukkan NIP" aria-label="default input example">
     </div>
@@ -77,7 +77,7 @@
             '][dosis]" required placeholder="Masukkan jumlah" class="form-control" /></td><td><input type="text" name="addMoreInputFields[' + i +
             '][pakai]"id="p' + i +
             '" placeholder="Masukkan Pemakaian" required class="form-control" /></td><input type="hidden" name="addMoreInputFields[' + i +
-            '][tgl]" value="{{date('d-m-Y')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
+            '][tgl]" value="{{date('Y-m-d')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
             '][bulan]" value="{{date('m')}}" placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
             '][tahun]" value="{{date('Y')}}"placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +
             '][berobat_id]" value="{{$berobat->id}}"placeholder="Enter subject" class="form-control" /><input type="hidden" name="addMoreInputFields[' + i +

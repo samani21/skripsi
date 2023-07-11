@@ -4,6 +4,15 @@
 
 <div>
     <form action="{{route('kapuskes/cetak')}}" method="get" class="row g-12">
+        <div class="col-md-5">
+            <label for="">Dari</label>
+            <input class="form-control" type="date" name="dari" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+        </div>
+        <div class="col-md-5">
+            <label for="">Sampai</label>
+            <input class="form-control" type="date" name="sampai" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+        <br>
+        </div>
         <div class="col-md-10">
             <input class="form-control" type="text" name="cari" placeholder="Cari nama kapus"
                 aria-label="default input example">

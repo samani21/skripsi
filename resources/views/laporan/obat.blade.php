@@ -40,7 +40,21 @@
             @foreach($obat as $o)
                 <tr align="center">
                     <td data-title="No">{{ $no++ }}</td>
-                    <td data-title="Nip">{{$o->kode}}</td>
+                    <td data-title="Nip"><?php if ($o->kode <= '9') {
+                        echo "KA000".$o->kode;
+                    }else
+                    if ($o->kode <= '99') {
+                        echo "KA00".$o->kode;
+                    }
+                    else
+                    if ($o->kode <= '999') {
+                        echo "KA0".$o->kode;
+                    }else
+                    if ($o->kode <= '9999') {
+                        echo "KA".$o->kode;
+                    }else {
+                        echo $o->kode;
+                    } ?></td>
                     <td data-title="nama">{{$o->nm_obat}}</td>
                     <td data-title="Tanggal lahir">{{$o->stok}}</td>
                 </tr>

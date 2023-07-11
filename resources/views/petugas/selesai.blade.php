@@ -14,7 +14,7 @@
         </div>
         <div>
             <label for="">Tanggal</label>
-            <input class="form-control" maxlength="50" style="text-transform: uppercase" value="{{date('d-m-Y')}}" type="text" id="tgl" name="tgl" placeholder="Masukkan nama" aria-label="default input example" readonly>
+            <input class="form-control" maxlength="50" style="text-transform: uppercase" value="{{date('Y-m-d')}}" type="text" id="tgl" name="tgl" placeholder="Masukkan nama" aria-label="default input example" readonly>
         </div>
         <div>
             <label for="">Selesai Jaga</label>

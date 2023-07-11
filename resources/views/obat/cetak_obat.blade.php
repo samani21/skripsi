@@ -44,7 +44,21 @@
             @foreach($obat as $o)
                 <tr>
                     <td align="center">{{ $no++ }}</td>
-                    <td align="center">{{$o->kode}}</td>
+                    <td align="center"><?php if ($o->kode <= '9') {
+                        echo "KA000".$o->kode;
+                    }else
+                    if ($o->kode <= '99') {
+                        echo "KA00".$o->kode;
+                    }
+                    else
+                    if ($o->kode <= '999') {
+                        echo "KA0".$o->kode;
+                    }else
+                    if ($o->kode <= '9999') {
+                        echo "KA".$o->kode;
+                    }else {
+                        echo $o->kode;
+                    } ?></td>
                     <td>{{$o->nm_obat}}</td>
                     <td align="center">{{$o->stok}}</td>
                 </tr>

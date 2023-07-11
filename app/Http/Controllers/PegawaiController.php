@@ -99,7 +99,15 @@ class PegawaiController extends Controller
     public function cetak_pegawai(Request $request)
     {   $tgl = $request->tgl;
         $cari = $request->cari;
-        $pegawai = DB::table('tb_pegawai')->where('nama','LIKE',"%".$cari."%")->get();
+        $dari = $request->dari;
+        $sampai = $request->sampai;
+        if($cari = $cari){
+            $pegawai = DB::table('tb_pegawai')
+            ->where('nama','LIKE',"%".$cari."%")->get();
+        }else{
+            $pegawai = DB::table('tb_pegawai')
+            ->whereBetween('tgl_mulai',[$dari,$sampai])->get();
+        }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $pdf = PDF::loadView('pegawai/cetak',compact('pegawai','tgl','kapus'));
         $pdf->setPaper('A4','potrait');

@@ -40,9 +40,9 @@
             @php
             $no=1;
             @endphp
-            @foreach($petugas as $pet)
+            @foreach($petugas as $index=>$pet)
             <tr align="center">
-                <td data-title="No">{{ $no++ }}</td>
+                <td data-title="No">{{ $index + $petugas->firstItem()}}</td>
                 <td data-title="Nip">{{$pet->nip}}</td>
                 <td data-title="nama" style="text-transform: uppercase">{{$pet->nama}}</td>
                 <td data-title="Kelompok">{{$pet->kelompok}}</td>

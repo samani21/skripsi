@@ -71,7 +71,7 @@
                                 <label>Password <span class="text-danger">*</span></label>
                                 <input class="input" type="password" name="password" />
                             </div>
-                            {{-- <a href="lupa">Lupa password?</a> --}}
+                            <a href="lupa">Lupa password?</a>
                             <br>
                             <div class="row g-2">
                                 <div class="col-6">

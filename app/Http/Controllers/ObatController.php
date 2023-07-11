@@ -105,7 +105,9 @@ class ObatController extends Controller
 	{   $cari = $request->cari;
         $tgl = $request->tgl;
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $obat = DB::table('tb_obat')->where('nm_obat','like',"%".$cari."%",'')->get();
+        $obat = DB::table('tb_obat')->where('nm_obat','like',"%".$cari."%")
+        ->orWhere('stok','like',"%".$cari."%",'')
+        ->get();
         $pdf = PDF::loadView('obat/cetak_obat',compact('obat','kapus','tgl'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obat.pdf');;
@@ -113,7 +115,8 @@ class ObatController extends Controller
 
     public function laporan(Request $request)
 	{   $cari = $request->cari;
-        $obat = DB::table('tb_obat')->where('nm_obat','like',"%".$cari."%",'')
+        $obat = DB::table('tb_obat')->where('nm_obat','like',"%".$cari."%")
+        ->orWhere('stok','like',"%".$cari."%")
 		->paginate(7);
  
         return view('laporan/obat', ['obat' => $obat,'title' => 'Laporan Obat'] );
@@ -152,16 +155,30 @@ class ObatController extends Controller
     public function cetak_obatmasuk(Request $request)
     {   $tgl = $request->tgl;
         $cari = $request->cari;
+        $dari = $request->dari;
+        $sampai = $request->sampai;
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$cari."%")
+       if($cari = $cari){
+        $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')
         ->orWhere('nm_obat','like',"%".$cari."%")
         ->paginate();
+        
 
-        $total = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')->where('tgl','like',"%".$cari."%")
+        $total = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')
         ->orWhere('nm_obat','like',"%".$cari."%")
         ->select('nm_obat','stok')
         ->groupBy('nm_obat','stok')
         ->paginate();
+       }else{
+        $masuk = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')
+        ->whereBetween('tgl',[$dari,$sampai])
+        ->paginate();
+        $total = DB::table('tb_obatmasuk')->join('tb_obat','tb_obat.kode','=','tb_obatmasuk.kode')
+        ->whereBetween('tgl',[$dari,$sampai])
+        ->select('nm_obat','stok')
+        ->groupBy('nm_obat','stok')
+        ->paginate();
+       }
         $pdf = PDF::loadView('obat/cetak_obatmasuk',compact('masuk','tgl','kapus','total'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatmasuk.pdf');
@@ -169,16 +186,33 @@ class ObatController extends Controller
 
     public function cetak_obatkeluar(Request $request)
     {   $tgl = $request->tgl;
-        $cari = $request->cari; 
+        $cari = $request->cari;
+        $dari = $request->dari; 
+        $sampai = $request->sampai; 
+        if($cari = $cari){
+            $keluar = DB::table('tb_resep')
+            ->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')
+            ->where('tgl','like',"%".$cari."%")
+            ->orWhere('nm_obat','like',"%".$cari."%")
+            ->get();
+            $total = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$cari."%")
+            ->orWhere('nm_obat','like',"%".$cari."%")
+            ->select('nm_obat','stok')
+            ->groupBy('nm_obat','stok')
+            ->paginate();
+        }else{
+            $keluar = DB::table('tb_resep')
+            ->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')
+            ->whereBetween('tgl',[$dari,$sampai])
+            ->get();
+            $total = DB::table('tb_resep')
+            ->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')
+            ->whereBetween('tgl',[$dari,$sampai])
+            ->select('nm_obat','stok')
+            ->groupBy('nm_obat','stok')
+            ->paginate();
+        }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $keluar = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$cari."%")
-        ->orWhere('nm_obat','like',"%".$cari."%")
-        ->paginate(10);
-        $total = DB::table('tb_resep')->join('tb_obat','tb_obat.kode','=','tb_resep.kd_obat')->where('tgl','like',"%".$cari."%")
-        ->orWhere('nm_obat','like',"%".$cari."%")
-        ->select('nm_obat','stok')
-        ->groupBy('nm_obat','stok')
-        ->paginate();
         $pdf = PDF::loadView('obat/cetak_obatkeluar',compact('keluar','tgl','kapus','total'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatkeluar.pdf');

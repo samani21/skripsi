@@ -131,4 +131,5 @@ class AuthController extends Controller
         alert('Sukses','Simpan Data Berhasil', 'success');
         return redirect('login');
     }
+    
 }

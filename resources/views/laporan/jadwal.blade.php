@@ -4,8 +4,17 @@
 
 <div>
     <form action="{{route('petugas/cetak_jadwal')}}" method="get" class="row g-12">
+        <div class="col-md-5">
+            <label for="">Dari</label>
+            <input class="form-control" type="date" name="dari" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+        </div>
+        <div class="col-md-5">
+            <label for="">Sampai</label>
+            <input class="form-control" type="date" name="sampai" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
+        <br>
+        </div>
         <div class="col-md-4">
-            <input class="form-control" type="text" name="tgl" value="<?php echo date('d-m-Y') ?>"
+            <input class="form-control" type="text" name="cari"
                 aria-label="default input example">
         </div>
         <div class="col-auto">
@@ -14,7 +23,7 @@
     </form>
     <form action="{{route('laporan/jadwal')}}" method="get" class="row g-12">
         <div class="col-md-4">
-            <input class="form-control" type="text" name="tgl" value="<?php echo date('d-m-Y') ?>"
+            <input class="form-control" type="text" name="tgl" value="<?php echo date('Y-m-d') ?>"
                 aria-label="default input example">
         </div>
            <div class="col-auto">
@@ -23,6 +32,7 @@
         </div>
     </form>
 </div>
+<hr>
 <div class="table-responsive bg-white" id="no-more-tables">
     <table class="table table-striped table-hover">
         <thead>

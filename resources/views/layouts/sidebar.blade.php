@@ -65,7 +65,7 @@
                             <span>Pegawai</span>
                         </a>
                     
-                        <a href="{{ url('petugas/petugas?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('petugas/petugas?tgl='.date('Y-m-d').'') }}"
                             class="{{ request()->is('petugas/petugas*','petugas/*')?'active' :'' }}">
                             <span class="fa-solid fa-user-doctor"></span>
                             <span>Petugas</span>
@@ -77,13 +77,13 @@
                             <span>Pasien</span>
                         </a>
                     
-                        <a href="{{ url('medis/medis?tgl='.date('d-m-Y').'') }}"
+                        <a href="{{ url('medis/medis?tgl='.date('Y-m-d').'') }}"
                             class="{{ request()->is('medis/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Rekam Medis</span>
                         </a>
                     
-                        <a href="{{ url('resep/resep?cari='.date('d-m-Y').'') }}"
+                        <a href="{{ url('resep/resep?cari='.date('Y-m-d').'') }}"
                             class="{{ request()->is('resep/*')?'active' :'' }}">
                             <span class="las la-book-medical"></span>
                             <span>Resep</span>
@@ -94,13 +94,13 @@
                             <span>Obat</span>
                         </a>
                     
-                        <a href="{{url('obat/obatkeluar?tgl='.date('d-m-Y').'')}}"
+                        <a href="{{url('obat/obatkeluar?tgl='.date('Y-m-d').'')}}"
                             class="{{ request()->is('obat/obatkeluar')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Keluar</span>
                         </a>
                     
-                        <a href="{{url('obat/masuk?cari='.date('d-m-Y').'') }}"
+                        <a href="{{url('obat/masuk?cari='.date('Y-m-d').'') }}"
                             class="{{ request()->is('obat/masuk')?'active' :'' }}">
                             <span class="las la-capsules"></span>
                             <span>Obat Masuk</span>
@@ -117,19 +117,19 @@
                                 class="{{ request()->is('laporan/pegawai')?'active' :'' }}">Pegawai</a>
                             <a href="{{url('laporan/petugas')}}"
                                 class="{{ request()->is('laporan/petugas')?'active' :'' }}">Petugas</a>
-                            <a href="{{url('laporan/jadwal?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/jadwal?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/jadwal')?'active' :'' }}">Jadwal</a>
                             <a href="{{url('laporan/pasien')}}"
                                 class="{{ request()->is('laporan/pasien')?'active' :'' }}">Pasien</a>
-                            <a href="{{url('laporan/medis?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/medis?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/medis')?'active' :'' }}">Berobat</a>
-                            <a href="{{url('laporan/biaya?cari='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/biaya?cari='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/biaya')?'active' :'' }}">Biaya</a>
                             <a href="{{url('laporan/obat')}}"
                                 class="{{ request()->is('laporan/obat')?'active' :'' }}">Obat</a>
-                            <a href="{{url('laporan/obat_masuk?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/obat_masuk?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/obat_masuk')?'active' :'' }}">Obat masuk</a>
-                            <a href="{{url('laporan/obat_keluar?tgl='.date('d-m-Y').'')}}"
+                            <a href="{{url('laporan/obat_keluar?tgl='.date('Y-m-d').'')}}"
                                 class="{{ request()->is('laporan/obat_keluar')?'active' :'' }}">Obat Keluar</a>
                         </div>
                     </li>

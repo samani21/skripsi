@@ -63,7 +63,7 @@ class MedisController extends Controller
         }
         $ubah->update($dt);
         Alert()->success('SuccessAlert','Tambah data berhasil');
-        return redirect('medis/medis?tgl='.date('d-m-Y').'');
+        return redirect('medis/medis?tgl='.date('Y-m-d').'');
     }
 
     public function rekam($id,$pasien_id)
