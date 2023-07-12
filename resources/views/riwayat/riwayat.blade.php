@@ -76,6 +76,10 @@
                             <td><h5><b>Tanggal dibuat</b></h5></td>
                             <td><h5>{{$pas->tgl_pasien}}</h5></td>
                         </tr>
+                        <tr>
+                            <td><h5><b>Password Asli</b></h5></td>
+                            <td><h5>{{$pas->password}}</h5></td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>

@@ -16,6 +16,7 @@ use App\Http\Controllers\ObatmasukController;
 use App\Http\Controllers\OperatroController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SuratController;
@@ -113,6 +114,12 @@ Route::post('pegawai/tambah_pegawai', [PegawaiController::class, 'store'])->name
 Route::get('pegawai/edit_pegawai/{id}',[PegawaiController::class,'editpegawai'])->name('pegawai/edit_pegawai');//edit data pegawai
 Route::post('updatepegawai/{id}',[PegawaiController::class,'updatepegawai'])->name('updatepegawai');//update data pergawai
 Route::get('pegawai/hapus_pegawai/{id}', [PegawaiController::class,'destroy'])->name('hapus_pegawai');//hapus data pegawai
+
+//pengguna
+Route::get('pengguna/pengguna', [PenggunaController::class,'index'])->name('pengguna/pengguna');//data pengguna
+Route::get('pengguna/edit_pengguna/{id}',[PenggunaController::class,'editpengguna'])->name('pengguna/edit_pengguna');//edit data pengguna
+Route::post('updatepengguna/{id}',[PenggunaController::class,'updatepengguna'])->name('updatepengguna');//update data pengguna
+Route::get('pengguna/hapus_pengguna/{id}', [PenggunaController::class,'destroy'])->name('hapus_pegawai');//hapus data pengguna
 
 //petugas
 Route::get('petugas/petugas', [JadwalController::class,'index'])->name('petugas/petugas');//jadwal petugas

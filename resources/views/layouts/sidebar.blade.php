@@ -52,7 +52,13 @@
                             <span class="las la-tachometer-alt"></span>
                             <span>dashboard</span>
                         </a>
-                    
+                        
+                        <a href="{{ url('pengguna/pengguna') }}"
+                            class="{{ request()->is('pengguna/pengguna*','kapuskes/*')?'active' :'' }}">
+                            <span class="las la-user-friends"></span>
+                            <span>Pengguna</span>
+                        </a>
+
                         <a href="{{ url('kapuskes/kapuskes') }}"
                             class="{{ request()->is('kapuskes/kapuskes*','kapuskes/*')?'active' :'' }}">
                             <span class="las la-user-friends"></span>
