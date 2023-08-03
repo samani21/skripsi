@@ -54,7 +54,7 @@
                         </a>
                         
                         <a href="{{ url('pengguna/pengguna') }}"
-                            class="{{ request()->is('pengguna/pengguna*','kapuskes/*')?'active' :'' }}">
+                            class="{{ request()->is('pengguna/pengguna*','pengguna/*')?'active' :'' }}">
                             <span class="las la-user-friends"></span>
                             <span>Pengguna</span>
                         </a>

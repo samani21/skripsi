@@ -17,8 +17,8 @@
         </div>
         <div>
             <label for="">Spesialis</label>
-            <select class="form-select" name="spesialis" aria-label="Default select example">
-                <option selected>--pilih--</option>
+            <select class="form-select" name="spesialis" aria-label="Default select example" required>
+                <option value=""selected>--pilih--</option>
                 <option value="Perawat">Perawat</option>
                 <option value="Perawat Anak">Perawat Anak</option>
                 <option value="Bidan">Bidan</option>

@@ -74,7 +74,7 @@ class BiayaController extends Controller
             $a = "0";
         }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $pdf = PDF::loadView('biaya/cetak',compact('biaya','total','p_bpjs','p_umum','b_bpjs','b_umum','tgl','kapus','a'));
+        $pdf = PDF::loadView('biaya/cetak',compact('biaya','total','p_bpjs','p_umum','b_bpjs','b_umum','tgl','kapus','a','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatmasuk.pdf');
     }

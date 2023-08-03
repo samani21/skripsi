@@ -29,6 +29,9 @@
     </table>
     <hr>
     <h3 align="center">LAPORAN PEMASUKKAN</h3>
+    <p>
+        Periode : {{date('d-m-Y', strtotime($dari))}} / {{date('d-m-Y', strtotime($sampai))}}
+    </p>
     <table align="center" style="border-collapse:collapse;border-spacing:1;" border="1">
         <thead>
             <tr align="center">
@@ -57,7 +60,7 @@
                 <td>{{$b->poli}}</td>
                 <td>{{$b->biaya}}</td>
                 <td>{{$b->status}}</td>
-                <td>{{$b->tgl}}</td>
+                <td>{{date('d-m-Y', strtotime($b->tgl))}}</td>
             </tr>
             @endforeach
         </tbody>
@@ -83,7 +86,7 @@
     ?>
     <div>
         <pre align="right">
-                                            Banjarmasin,{{$tgl}}
+                                            Banjarmasin,{{date('d-m-Y')}}
 
 
 

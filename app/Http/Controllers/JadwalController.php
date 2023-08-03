@@ -98,7 +98,7 @@ class JadwalController extends Controller
         ->whereBetween('tgl',[$dari,$sampai])
         ->get();
         }
-        $pdf = PDF::loadView('petugas/cetak_jadwal',compact('jadwal','tgl','kapus'));
+        $pdf = PDF::loadView('petugas/cetak_jadwal',compact('jadwal','tgl','kapus','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('Cetak_jadwal_petugas.pdf');
     }

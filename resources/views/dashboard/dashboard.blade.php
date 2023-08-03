@@ -14,13 +14,13 @@
 
     <div class="container">
         <div>
-            <form action="">
+            <form action="" method="GET">
                 <div class="row">
                     <div class="col-6">
                         <div class="row">
                             <label class="col-sm-5 col-form-label">Lihat Grafik berdasarkan tahun</label>
                             <div class="col-sm-7">
-                              <input type="text" class="form-control" value="<?php echo date('Y'); ?>" id="inputPassword">
+                              <input type="text" name="tahun" class="form-control" value="<?php echo date('Y'); ?>">
                             </div>
                           </div>
                     </div>

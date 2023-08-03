@@ -29,6 +29,9 @@
     </table>
     <hr>
     <h3 align="center">LAPORAN DATA PASIEN</h3>
+    <p>
+        Periode : {{date('d-m-Y', strtotime($dari))}} / {{date('d-m-Y', strtotime($sampai))}}
+    </p>
     <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
         <thead>
         <tr align="center">
@@ -52,7 +55,7 @@
                 <td>{{$pas->nik}}</td>
                 <td>{{$pas->jenis_berobat}}</td>
                 <td style="text-transform: uppercase">{{$pas->nama}}</td>
-                <td>{{$pas->tempat}},{{$pas->tanggal}}</td>
+                <td>{{$pas->tempat}},{{date('d-m-Y', strtotime($pas->tanggal))}}</td>
                 <td>{{$pas->kota}}</td>
                 
             </tr>

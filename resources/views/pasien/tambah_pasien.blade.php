@@ -33,9 +33,9 @@
                 <select name="jenis_berobat" class="form-control" onchange=" 
                     if (this.selectedIndex==2 )
                     { document.getElementById('bpjs').style.display ='inline'}
-                    else { document.getElementById('bpjs').style.display = 'none' };">
+                    else { document.getElementById('bpjs').style.display = 'none' };" required>
 
-                    <option value="pilih">--Pilih--</option>
+                    <option value="">--Pilih--</option>
                     <option value="Umum">Umum</option>
                     <option value="BPJS">BPJS</option>
                 </select>
@@ -54,8 +54,8 @@
             </div>
             <div>
                 <label>Jenis kelamin</label>
-                <select name="jk" class="form-control" >
-                    <option value="pilih">--Pilih--</option>
+                <select name="jk" class="form-control" required>
+                    <option value="">--Pilih--</option>
                     <option value="Laki-laki">Laki-laki</option>
                     <option value="Perempuan">Perempuan</option>
                 </select>
@@ -81,8 +81,8 @@
             </div>
             <div>
                 <label>Golongan darah</label>
-                <select name="gol_darah" class="form-control" >
-                    <option value="-">--Pilih--</option>
+                <select name="gol_darah" class="form-control" required>
+                    <option value="">--Pilih--</option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="O">O</option>

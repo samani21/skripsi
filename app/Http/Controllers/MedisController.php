@@ -92,7 +92,7 @@ class MedisController extends Controller
 
     public function update(Request $request,$id)
     {
-        $b= $request->berobat;
+        $b= $request->berobat_id;
         $a= $request->rekammedis;
         $ubah = Medis::findorfail($id);
         $dt =[

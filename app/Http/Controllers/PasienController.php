@@ -142,7 +142,7 @@ class PasienController extends Controller
             ->whereBetween('tgl_pasien',[$dari,$sampai])->where('jenis_berobat','=','Umum');
         }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $pdf = PDF::loadView('pasien/cetak_pasien',compact('pasien','tgl','kapus','p_bpjs','p_umum'));
+        $pdf = PDF::loadView('pasien/cetak_pasien',compact('pasien','tgl','kapus','p_bpjs','p_umum','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_pasien.pdf');
     }

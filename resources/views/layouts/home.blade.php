@@ -17,7 +17,7 @@
                     <p>Puskesmas Beruntung Raya</p>
                 </a>
             </div>
-            <ul>
+            {{-- <ul>
                 <li class="{{ request()->is('/')?'active' :'' }}">
                     <a href="{{url('/')}}"style="color: white; text-decoration: none">
                     Home
@@ -27,18 +27,18 @@
                     <a href="{{url('/visi')}}"style="color: white; text-decoration: none">
                     Visi & Misi
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="{{ request()->is('berita')?'active' :'' }}">
                     <a href="{{url('/berita')}}"style="color: white; text-decoration: none">
                     Berita
                     </a>
                 </li> --}}
-                <li class="{{ request()->is('contact')?'active' :'' }}">
+                {{-- <li class="{{ request()->is('contact')?'active' :'' }}">
                     <a href="{{url('/contact')}}"style="color: white; text-decoration: none">
                     Contact
                     </a>
                 </li>
-                <a href="/login" style="color: white; text-decoration: none">Login</a>
+                <a href="/login" style="color: white; text-decoration: none">Login</a> --}}
             </ul>
         </div>
         <main>

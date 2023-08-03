@@ -24,6 +24,12 @@
         <div>
             <button type="submit" class="btn btn-success" name="simpan">Simpan</button>
             <button class="btn btn-danger" type="reset">Reset</button>
+            <a href="#" class="btn btn-danger" onclick="goBack()">Back</a>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
         </div>
   </form>
 @endsection

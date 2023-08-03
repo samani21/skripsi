@@ -115,7 +115,7 @@ class BerobatController extends Controller
         ->whereBetween('tb_berobat.tgl',[$dari,$sampai]);
         }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $pdf = PDF::loadView('medis/cetak_medis',compact('medis','tgl','p_bpjs','p_umum','kapus'));
+        $pdf = PDF::loadView('medis/cetak_medis',compact('medis','tgl','p_bpjs','p_umum','kapus','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_medis.pdf');
     }

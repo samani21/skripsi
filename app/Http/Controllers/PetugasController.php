@@ -58,6 +58,7 @@ class PetugasController extends Controller
             'kelompok' => $request->kelompok,
             'spesialis' => $request->spesialis,
             'poli' => $request->poli,
+            'tgl_absen' => "-",
             'id_user' => Auth::user()->id
         ]);
         $id = Auth::user()->id;

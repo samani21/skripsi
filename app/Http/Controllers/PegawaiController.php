@@ -109,7 +109,7 @@ class PegawaiController extends Controller
             ->whereBetween('tgl_mulai',[$dari,$sampai])->get();
         }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $pdf = PDF::loadView('pegawai/cetak',compact('pegawai','tgl','kapus'));
+        $pdf = PDF::loadView('pegawai/cetak',compact('pegawai','tgl','kapus','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_pegawai.pdf');
     }

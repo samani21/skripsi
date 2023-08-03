@@ -179,7 +179,7 @@ class ObatController extends Controller
         ->groupBy('nm_obat','stok')
         ->paginate();
        }
-        $pdf = PDF::loadView('obat/cetak_obatmasuk',compact('masuk','tgl','kapus','total'));
+        $pdf = PDF::loadView('obat/cetak_obatmasuk',compact('masuk','tgl','kapus','total','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatmasuk.pdf');
     }
@@ -213,7 +213,7 @@ class ObatController extends Controller
             ->paginate();
         }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
-        $pdf = PDF::loadView('obat/cetak_obatkeluar',compact('keluar','tgl','kapus','total'));
+        $pdf = PDF::loadView('obat/cetak_obatkeluar',compact('keluar','tgl','kapus','total','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_obatkeluar.pdf');
     }

@@ -29,6 +29,9 @@
     </table>
     <hr>
     <h3 align="center">LAPORAN DATA PASEIN BEROBAT</h3>
+    <p>
+        Periode : {{date('d-m-Y', strtotime($dari))}} / {{date('d-m-Y', strtotime($sampai))}}
+    </p>
     <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
         <thead>
         <tr align="center">
@@ -53,7 +56,7 @@
                 <td>{{$medis->nama_berobat}}</td>
                 <td align="center">{{$medis->jenis_berobat}}</td>
                 <td>{{$medis->poli}}</td>
-                <td align="center"><?php echo $medis->tgl;?></td>
+                <td align="center">{{date('d-m-Y', strtotime($medis->tgl))}}</td>
             </tr>
         @endforeach
     </tbody>
@@ -66,7 +69,7 @@ Jumlah Pasien Umum : {{$p_umum->count()}} Orang</pre>
     </div>
     <div>
         <pre align="right">
-                                            Banjarmasin,{{$tgl}}
+                                            Banjarmasin,{{date('d-m-Y')}}
 
 
 

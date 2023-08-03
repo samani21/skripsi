@@ -62,6 +62,12 @@
             </div>
             <br>
             <button type="submit" class="btn btn-success">Simpan</button>
+            <a href="#" class="btn btn-danger" onclick="goBack()">Back</a>
+                <script>
+                    function goBack() {
+                        window.history.back();
+                    }
+                </script>
         </form>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

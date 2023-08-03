@@ -103,7 +103,6 @@
         <div>
             <label>Tindakan berobat</label>
             <select name="tindakan" class="form-control" oninput="this.className = ''">
-                <option value="">--Pilih--</option>
                 <option value="Tindakan">Tindakan</option>
                 <option value="Pemeriksaan">Pemeriksaan</option>
                 <option value="Konsultasi">Konsultasi</option>

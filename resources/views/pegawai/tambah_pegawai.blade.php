@@ -27,7 +27,7 @@
         <div>
             <label for="">Jenis Kelamin</label>
             <select class="form-select" name="jns_kelamin" aria-label="Default select example" required>
-                <option selected>--pilih--</option>
+                <option value="" selected>--pilih--</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perumpuan">Perumpuan</option>
               </select>
@@ -35,7 +35,7 @@
         <div>
             <label for="">Kelompok pegawai</label>
             <select class="form-select" name="kelompok" aria-label="Default select example" required>
-                <option selected>--pilih--</option>
+                <option value="" selected>--pilih--</option>
                 <option value="TENAGA MEDIS">TENAGA MEDIS</option>
                 <option value="TENAGA KEPERAWATAN">TENAGA KEPERAWATAN</option>
                 <option value="TENAGA KETEKNISIAN MEDIS">TENAGA KETEKNISIAN MEDIS</option>
@@ -48,7 +48,7 @@
         <div>
             <label for="">Spesialis</label>
             <select class="form-select" name="spesialis" aria-label="Default select example" required>
-                <option selected>--pilih--</option>
+                <option value="" selected>--pilih--</option>
                 <option value="Dokter Umum">Dokter Umum</option>
                 <option value="Dokter Gigi">Dokter Gigi</option>
                 <option value="Bidan">Bidan</option>

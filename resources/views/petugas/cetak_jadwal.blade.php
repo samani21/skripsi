@@ -29,6 +29,9 @@
     </table>
     <hr>
     <h3 align="center">LAPORAN JADWAL PETUGAS</h3>
+    <p>
+        Periode : {{date('d-m-Y', strtotime($dari))}} / {{date('d-m-Y', strtotime($sampai))}}
+    </p>
         <table style="border-collapse:collapse;border-spacing:1;" border="1" align="center">
             <thead>
             <tr align="center">
@@ -52,7 +55,7 @@
                     <td>{{$jad->nip}}</td>
                     <td style="text-transform: uppercase">{{$jad->nama}}</td>
                     <td>{{$jad->kelompok}}/{{$jad->spesialis}}</td>
-                    <td>{{$jad->tgl}}</td>
+                    <td>{{date('d-m-Y', strtotime($jad->tgl))}}</td>
                     <td>{{$jad->poli}}</td>
                     <td>{{$jad->mulai}}</td>
                     <td>{{$jad->selesai}}</td>

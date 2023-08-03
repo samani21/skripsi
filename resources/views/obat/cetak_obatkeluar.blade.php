@@ -29,6 +29,9 @@
     </table>
     <hr>
     <h3 align="center">LAPORAN DATA OBAT KELUAR</h3>
+    <p>
+        Periode : {{date('d-m-Y', strtotime($dari))}} / {{date('d-m-Y', strtotime($sampai))}}
+    </p>
     <table align="center" style="border-collapse:collapse;border-spacing:1;" border="1">
         <thead>
             <tr align="center">
@@ -47,7 +50,7 @@
                     <td  align="center">{{ $no++ }}</td>
                     <td>{{$o->nm_obat}}</td>
                     <td  align="center">{{$o->jumlah}}</td>
-                    <td  align="center">{{$o->tgl}}</td>
+                    <td  align="center">{{date('d-m-Y', strtotime($o->tgl))}}</td>
                 </tr>
             @endforeach
         </tbody>

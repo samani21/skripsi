@@ -219,6 +219,7 @@ Route::post('updateselesai/{id}',[KpusController::class,'updateselesai'])->name(
 //cek riwayat berobat
 Route::get('riwayat/riwayat', [RiwayatController::class,'index'])->name('riwayat/riwayat');//data pegawai
 Route::get('riwayat/rekam_medis/berobat={id}&rekammedis={pasien_id}',[RiwayatController::class,'rekam'])->name('riwayat/rekam_medis');//data rekam medis pasien
+Route::post('updatepassword/{id}',[RiwayatController::class,'ubahapass'])->name('updatepassword');//ubah password pasien
 
 //halaman resep
 Route::get('resep/resep', [ObatkeluarController::class, 'index'])->name('resep/resep');//data resep

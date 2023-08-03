@@ -69,7 +69,7 @@ $tgl_lusa    =date('d-m-Y', strtotime("+3 day", $tgl_sekarang));
         <input type="hidden" value="3" name="status1">
         <input type="hidden" value="{{$berobat->id}}" name="berobat_id">
         <input type="hidden" value="Surat Sehat" name="sb">
-        <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl_b">
+        <input type="hidden" value="<?php echo date('Y-m-d') ?>" name="tgl_b">
         <hr>
         <div>
             <button type="submit" class="btn btn-success" name="simpan">Simpan</button>

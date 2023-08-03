@@ -93,7 +93,7 @@ class KpusController extends Controller
             ->whereBetween('tgl_mulai',[$dari,$sampai])->get();
         }
         $kapu = DB::table('tb_kapus')->where('status','=','1')->paginate(1);
-        $pdf = PDF::loadView('kapuskes/cetak',compact('tgl','kapus','kapu'));
+        $pdf = PDF::loadView('kapuskes/cetak',compact('tgl','kapus','kapu','dari','sampai'));
         $pdf->setPaper('A4','potrait');
         return $pdf->stream('cetak_pegawai.pdf');
     }

@@ -1,8 +1,13 @@
 @extends('layouts.sidebar')
 
 @section('content')
-<a href="/medis/rekam_medis/berobat={{$fisik->id}}&rekammedis={{$berobat->pasien_id}}" class="btn btn-warning float-end"><i class="fa-solid fa-chevron-left"></i>
+<a href="#" class="btn btn-danger" onclick="goBack()"><i class="fa-solid fa-chevron-left"></i>
     Kembali</a>
+                <script>
+                    function goBack() {
+                        window.history.back();
+                    }
+                </script>
 <form id="regForm" action="{{route('updatefisik',$fisik->id)}}" method="POST">
     @csrf
     <div class="tab">
