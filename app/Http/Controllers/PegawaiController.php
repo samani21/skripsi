@@ -53,6 +53,20 @@ class PegawaiController extends Controller
 
     public function updatepegawai(Request $request, $id){
         $ubah = Pegawai::findorfail($id);
+        if($request['status'] == 1){
+            $dt =[
+                'nip' => $request['nip'],
+                'nama' => $request['nama'],
+                'tanggal' => $request['tanggal'],
+                'tempat' => $request['tempat'],
+                'alamat' => $request['alamat'],
+                'jns_kelamin' => $request['jns_kelamin'],
+                'kelompok' => $request['kelompok'],
+                'spesialis' => $request['spesialis'],
+                'status' => $request['status'],
+                'tgl_selesai' => '-',
+            ];
+        }else{
         $dt =[
             'nip' => $request['nip'],
             'nama' => $request['nama'],
@@ -64,6 +78,7 @@ class PegawaiController extends Controller
             'spesialis' => $request['spesialis'],
             'status' => $request['status'],
         ];
+        }
         $ubah->update($dt);
         alert('Sukses','Simpan Data Berhasil', 'success');
         return redirect('pegawai/pegawai');

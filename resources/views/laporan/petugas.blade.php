@@ -8,6 +8,17 @@
             <input class="form-control" type="text" name="cari" placeholder="Cari"
                 aria-label="default input example">
         </div>
+        <div class="col-md-4">
+            <select name="poli" class="form-control">
+                <option value="">--Pilih--</option>
+                <option value="Poli Umum">Poli Umum</option>
+                <option value="Poli Anak">Poli Anak</option>
+                <option value="Poli Gigi">Poli Gigi</option>
+                <option value="Poli KB">Poli KB</option>
+                <option value="Poli Gizi">Poli Gizi</option>
+                <option value="Poli Kandungan">Poli Kandungan</option>
+            </select>
+        </div>
         <input type="hidden" value="<?php echo date('d-m-Y') ?>" name="tgl" id="">
         <div class="col-auto">
             <button type="submit" class="btn btn-success mb-3"><i class="fa-solid fa-print"></i> Cetak</button>

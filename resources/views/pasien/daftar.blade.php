@@ -16,34 +16,20 @@
             </div>
             <div>
                 <label>Jenis berobat</label>
-                <select name="jenis_berobat" class="form-control" onchange=" 
-                    if (this.selectedIndex==1 )
-                    { document.getElementById('umum').style.display ='inline'}
-                    else { document.getElementById('umum').style.display = 'none' }if (this.selectedIndex==2 )
-                    { document.getElementById('bpjs').style.display ='inline'}
-                    else { document.getElementById('bpjs').style.display = 'none' };">
+                <select name="jenis_berobat" class="form-control">
     
                     <option value="{{$pasien->jenis_berobat}}">{{$pasien->jenis_berobat}}</option>
                     <option value="Umum">Umum</option>
                     <option value="BPJS">BPJS</option>
                 </select>
-    
-                <span id="umum" <?php if($pasien->jenis_berobat =='Umum'){
-                    echo 'style="display:inline;"';
-                 }if($pasien->jenis_berobat =='BPJS'){
-                     echo 'style="display:none;"';
-                  }?>>
-                    <label for="">Biaya</label>
-                    <input type="text" name="umum" maxlength="10" value="-"class="form-control">
-                </span>
-                <span id="bpjs" <?php if($pasien->jenis_berobat =='BPJS'){
-                    echo 'style="display:inline;"';
-                 }if($pasien->jenis_berobat =='Umum'){
-                     echo 'style="display:none;"';
-                  }?>>
-                    <label>No BPJS</label>
-                    <input type="text" name="bpjs" maxlength="17" value="{{$pasien->no_bpjs}}"class="form-control">
-                </span>
+            </div>
+           <div>
+            <label>No BPJS</label>
+            <input type="text" name="bpjs" maxlength="17" value="{{$pasien->no_bpjs}}"class="form-control">
+           </div>
+            <div>
+                <label for="">Biaya</label>
+                <input type="text" name="umum" maxlength="10" class="form-control" required>
             </div>
             <div>
                 <label for="">Nama</label>

@@ -70,7 +70,14 @@ class BerobatController extends Controller
         $biaya->save();
         $berobat->save();
         Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return redirect()->route('pasien/pasien');
+        return redirect('pasien/pasien?jenis=umum');
+    }
+
+    public function distroy($id){
+        $berobat = Berobat::findorfail($id);
+        $berobat->delete();
+        toast('Yeay Berhasil menghapus data','success');
+        return redirect('medis/medis?tgl='.date('Y-m-d').'');
     }
 
     public function laporan(Request $request)

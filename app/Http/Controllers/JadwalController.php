@@ -78,7 +78,7 @@ class JadwalController extends Controller
         ->orWhere('nama','like',''.$tgl.'')
         ->orWhere('nip','like',''.$tgl.'')
         ->paginate(6);
-        $jadwal->withPath('jadwal?tgl='.date('Y-m-d').'');
+        $jadwal->withPath('jadwal?tgl='.$tgl.'');
         return view('laporan/jadwal', ['jadwal'=>$jadwal,'title' => 'Jadwal Petugas'] );
     }
 

@@ -102,16 +102,21 @@ class PetugasController extends Controller
         $petugas = Petugas::find($id);
         $petugas->delete();
         toast('Yeay Berhasil menghapus data','success');
-        return redirect('petugas/petugas?tgl='.date('d-m-Y').'');
+        return redirect('petugas/petugas?tgl='.date('Y-m-d').'');
     }
 
     public function cetak_petugas(Request $request)
     {   
         $cari = $request->cari;
-        $petugas = DB::table('tb_petugas')->where('nama','like',"%".$cari."%")->orWhere('nip','like',"%".$cari."%")
-        ->orWhere('kelompok','like',"%".$cari."%")
-        ->orWhere('poli','like',"%".$cari."%")->get();
         $tgl = $request->tgl;
+        $poli = $request->poli;
+        if($cari == ""){
+            $petugas = DB::table('tb_petugas')->where('poli','like',"%".$poli."%")->get();
+        }else{
+            $petugas = DB::table('tb_petugas')->where('nama','like',"%".$cari."%")->orWhere('nip','like',"%".$cari."%")
+            ->orWhere('kelompok','like',"%".$cari."%")
+            ->orWhere('poli','like',"%".$cari."%")->get();
+        }
         $kapus = DB::table('tb_kapus')->where('status','=','1')->get();
         $pdf = PDF::loadView('petugas/cetak',compact('petugas','kapus','tgl'));
         $pdf->setPaper('A4','potrait');

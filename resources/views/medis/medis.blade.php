@@ -76,7 +76,7 @@
                  @endif
                 @if(Auth::user()->level =='rekam_medis' || Auth::user()->level =='operator')
                 <?php if($medis->status =='0'){
-                        echo '<a href="periksa_fisik/'.$medis->id.'?tgl='.date('d-m-Y').'&poli='.$medis->poli.'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';
+                        echo '<a href="periksa_fisik/'.$medis->id.'?tgl='.date('Y-m-d').'&poli='.$medis->poli.'" class="btn btn-primary"><i class="fa-solid fa-book-medical"></i></a>';
                      }if($medis->status =='1'||$medis->status =='3'){
                          echo '';
                       }?>

@@ -3,6 +3,14 @@
 @section('content')
 
     <div class="content-header">
+        @if(session('success'))
+        <p class="alert alert-success">{{ session('success') }}</p>
+        @endif
+        @if($errors->any())
+        @foreach($errors->all() as $err)
+        <p class="alert alert-danger">{{ $err }}</p>
+        @endforeach
+        @endif
             <form class="form card" style="background: linear-gradient(to right, #116ea4, #1799c8);" action="{{route('riwayat/riwayat')}}" method="GET">
                 <img src="{{asset('logo-puskesmas.png')}}" alt="">
                     <hr>

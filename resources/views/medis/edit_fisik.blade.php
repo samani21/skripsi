@@ -114,15 +114,8 @@
         </div>
         <div>
             <label>Biaya</label>
-            @php
-            if($berobat->jenis_berobat == 'Umum'){
-            echo '<input class="form-control" type="number" id="biaya" name="biaya" value="'.$berobat->umum.'"
-                aria-label="default input example">';
-            }if ($berobat->jenis_berobat == 'BPJS') {
-            echo '<input class="form-control" type="text" id="biaya" name="biaya" value="Gratis"
-                aria-label="default input example">';
-            }
-            @endphp
+            <input class="form-control" type="text" id="biaya" name="biaya" value="{{$fisik->biaya}}" required
+            aria-label="default input example">
         </div>
     </div>
     <div style="overflow:auto;">

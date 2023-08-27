@@ -4,6 +4,9 @@
 
 <div>
     <form action="{{route('biaya/cetak')}}" method="get" class="row g-12">
+       @if (Auth::user()->level == 'admin')
+       <input type="hidden" value="{{$jenis}}" name="jenis">
+       @endif
         <div class="col-md-5">
             <label for="">Dari</label>
             <input class="form-control" type="date" name="dari" placeholder="cari" value="<?php echo date('Y-m-d') ?>"  autocomplete="off" aria-label="default input example">
@@ -73,6 +76,22 @@
     {{ $biaya->links() }}
 </div>
 <hr>
+@if (Auth::user()->level == 'admin')
+<div class="row g-2">
+    <div class="col-6"><div class="col-md-6 col-xl-12">
+        <div class="card bg-c-biaya order-card">
+            <div class="card-block">
+                <h4>
+                    <pre>Jumlah Pasien pasien : {{$pasien->count()}} Orang
+Total Biaya Hari tanggl = Rp.@foreach ($total as $bi){{$bi->total}}@endforeach
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+    
+@endif
+@if (Auth::user()->level == 'operator')
 <div class="row g-2">
     <div class="col-6"><div class="col-md-6 col-xl-12">
         <div class="card bg-c-biaya order-card">
@@ -100,6 +119,8 @@ Total Biaya Hari tanggl = Rp.@foreach ($total as $bi){{$bi->total}}@endforeach
         </div>
     </div></div>
 </div>
+    
+@endif
 {{-- <div><div>
     Total BIaya Hari tanggl = @foreach ($total as $bi)
         {{$bi->total}}

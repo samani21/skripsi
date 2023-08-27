@@ -66,6 +66,22 @@
         </tbody>
         </thead>
     </table>
+    @if ($akun == "admin")
+    <?php
+    if ($a == 0) {
+        ?>
+        <div>
+            <pre>
+Jumlah Pasien : {{$pasien->count()}} Orang
+    
+Total Biaya Hari tanggl = Rp.@foreach ($total as $bi){{$bi->total}}@endforeach
+            </pre>
+        </div>
+        <?php
+    }
+?>
+    @endif
+    @if ($akun == "operator")
     <?php
         if ($a == 0) {
             ?>
@@ -84,6 +100,8 @@
             <?php
         }
     ?>
+        
+    @endif
     <div>
         <pre align="right">
                                             Banjarmasin,{{date('d-m-Y')}}

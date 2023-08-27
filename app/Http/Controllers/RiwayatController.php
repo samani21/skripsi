@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 class RiwayatController extends Controller
 {
     public function index(Request $request){
+        $request->validate([
+            'password' => 'required|exists:tb_pasien',
+            'nik' => 'required|exists:tb_pasien',
+        ]);
         $nik = $request->nik;
         $password = $request->password;
         $pasien = DB::table('tb_pasien')->where('nik','=',''.$nik.'')->where('password','=',''.$password.'')->get();
@@ -29,11 +33,12 @@ class RiwayatController extends Controller
 
     public function ubahapass(Request $request,$id){
         $edit = Pasien::findorfail($id);
+        $nik = $request->nik;
         $dt =[
             'password' => $request->password,
         ];
         $edit->update($dt);
-        Alert()->success('SuccessAlert','Tambah data pegawai berhasil');
-        return redirect('riwayat/riwayat?nik=6371011512110002&password='.$request->password.'');
+        Alert()->success('SuccessAlert','Ubah password berhasil');
+        return redirect('riwayat/riwayat?nik='.$nik.'&password='.$request->password.'');
     }
 }

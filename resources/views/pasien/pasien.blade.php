@@ -4,6 +4,10 @@
 
     <div>
         <form action="{{route('pasien/pasien')}}" method="get" class="row g-12">
+           @if (Auth::user()->level == 'admin')
+            <input type="hidden" name="jenis" value="{{$jenis}}">
+        
+           @endif
             <div class="col-md-4">
                 <input class="form-control" type="text" name="cari"placeholder="Cari pasien" aria-label="default input example">
             </div>
@@ -67,6 +71,17 @@
         </table>
         {{ $pasien->links() }}
     </div>
+    @if (Auth::user()->level == 'admin')
+    <div>
+        <div>
+            <h4>
+                <pre>Jumlah Pasien : {{$total->count()}} Orang
+            </h4>
+        </div>
+    </div>
+   
+   @endif
+   @if (Auth::user()->level == 'operator')
     <div>
         <div>
             <h4>
@@ -75,4 +90,6 @@ Jumlah Pasien Umum : {{$p_umum->count()}} Orang</pre>
             </h4>
         </div>
     </div>
+   
+   @endif
 @endsection

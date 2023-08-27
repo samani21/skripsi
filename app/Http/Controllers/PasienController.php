@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pasien;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDF;
 
@@ -11,20 +12,35 @@ class PasienController extends Controller
 {
     public function index(Request $request)
 	{   $cari = $request->cari;
-        // $no_berobat = $request->no_berobat;
-        $pasien = DB::table('tb_pasien')->where('nama','like',"%".$cari."%")->orWhere('no_berobat','=',"".$cari."")->orWhere('nik','like',"%".$cari."%")
+        $jenis = $request->jenis;
+        $pasien = DB::table('tb_pasien')
+        ->where('jenis_berobat','=',''.$jenis.'')
+        ->where('nama','like',"%".$cari."%")
 		->paginate(7);
         $p_bpjs = DB::table('tb_pasien')->where('jenis_berobat','=','BPJS');
         $p_umum = DB::table('tb_pasien')->where('jenis_berobat','=','Umum');
-        // if($no_berobat == ""){
-        //     $pasien = DB::table('tb_pasien')->where('nama','like',"%".$nama."%")
-		// ->paginate(7);
-        // }else if($no_berobat == $no_berobat){
-        //     $pasien = DB::table('tb_pasien')
-        //     ->where('no_berobat','=',"".$no_berobat."")->where('nama','like',"%".$nama."%")
-		// ->paginate(7);
-        // }
-        return view('pasien/pasien', ['pasien' => $pasien,'p_bpjs'=>$p_bpjs,'p_umum'=>$p_umum,'title' => 'Pasien'] );
+
+        if(Auth::user()->level == 'admin'){
+            $pasien = DB::table('tb_pasien')
+            ->where('jenis_berobat','=',''.$jenis.'')
+            ->where('nama','like',"%".$cari."%")
+            ->orWhere('no_berobat','=',''.$cari.'')
+            ->orWhere('nik','=',''.$cari.'')
+            ->paginate(7);
+            $total = DB::table('tb_pasien')->where('jenis_berobat','=',''.$jenis.'');
+            return view('pasien/pasien', ['pasien' => $pasien,'title' => 'Pasien','jenis'=>$jenis,'total'=>$total] );
+        }
+        if(Auth::user()->level == 'operator'){
+            $pasien = DB::table('tb_pasien')
+            ->where('nama','like',"%".$cari."%")
+            ->orWhere('no_berobat','=',"%".$cari."%")
+            ->orWhere('nik','like',"%".$cari."%")
+		    ->paginate(7);
+            $p_bpjs = DB::table('tb_pasien')->where('jenis_berobat','=','BPJS');
+            $p_umum = DB::table('tb_pasien')->where('jenis_berobat','=','Umum');
+            return view('pasien/pasien', ['pasien' => $pasien,'p_bpjs'=>$p_bpjs,'p_umum'=>$p_umum,'title' => 'Pasien'] );
+        }
+        
     }
 
     public function create()

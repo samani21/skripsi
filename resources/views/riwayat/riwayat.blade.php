@@ -8,6 +8,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body style="background-color: aliceblue">
+    @include('sweetalert::alert')
     <div>
         <nav class="navbar navbar-light bg-info">
             <div class="container-fluid">
@@ -82,6 +83,7 @@
                                 <form action="{{url('updatepassword',$pas->id_pasien)}}" method="post">
                                     @csrf
                                     <input type="text" name="password" value="{{$pas->password}}">
+                                    <input type="hidden" name="nik" value="{{$pas->nik}}">
                                     <button type="submit" class="btn btn-primary">Ubah</button>
                                 </form>
                             </td>

@@ -9,6 +9,8 @@
         <div>
             <input type="hidden" id="berobat_id" name="berobat_id" value="{{$berobat->id}}">
             <input type="hidden" id="pasien_id" name="pasien_id" value="{{$berobat->pasien_id}}">
+            <input type="hidden" id="poli" name="poli" value="{{$berobat->poli}}">
+            <input type="hidden" id="j_berobat" name="j_berobat" value="{{$berobat->jenis_berobat}}">
             <input class="form-control" type="hidden" id="status" name="status" value="1">
             <label for="">No berobat</label>
             <input class="form-control" type="text" value="{{$berobat->no_berobat}}" aria-label="default input example"
@@ -103,8 +105,8 @@
         <div>
             <label>Tindakan berobat</label>
             <select name="tindakan" class="form-control" oninput="this.className = ''">
-                <option value="Tindakan">Tindakan</option>
                 <option value="Pemeriksaan">Pemeriksaan</option>
+                <option value="Tindakan">Tindakan</option>
                 <option value="Konsultasi">Konsultasi</option>
             </select>
         </div>
@@ -114,15 +116,8 @@
         </div>
         <div>
             <label>Biaya</label>
-            @php
-            if($berobat->jenis_berobat == 'Umum'){
-            echo '<input class="form-control" type="number" id="biaya" name="biaya" value="'.$berobat->umum.'"
-                aria-label="default input example">';
-            }if ($berobat->jenis_berobat == 'BPJS') {
-            echo '<input class="form-control" type="text" id="biaya" name="biaya" value="Gratis"
-                aria-label="default input example">';
-            }
-            @endphp
+            <input class="form-control" type="text" id="biaya" name="biaya" value="-" required
+                aria-label="default input example">
         </div>
     </div>
     <div class="tab">

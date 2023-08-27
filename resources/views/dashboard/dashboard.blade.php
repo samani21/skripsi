@@ -13,109 +13,112 @@
 <hr>
 
     <div class="container">
-        <div>
-            <form action="" method="GET">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="row">
-                            <label class="col-sm-5 col-form-label">Lihat Grafik berdasarkan tahun</label>
-                            <div class="col-sm-7">
-                              <input type="text" name="tahun" class="form-control" value="<?php echo date('Y'); ?>">
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-success">Cari</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <hr>
+    
         <div class="row">
             <div class="col-md-6">
+                <form action="" method="get">
+                    <div class="row">
+                        <div class="col-3">
+                            Tahun
+                        </div>
+                        <div class="col-3">
+                            <input type="text" name="tahun" class="form-control" value="<?php echo date('Y'); ?>">
+                        </div>
+                        <input type="hidden" class="form-control" name="dari" value="{{date('Y-m-d')}}">
+                        <input type="hidden" class="form-control" name="sampai" value="{{date('Y-m-d')}}">
+                        <div class="col-3">
+                            <button type="submit">Cari</button>
+                        </div>
+                    </div>
+                </form>
                 <div id="container"></div>
             </div>
             <div class="col-md-6">
-                <div class="row g-2">
-                    <div class="col-6">
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-blue order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Jumlah Pegawai</h6>
-                                    <h2 class="text-right"><i class="las la-user-friends"></i><span>{{$pegawai->count()}}</span></h2>
-                                </div>
-                            </div>
+                <form action="" method="get">
+                    <input type="hidden" name="tahun" class="form-control" value="<?php echo date('Y'); ?>">
+                    <div class="row">
+                        <div class="col-3">
+                            Periode
                         </div>
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-green order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Jumlah Dokter</h6>
-                                    <h2 class="text-right"><i class="fa-solid fa-user-doctor"></i><span>{{$dokter->count()}}</span></h2>
-                                </div>
-                            </div>
+                        <div class="col-3">
+                            <input type="date" class="form-control" name="dari" value="{{date('Y-m-d')}}">
                         </div>
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-yellow order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Jumlah Perawat</h6>
-                                    <h2 class="text-right"><i class="fa-solid fa-user-nurse"></i><span>{{$perawat->count()}}</span></h2>
-                                </div>
-                            </div>
+                        <div class="col-3">
+                            <input type="date" class="form-control" name="sampai" value="{{date('Y-m-d')}}">
                         </div>
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-pink order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Jumlah Pasien</h6>
-                                    <h2 class="text-right"><i class="las la-users"></i><span>{{$pasien->count()}}</span></h2>
-                                </div>
-                            </div>
+                        <div class="col-3">
+                            <button type="submit">Cari</button>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-blue order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Jumlah Berobat perhari</h6>
-                                    <h2 class="text-right"><i class="las la-user-friends"></i><span>{{$berobat->count()}}</span></h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-green order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Total Nama Obat</h6>
-                                    <h2 class="text-right"><i class="las la-capsules"></i><span>{{$obat->count()}}</span></h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-yellow order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Jumlah Obat Masuk Perhari</h6>
-                                    <h2 class="text-right"><i class="las la-capsules"></i><span>{{$obatmasuk->count()}}</span></h2>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6 col-xl-12">
-                            <div class="card bg-c-pink order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Jumlah Obat Keluar Perhari</h6>
-                                    <h2 class="text-right"><i class="las la-capsules"></i><span>{{$obatkeluar->count()}}</span></h2>
-                                </div>
-                            </div>
-                        </div>
+                </form>
+                <div id="container1"></div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Jumlah Pegawai</h6>
+                        <h2 class="text-right"><i class="las la-user-friends"></i><span>{{$pegawai->count()}}</span></h2>
                     </div>
                 </div>
             </div>
-            
-        
-        
-        
-        
-        
+            <div class="col-3">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Jumlah Dokter</h6>
+                        <h2 class="text-right"><i class="fa-solid fa-user-doctor"></i><span>{{$dokter->count()}}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Jumlah Perawat</h6>
+                        <h2 class="text-right"><i class="fa-solid fa-user-nurse"></i><span>{{$perawat->count()}}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Jumlah Berobat perhari</h6>
+                        <h2 class="text-right"><i class="las la-user-friends"></i><span>{{$berobat->count()}}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Jumlah Berobat perhari</h6>
+                        <h2 class="text-right"><i class="las la-user-friends"></i><span>{{$berobat->count()}}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-c-green order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Total Nama Obat</h6>
+                        <h2 class="text-right"><i class="las la-capsules"></i><span>{{$obat->count()}}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Jumlah Obat Masuk Perhari</h6>
+                        <h2 class="text-right"><i class="las la-capsules"></i><span>{{$obatmasuk->count()}}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card bg-c-pink order-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Jumlah Obat Keluar Perhari</h6>
+                        <h2 class="text-right"><i class="las la-capsules"></i><span>{{$obatkeluar->count()}}</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div> 
 	</div>
-
 </div>
 
 <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -141,6 +144,37 @@
                         align: 'high',
                         offset: 0,
                         text: 'Jumlah(orang)',
+                        rotation: 0,
+                        y: -10
+                    }
+                },
+
+                series: [{
+                    data: jumlah
+                }]
+
+                });
+
+                var jumlah = <?php echo json_encode($d_jum); ?>;
+            var bulan  = <?php echo json_encode($diagnosa); ?>;
+            Highcharts.chart('container1', {
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Grafik Diagnosa Pasien'
+                },
+                xAxis: {
+                    categories: bulan
+                },
+
+                yAxis: {
+                    lineWidth: 1,
+                    tickWidth: 1,
+                    title: {
+                        align: 'high',
+                        offset: 0,
+                        text: 'Penyakit',
                         rotation: 0,
                         y: -10
                     }

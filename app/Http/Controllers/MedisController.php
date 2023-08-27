@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berobat;
+use App\Models\Biaya;
 use App\Models\Diagnosa;
 use App\Models\Icd;
 use App\Models\Medis;
@@ -23,7 +24,7 @@ class MedisController extends Controller
         $berobat = Berobat::find($id);
         $dokter = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('status','=','1')->where('kelompok','=','dokter')->where('tgl','=',"".$tgl."")
-        // ->where('poli','=','Poli '.$poli.'')
+        ->where('poli','=','Poli '.$poli.'')
         ->paginate(100);
         $perawat = DB::table('tb_jadwal')->join('tb_petugas','tb_petugas.id','=','tb_jadwal.petugas_id')
         ->where('status','=','1')->where('kelompok','=','perawat')->where('tgl','=',"".$tgl."")
@@ -54,6 +55,15 @@ class MedisController extends Controller
         ]);
         $medis->save();
 
+        $biaya = new Biaya([
+            'pasien_id' => $request->pasien_id,
+            'poli' => $request->poli,
+            'j_berobat' => $request->j_berobat,
+            'biaya' => $request->biaya,
+            'status' => $request->tindakan,
+            'tgl' => $request->tgl,
+        ]);
+        $biaya->save();
         $ubah = Berobat::findorfail($id);
         $dt =[
             'status' => $request['status'],

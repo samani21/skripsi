@@ -15,15 +15,15 @@ class AuthController extends Controller
     {
         if ($user = Auth::user()) {
             if ($user->level == 'admin') {
-                return redirect()->intended('admin?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                return redirect()->intended('admin?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
             } elseif ($user->level == 'rekam_medis') {
-                return redirect()->intended('rekam_medis?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                return redirect()->intended('rekam_medis?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
             }elseif ($user->level == 'apotek') {
-                return redirect()->intended('apotek?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                return redirect()->intended('apotek?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
             }elseif ($user->level == 'kapus') {
-                return redirect()->intended('kapus?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                return redirect()->intended('kapus?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
             }elseif ($user->level == 'operator') {
-                return redirect()->intended('operator?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                return redirect()->intended('operator?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
             }
         }
         return view('login');
@@ -45,15 +45,15 @@ class AuthController extends Controller
                     return redirect()->intended('verifikasi');
                 } else{
                     if ($user->level == 'admin') {
-                        return redirect()->intended('admin?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                        return redirect()->intended('admin?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
                     } elseif ($user->level == 'rekam_medis') {
-                        return redirect()->intended('rekam_medis?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                        return redirect()->intended('rekam_medis?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
                     }elseif ($user->level == 'apotek') {
-                        return redirect()->intended('apotek?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                        return redirect()->intended('apotek?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
                     }elseif ($user->level == 'kapus') {
-                        return redirect()->intended('kapus?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                        return redirect()->intended('kapus?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
                     }elseif ($user->level == 'operator') {
-                        return redirect()->intended('operator?tgl='.date('Y-m-d').'&tahun='.date('Y').'');
+                        return redirect()->intended('operator?tgl='.date('Y-m-d').'&tahun='.date('Y').'&dari='.date('Y-m-d').'&sampai='.date('Y-m-d').'');
                     }
                 }
                 return redirect()->intended('login');
